@@ -1,62 +1,73 @@
-import type { DecorationOptions } from './decorations'
-import type { RegexEngine } from './engines'
-import type { LanguageInput, LanguageRegistration, SpecialLanguage } from './langs'
-import type { SpecialTheme, ThemeInput, ThemeRegistrationAny } from './themes'
-import type { TokenizeWithThemeOptions, TokensResult } from './tokens'
-import type { TransformerOptions } from './transformers'
-import type { Awaitable, MaybeArray, StringLiteralUnion } from './utils'
+import type { DecorationOptions } from "./decorations";
+import type { RegexEngine } from "./engines";
+import type {
+  LanguageInput,
+  LanguageRegistration,
+  SpecialLanguage,
+} from "./langs";
+import type { SpecialTheme, ThemeInput, ThemeRegistrationAny } from "./themes";
+import type { TokenizeWithThemeOptions, TokensResult } from "./tokens";
+import type { TransformerOptions } from "./transformers";
+import type { Awaitable, MaybeArray, StringLiteralUnion } from "./utils";
 
 export interface HighlighterCoreOptions<Sync extends boolean = false> {
   /**
    * Custom RegExp engine.
    */
-  engine: Sync extends true ? RegexEngine : Awaitable<RegexEngine>
+  engine: Sync extends true ? RegexEngine : Awaitable<RegexEngine>;
   /**
    * Theme names, or theme registration objects to be loaded upfront.
    */
-  themes?: Sync extends true ? MaybeArray<ThemeRegistrationAny>[] : ThemeInput[]
+  themes?: Sync extends true
+    ? MaybeArray<ThemeRegistrationAny>[]
+    : ThemeInput[];
   /**
    * Language names, or language registration objects to be loaded upfront.
    */
-  langs?: Sync extends true ? MaybeArray<LanguageRegistration>[] : LanguageInput[]
+  langs?: Sync extends true
+    ? MaybeArray<LanguageRegistration>[]
+    : LanguageInput[];
   /**
    * Alias of languages
    * @example { 'my-lang': 'javascript' }
    */
-  langAlias?: Record<string, string>
+  langAlias?: Record<string, string>;
   /**
    * Emit console warnings to alert users of potential issues.
    * @default true
    */
-  warnings?: boolean
+  warnings?: boolean;
 }
 
-export interface BundledHighlighterOptions<L extends string, T extends string> extends Pick<HighlighterCoreOptions, 'warnings'> {
+export interface BundledHighlighterOptions<
+  L extends string,
+  T extends string,
+> extends Pick<HighlighterCoreOptions, "warnings"> {
   /**
    * Custom RegExp engine.
    */
-  engine?: Awaitable<RegexEngine>
+  engine?: Awaitable<RegexEngine>;
   /**
    * Theme registation
    *
    * @default []
    */
-  themes: (ThemeInput | StringLiteralUnion<T> | SpecialTheme)[]
+  themes: (ThemeInput | StringLiteralUnion<T> | SpecialTheme)[];
   /**
    * Language registation
    *
    * @default []
    */
-  langs: (LanguageInput | StringLiteralUnion<L> | SpecialLanguage)[]
+  langs: (LanguageInput | StringLiteralUnion<L> | SpecialLanguage)[];
   /**
    * Alias of languages
    * @example { 'my-lang': 'javascript' }
    */
-  langAlias?: Record<string, StringLiteralUnion<L>>
+  langAlias?: Record<string, StringLiteralUnion<L>>;
 }
 
 export interface CodeOptionsSingleTheme<Themes extends string = string> {
-  theme: ThemeRegistrationAny | StringLiteralUnion<Themes>
+  theme: ThemeRegistrationAny | StringLiteralUnion<Themes>;
 }
 
 export interface CodeOptionsMultipleThemes<Themes extends string = string> {
@@ -82,7 +93,9 @@ export interface CodeOptionsMultipleThemes<Themes extends string = string> {
    *
    * @see https://shiki.style/guide/dual-themes
    */
-  themes: Partial<Record<string, ThemeRegistrationAny | StringLiteralUnion<Themes>>>
+  themes: Partial<
+    Record<string, ThemeRegistrationAny | StringLiteralUnion<Themes>>
+  >;
 
   /**
    * The default theme applied to the code (via inline `color` style).
@@ -109,7 +122,7 @@ export interface CodeOptionsMultipleThemes<Themes extends string = string> {
    *
    * @default 'light'
    */
-  defaultColor?: StringLiteralUnion<'light' | 'dark'> | 'light-dark()' | false
+  defaultColor?: StringLiteralUnion<"light" | "dark"> | "light-dark()" | false;
 
   /**
    * The strategy to render multiple colors.
@@ -119,32 +132,40 @@ export interface CodeOptionsMultipleThemes<Themes extends string = string> {
    *
    * @default 'css-vars'
    */
-  colorsRendering?: 'css-vars' | 'none'
+  colorsRendering?: "css-vars" | "none";
 
   /**
    * Prefix of CSS variables used to store the color of the other theme.
    *
    * @default '--shiki-'
    */
-  cssVariablePrefix?: string
+  cssVariablePrefix?: string;
 }
 
-export type CodeOptionsThemes<Themes extends string = string>
-  = | CodeOptionsSingleTheme<Themes>
-    | CodeOptionsMultipleThemes<Themes>
+export type CodeOptionsThemes<Themes extends string = string> =
+  | CodeOptionsSingleTheme<Themes>
+  | CodeOptionsMultipleThemes<Themes>;
 
-export type CodeToHastOptions<Languages extends string = string, Themes extends string = string>
-  = & CodeToHastOptionsCommon<Languages>
-    & CodeOptionsThemes<Themes>
-    & CodeOptionsMeta
+export type CodeToHastOptions<
+  Languages extends string = string,
+  Themes extends string = string,
+> = CodeToHastOptionsCommon<Languages> &
+  CodeOptionsThemes<Themes> &
+  CodeOptionsMeta;
 
 export interface CodeToHastOptionsCommon<Languages extends string = string>
   extends
-  TransformerOptions,
-  DecorationOptions,
-  Pick<TokenizeWithThemeOptions, 'colorReplacements' | 'tokenizeMaxLineLength' | 'tokenizeTimeLimit' | 'grammarState' | 'grammarContextCode'> {
-
-  lang: StringLiteralUnion<Languages | SpecialLanguage>
+    TransformerOptions,
+    DecorationOptions,
+    Pick<
+      TokenizeWithThemeOptions,
+      | "colorReplacements"
+      | "tokenizeMaxLineLength"
+      | "tokenizeTimeLimit"
+      | "grammarState"
+      | "grammarContextCode"
+    > {
+  lang: StringLiteralUnion<Languages | SpecialLanguage>;
 
   /**
    * Merge whitespace tokens to saving extra `<span>`.
@@ -155,7 +176,7 @@ export interface CodeToHastOptionsCommon<Languages extends string = string>
    *
    * @default true
    */
-  mergeWhitespaces?: boolean | 'never'
+  mergeWhitespaces?: boolean | "never";
 
   /**
    * Merge consecutive tokens with the same style to reduce the number of DOM nodes.
@@ -163,7 +184,7 @@ export interface CodeToHastOptionsCommon<Languages extends string = string>
    *
    * @default false
    */
-  mergeSameStyleTokens?: boolean
+  mergeSameStyleTokens?: boolean;
 
   /**
    * The structure of the generated HAST and HTML.
@@ -173,7 +194,7 @@ export interface CodeToHastOptionsCommon<Languages extends string = string>
    *
    * @default 'classic'
    */
-  structure?: 'classic' | 'inline'
+  structure?: "classic" | "inline";
 
   /**
    * Tab index of the root `<pre>` element.
@@ -182,7 +203,7 @@ export interface CodeToHastOptionsCommon<Languages extends string = string>
    *
    * @default 0
    */
-  tabindex?: number | string | false
+  tabindex?: number | string | false;
 }
 
 export interface CodeOptionsMeta {
@@ -199,14 +220,16 @@ export interface CodeOptionsMeta {
     /**
      * Raw string of the code block header.
      */
-    __raw?: string
-    [key: string]: any
-  }
+    __raw?: string;
+    [key: string]: any;
+  };
 }
 
-export interface CodeToHastRenderOptionsCommon extends TransformerOptions, Omit<TokensResult, 'tokens'> {
-  lang?: string
-  langId?: string
+export interface CodeToHastRenderOptionsCommon
+  extends TransformerOptions, Omit<TokensResult, "tokens"> {
+  lang?: string;
+  langId?: string;
 }
 
-export type CodeToHastRenderOptions = CodeToHastRenderOptionsCommon & CodeToHastOptions
+export type CodeToHastRenderOptions = CodeToHastRenderOptionsCommon &
+  CodeToHastOptions;

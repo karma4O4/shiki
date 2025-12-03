@@ -11,11 +11,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "# This is a TOML document\n",
-      0,
-      0
-    ],
+    "args": ["# This is a TOML document\n", 0, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -34,15 +30,8 @@
   },
   {
     "id": "q51PbsOCfJpK3V8vdDKnyU7MgK1rq4UtGjfiroqu8dU",
-    "patterns": [
-      "(?!\\G)",
-      "#"
-    ],
-    "args": [
-      "# This is a TOML document\n",
-      0,
-      0
-    ],
+    "patterns": ["(?!\\G)", "#"],
+    "args": ["# This is a TOML document\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -56,14 +45,8 @@
   },
   {
     "id": "Q4biSDnCvJOL1GbX14gwuCSUw7C-rfXQY-voSnVgv7k",
-    "patterns": [
-      "\\n"
-    ],
-    "args": [
-      "# This is a TOML document\n",
-      1,
-      0
-    ],
+    "patterns": ["\\n"],
+    "args": ["# This is a TOML document\n", 1, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -77,15 +60,8 @@
   },
   {
     "id": "-5dcyARPf98vzMa8ArH0j0vhfPuHGXEOyBmG9BPtqO0",
-    "patterns": [
-      "(?!\\￿)",
-      "#"
-    ],
-    "args": [
-      "# This is a TOML document\n",
-      26,
-      0
-    ],
+    "patterns": ["(?!\\￿)", "#"],
+    "args": ["# This is a TOML document\n", 26, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -109,11 +85,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "# This is a TOML document\n",
-      26,
-      0
-    ],
+    "args": ["# This is a TOML document\n", 26, 0],
     "result": null
   },
   {
@@ -128,11 +100,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      0,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 0, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -174,11 +142,7 @@
       "\\G\\[",
       "\\G\\{"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      8,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 8, 0],
     "result": {
       "index": 2,
       "captureIndices": [
@@ -197,11 +161,7 @@
       "\\\\([\"\\\\bfnrt]|u\\h{4}|U\\h{8})",
       "\\\\[^\"\\\\bfnrt]"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      9,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 9, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -233,11 +193,7 @@
       "\\￿\\[",
       "\\￿\\{"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      22,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 22, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -261,11 +217,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      22,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 22, 0],
     "result": null
   },
   {
@@ -280,11 +232,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "[owner]\n",
-      0,
-      0
-    ],
+    "args": ["[owner]\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -313,14 +261,8 @@
   },
   {
     "id": "I1vGUH267fZ6rgeQ6uByBQAv04aJ_tNCfJ-cBW45Igo",
-    "patterns": [
-      "[^.\\s]+"
-    ],
-    "args": [
-      "[owner",
-      1,
-      0
-    ],
+    "patterns": ["[^.\\s]+"],
+    "args": ["[owner", 1, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -334,14 +276,8 @@
   },
   {
     "id": "I1vGUH267fZ6rgeQ6uByBQAv04aJ_tNCfJ-cBW45Igo",
-    "patterns": [
-      "[^.\\s]+"
-    ],
-    "args": [
-      "[owner",
-      6,
-      0
-    ],
+    "patterns": ["[^.\\s]+"],
+    "args": ["[owner", 6, 0],
     "result": null
   },
   {
@@ -356,11 +292,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "[owner]\n",
-      7,
-      0
-    ],
+    "args": ["[owner]\n", 7, 0],
     "result": null
   },
   {
@@ -375,11 +307,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      0,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 0, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -421,11 +349,7 @@
       "\\G\\[",
       "\\G\\{"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      7,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 7, 0],
     "result": {
       "index": 2,
       "captureIndices": [
@@ -444,11 +368,7 @@
       "\\\\([\"\\\\bfnrt]|u\\h{4}|U\\h{8})",
       "\\\\[^\"\\\\bfnrt]"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      8,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 8, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -480,11 +400,7 @@
       "\\￿\\[",
       "\\￿\\{"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      27,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 27, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -508,11 +424,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      27,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 27, 0],
     "result": null
   },
   {
@@ -527,11 +439,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "# This is a TOML document\n",
-      0,
-      0
-    ],
+    "args": ["# This is a TOML document\n", 0, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -550,15 +458,8 @@
   },
   {
     "id": "q51PbsOCfJpK3V8vdDKnyU7MgK1rq4UtGjfiroqu8dU",
-    "patterns": [
-      "(?!\\G)",
-      "#"
-    ],
-    "args": [
-      "# This is a TOML document\n",
-      0,
-      0
-    ],
+    "patterns": ["(?!\\G)", "#"],
+    "args": ["# This is a TOML document\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -572,14 +473,8 @@
   },
   {
     "id": "Q4biSDnCvJOL1GbX14gwuCSUw7C-rfXQY-voSnVgv7k",
-    "patterns": [
-      "\\n"
-    ],
-    "args": [
-      "# This is a TOML document\n",
-      1,
-      0
-    ],
+    "patterns": ["\\n"],
+    "args": ["# This is a TOML document\n", 1, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -593,15 +488,8 @@
   },
   {
     "id": "-5dcyARPf98vzMa8ArH0j0vhfPuHGXEOyBmG9BPtqO0",
-    "patterns": [
-      "(?!\\￿)",
-      "#"
-    ],
-    "args": [
-      "# This is a TOML document\n",
-      26,
-      0
-    ],
+    "patterns": ["(?!\\￿)", "#"],
+    "args": ["# This is a TOML document\n", 26, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -625,11 +513,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "# This is a TOML document\n",
-      26,
-      0
-    ],
+    "args": ["# This is a TOML document\n", 26, 0],
     "result": null
   },
   {
@@ -644,11 +528,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      0,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 0, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -690,11 +570,7 @@
       "\\G\\[",
       "\\G\\{"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      8,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 8, 0],
     "result": {
       "index": 2,
       "captureIndices": [
@@ -713,11 +589,7 @@
       "\\\\([\"\\\\bfnrt]|u\\h{4}|U\\h{8})",
       "\\\\[^\"\\\\bfnrt]"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      9,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 9, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -749,11 +621,7 @@
       "\\￿\\[",
       "\\￿\\{"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      22,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 22, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -777,11 +645,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "title = \"TOML Example\"\n",
-      22,
-      0
-    ],
+    "args": ["title = \"TOML Example\"\n", 22, 0],
     "result": null
   },
   {
@@ -796,11 +660,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "[owner]\n",
-      0,
-      0
-    ],
+    "args": ["[owner]\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -829,14 +689,8 @@
   },
   {
     "id": "I1vGUH267fZ6rgeQ6uByBQAv04aJ_tNCfJ-cBW45Igo",
-    "patterns": [
-      "[^.\\s]+"
-    ],
-    "args": [
-      "[owner",
-      1,
-      0
-    ],
+    "patterns": ["[^.\\s]+"],
+    "args": ["[owner", 1, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -850,14 +704,8 @@
   },
   {
     "id": "I1vGUH267fZ6rgeQ6uByBQAv04aJ_tNCfJ-cBW45Igo",
-    "patterns": [
-      "[^.\\s]+"
-    ],
-    "args": [
-      "[owner",
-      6,
-      0
-    ],
+    "patterns": ["[^.\\s]+"],
+    "args": ["[owner", 6, 0],
     "result": null
   },
   {
@@ -872,11 +720,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "[owner]\n",
-      7,
-      0
-    ],
+    "args": ["[owner]\n", 7, 0],
     "result": null
   },
   {
@@ -891,11 +735,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      0,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 0, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -937,11 +777,7 @@
       "\\G\\[",
       "\\G\\{"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      7,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 7, 0],
     "result": {
       "index": 2,
       "captureIndices": [
@@ -960,11 +796,7 @@
       "\\\\([\"\\\\bfnrt]|u\\h{4}|U\\h{8})",
       "\\\\[^\"\\\\bfnrt]"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      8,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 8, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -996,11 +828,7 @@
       "\\￿\\[",
       "\\￿\\{"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      27,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 27, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1024,11 +852,7 @@
       "(((?:[-0-9A-Z_a-z]+|\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')(?:\\s*\\.\\s*|(?=\\s*=))){2,})\\s*(=)\\s*",
       "\\S+(\\s*(?=\\S))?"
     ],
-    "args": [
-      "name = \"Tom Preston-Werner\"\n",
-      27,
-      0
-    ],
+    "args": ["name = \"Tom Preston-Werner\"\n", 27, 0],
     "result": null
   }
 ]

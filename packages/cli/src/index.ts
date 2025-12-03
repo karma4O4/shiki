@@ -1,1 +1,1 @@
-export * from './code-to-ansi'
+export * from "./code-to-ansi";

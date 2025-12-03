@@ -1,11 +1,11 @@
-type Result = "pass" | "fail"
+type Result = "pass" | "fail";
 //   ^^^^^^
 
-const hello = "OK"
+const hello = "OK";
 //    ^^ Sure
 
-const world = "OK"
+const world = "OK";
 //  ^^^^^^
 
-console.log("OK")
+console.log("OK");
 //          ^^^^^

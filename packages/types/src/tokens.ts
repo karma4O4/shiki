@@ -1,7 +1,11 @@
-import type { FontStyle, IRawThemeSetting, StateStack } from '@shikijs/vscode-textmate'
-import type { SpecialLanguage } from './langs'
-import type { CodeOptionsThemes } from './options'
-import type { SpecialTheme, ThemeRegistrationAny } from './themes'
+import type {
+  FontStyle,
+  IRawThemeSetting,
+  StateStack,
+} from "@shikijs/vscode-textmate";
+import type { SpecialLanguage } from "./langs";
+import type { CodeOptionsThemes } from "./options";
+import type { SpecialTheme, ThemeRegistrationAny } from "./themes";
 
 /**
  * GrammarState is a special reference object that holds the state of a grammar.
@@ -9,26 +13,35 @@ import type { SpecialTheme, ThemeRegistrationAny } from './themes'
  * It's used to highlight code snippets that are part of the target language.
  */
 export interface GrammarState {
-  readonly lang: string
-  readonly theme: string
-  readonly themes: string[]
+  readonly lang: string;
+  readonly theme: string;
+  readonly themes: string[];
   /**
    * @internal
    */
-  getInternalStack: (theme?: string) => StateStack | undefined
-  getScopes: (theme?: string) => string[] | undefined
+  getInternalStack: (theme?: string) => StateStack | undefined;
+  getScopes: (theme?: string) => string[] | undefined;
 }
 
-export interface CodeToTokensBaseOptions<Languages extends string = string, Themes extends string = string> extends TokenizeWithThemeOptions {
-  lang?: Languages | SpecialLanguage
-  theme?: Themes | ThemeRegistrationAny | SpecialTheme
+export interface CodeToTokensBaseOptions<
+  Languages extends string = string,
+  Themes extends string = string,
+> extends TokenizeWithThemeOptions {
+  lang?: Languages | SpecialLanguage;
+  theme?: Themes | ThemeRegistrationAny | SpecialTheme;
 }
 
-export type CodeToTokensOptions<Languages extends string = string, Themes extends string = string> = Omit<CodeToTokensBaseOptions<Languages, Themes>, 'theme'>
-  & CodeOptionsThemes<Themes>
+export type CodeToTokensOptions<
+  Languages extends string = string,
+  Themes extends string = string,
+> = Omit<CodeToTokensBaseOptions<Languages, Themes>, "theme"> &
+  CodeOptionsThemes<Themes>;
 
-export interface CodeToTokensWithThemesOptions<Languages = string, Themes = string> extends TokenizeWithThemeOptions {
-  lang?: Languages | SpecialLanguage
+export interface CodeToTokensWithThemesOptions<
+  Languages = string,
+  Themes = string,
+> extends TokenizeWithThemeOptions {
+  lang?: Languages | SpecialLanguage;
 
   /**
    * A map of color names to themes.
@@ -45,17 +58,17 @@ export interface CodeToTokensWithThemesOptions<Languages = string, Themes = stri
    * }
    * ```
    */
-  themes: Partial<Record<string, Themes | ThemeRegistrationAny | SpecialTheme>>
+  themes: Partial<Record<string, Themes | ThemeRegistrationAny | SpecialTheme>>;
 }
 
 export interface ThemedTokenScopeExplanation {
-  scopeName: string
-  themeMatches?: IRawThemeSetting[]
+  scopeName: string;
+  themeMatches?: IRawThemeSetting[];
 }
 
 export interface ThemedTokenExplanation {
-  content: string
-  scopes: ThemedTokenScopeExplanation[]
+  content: string;
+  scopes: ThemedTokenScopeExplanation[];
 }
 
 /**
@@ -118,50 +131,50 @@ export interface TokenBase {
   /**
    * The content of the token
    */
-  content: string
+  content: string;
   /**
    * The start offset of the token, relative to the input code. 0-indexed.
    */
-  offset: number
+  offset: number;
   /**
    * Explanation of
    *
    * - token text's matching scopes
    * - reason that token text is given a color (one matching scope matches a rule (scope -> color) in the theme)
    */
-  explanation?: ThemedTokenExplanation[]
+  explanation?: ThemedTokenExplanation[];
 }
 
 export interface TokenStyles {
   /**
    * 6 or 8 digit hex code representation of the token's color
    */
-  color?: string
+  color?: string;
   /**
    * 6 or 8 digit hex code representation of the token's background color
    */
-  bgColor?: string
+  bgColor?: string;
   /**
    * Font style of token. Can be None/Italic/Bold/Underline
    */
-  fontStyle?: FontStyle
+  fontStyle?: FontStyle;
   /**
    * Override with custom inline style for HTML renderer.
    * When specified, `color` and `fontStyle` will be ignored.
    * Prefer use object style for merging with other styles.
    */
-  htmlStyle?: Record<string, string>
+  htmlStyle?: Record<string, string>;
   /**
    * Extra HTML attributes for the token.
    */
-  htmlAttrs?: Record<string, string>
+  htmlAttrs?: Record<string, string>;
 }
 
 export interface ThemedTokenWithVariants extends TokenBase {
   /**
    * An object of color name to token styles
    */
-  variants: Record<string, TokenStyles>
+  variants: Record<string, TokenStyles>;
 }
 
 export interface TokenizeWithThemeOptions {
@@ -173,7 +186,7 @@ export interface TokenizeWithThemeOptions {
    *
    * @default false
    */
-  includeExplanation?: boolean | 'scopeName'
+  includeExplanation?: boolean | "scopeName";
 
   /**
    * A map of color names to new color values.
@@ -182,28 +195,28 @@ export interface TokenizeWithThemeOptions {
    *
    * This will be merged with theme's `colorReplacements` if any.
    */
-  colorReplacements?: Record<string, string | Record<string, string>>
+  colorReplacements?: Record<string, string | Record<string, string>>;
 
   /**
    * Lines above this length will not be tokenized for performance reasons.
    *
    * @default 0 (no limit)
    */
-  tokenizeMaxLineLength?: number
+  tokenizeMaxLineLength?: number;
 
   /**
    * Time limit in milliseconds for tokenizing a single line.
    *
    * @default 500 (0.5s)
    */
-  tokenizeTimeLimit?: number
+  tokenizeTimeLimit?: number;
 
   /**
    * Represent the state of the grammar, allowing to continue tokenizing from a intermediate grammar state.
    *
    * You can get the grammar state from `getLastGrammarState`.
    */
-  grammarState?: GrammarState
+  grammarState?: GrammarState;
 
   /**
    * The code context of the grammar.
@@ -211,7 +224,7 @@ export interface TokenizeWithThemeOptions {
    *
    * This will be ignored if `grammarState` is provided.
    */
-  grammarContextCode?: string
+  grammarContextCode?: string;
 }
 
 /**
@@ -221,31 +234,31 @@ export interface TokensResult {
   /**
    * 2D array of tokens, first dimension is lines, second dimension is tokens in a line.
    */
-  tokens: ThemedToken[][]
+  tokens: ThemedToken[][];
 
   /**
    * Foreground color of the code.
    */
-  fg?: string
+  fg?: string;
 
   /**
    * Background color of the code.
    */
-  bg?: string
+  bg?: string;
 
   /**
    * A string representation of themes applied to the token.
    */
-  themeName?: string
+  themeName?: string;
 
   /**
    * Custom style string to be applied to the root `<pre>` element.
    * When specified, `fg` and `bg` will be ignored.
    */
-  rootStyle?: string
+  rootStyle?: string;
 
   /**
    * The last grammar state of the code snippet.
    */
-  grammarState?: GrammarState
+  grammarState?: GrammarState;
 }

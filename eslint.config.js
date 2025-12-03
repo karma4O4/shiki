@@ -1,9 +1,9 @@
 // @ts-check
-import antfu from '@antfu/eslint-config'
+import antfu from "@antfu/eslint-config";
 
 export default antfu(
   {
-    type: 'lib',
+    type: "lib",
     pnpm: true,
     formatters: {
       html: false,
@@ -12,63 +12,61 @@ export default antfu(
     },
     markdown: {
       overrides: {
-        'unicorn/prefer-node-protocol': 'off',
-        'import/first': 'off',
-        'ts/explicit-function-return-type': 'off',
+        "unicorn/prefer-node-protocol": "off",
+        "import/first": "off",
+        "ts/explicit-function-return-type": "off",
       },
     },
     vue: {
       overrides: {
-        'ts/explicit-function-return-type': 'off',
+        "ts/explicit-function-return-type": "off",
       },
     },
     ignores: [
-      '**/fixtures/**',
-      '**/vendor/**',
-      '**/test/out/**',
-      'docs/languages.md',
-      'docs/themes.md',
+      "**/fixtures/**",
+      "**/vendor/**",
+      "**/test/out/**",
+      "docs/languages.md",
+      "docs/themes.md",
       // Generated Files
-      'packages/shiki/src/langs/**',
-      'packages/shiki/src/themes/**',
-      'packages/shiki/src/langs-bundle-full.ts',
-      'packages/shiki/src/langs-bundle-web.ts',
-      'packages/shiki/src/themes.ts',
+      "packages/shiki/src/langs/**",
+      "packages/shiki/src/themes/**",
+      "packages/shiki/src/langs-bundle-full.ts",
+      "packages/shiki/src/langs-bundle-web.ts",
+      "packages/shiki/src/themes.ts",
     ],
   },
   {
     rules: {
-      'no-restricted-syntax': 'off',
-      'ts/no-invalid-this': 'off',
+      "no-restricted-syntax": "off",
+      "ts/no-invalid-this": "off",
     },
   },
   {
-    files: ['docs/**/*.([cm])?[jt]s(x)?'],
+    files: ["docs/**/*.([cm])?[jt]s(x)?"],
     rules: {
-      'ts/explicit-function-return-type': 'off',
+      "ts/explicit-function-return-type": "off",
     },
   },
   {
     files: [
-      'packages/shiki/**/*.ts',
-      'packages/core/**/*.ts',
-      'packages/engine-javascript/**/*.ts',
-      'packages/engine-oniguruma/**/*.ts',
+      "packages/shiki/**/*.ts",
+      "packages/core/**/*.ts",
+      "packages/engine-javascript/**/*.ts",
+      "packages/engine-oniguruma/**/*.ts",
     ],
-    ignores: [
-      '**/*.test.ts',
-    ],
+    ignores: ["**/*.test.ts"],
     rules: {
-      'no-restricted-imports': [
-        'error',
+      "no-restricted-imports": [
+        "error",
         {
           paths: [
             {
-              name: 'shiki',
+              name: "shiki",
             },
           ],
         },
       ],
     },
   },
-)
+);

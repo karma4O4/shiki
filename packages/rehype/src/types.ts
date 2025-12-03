@@ -1,15 +1,15 @@
-import type { Element, Root } from 'hast'
+import type { Element, Root } from "hast";
 import type {
   BuiltinTheme,
   CodeOptionsMeta,
   CodeOptionsThemes,
   CodeToHastOptionsCommon,
   TransformerOptions,
-} from 'shiki'
+} from "shiki";
 
 export interface MapLike<K = any, V = any> {
-  get: (key: K) => V | undefined
-  set: (key: K, value: V) => this
+  get: (key: K) => V | undefined;
+  set: (key: K, value: V) => this;
 }
 
 export interface RehypeShikiExtraOptions {
@@ -18,17 +18,17 @@ export interface RehypeShikiExtraOptions {
    *
    * @default false
    */
-  addLanguageClass?: boolean
+  addLanguageClass?: boolean;
 
   /**
    * The default language to use when is not specified
    */
-  defaultLanguage?: string
+  defaultLanguage?: string;
 
   /**
    * The fallback language to use when specified language is not loaded, or not included in the bundle
    */
-  fallbackLanguage?: string
+  fallbackLanguage?: string;
 
   /**
    * Load languages and themes on-demand.
@@ -36,7 +36,7 @@ export interface RehypeShikiExtraOptions {
    *
    * @default false
    */
-  lazy?: boolean
+  lazy?: boolean;
 
   /**
    * `mdast-util-to-hast` adds a newline to the end of code blocks
@@ -46,7 +46,7 @@ export interface RehypeShikiExtraOptions {
    * @default true
    * @see https://github.com/syntax-tree/mdast-util-to-hast/blob/f511a93817b131fb73419bf7d24d73a5b8b0f0c2/lib/handlers/code.js#L22
    */
-  stripEndNewline?: boolean
+  stripEndNewline?: boolean;
 
   /**
    * Custom meta string parser
@@ -56,7 +56,7 @@ export interface RehypeShikiExtraOptions {
     metaString: string,
     node: Element,
     tree: Root,
-  ) => Record<string, any> | undefined | null
+  ) => Record<string, any> | undefined | null;
 
   /**
    * Highlight inline code blocks
@@ -67,25 +67,24 @@ export interface RehypeShikiExtraOptions {
    * @see https://shiki.style/packages/rehype#inline-code
    * @default false
    */
-  inline?: false | 'tailing-curly-colon'
+  inline?: false | "tailing-curly-colon";
 
   /**
    * Custom map to cache transformed codeToHast result
    *
    * @default undefined
    */
-  cache?: MapLike<string, Root>
+  cache?: MapLike<string, Root>;
 
   /**
    * Chance to handle the error
    * If not provided, the error will be thrown
    */
-  onError?: (error: unknown) => void
+  onError?: (error: unknown) => void;
 }
 
-export type RehypeShikiCoreOptions
-  = & CodeOptionsThemes<BuiltinTheme>
-    & TransformerOptions
-    & CodeOptionsMeta
-    & RehypeShikiExtraOptions
-    & Omit<CodeToHastOptionsCommon, 'lang'>
+export type RehypeShikiCoreOptions = CodeOptionsThemes<BuiltinTheme> &
+  TransformerOptions &
+  CodeOptionsMeta &
+  RehypeShikiExtraOptions &
+  Omit<CodeToHastOptionsCommon, "lang">;

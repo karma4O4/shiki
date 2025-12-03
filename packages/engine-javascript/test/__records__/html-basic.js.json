@@ -132,11 +132,7 @@
       "(^[\\t ]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
       "\\A(#!).*(?=$)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      0,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 0, 0],
     "result": {
       "index": 35,
       "captureIndices": [
@@ -204,11 +200,7 @@
       "(?!(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>))",
       "(?=(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>))"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      0,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -267,11 +259,7 @@
       "(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>)",
       "(>)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      0,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -333,11 +321,7 @@
       "<",
       "\\s+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      4,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 4, 0],
     "result": {
       "index": 5,
       "captureIndices": [
@@ -363,11 +347,7 @@
       "\\{",
       "\\S+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      5,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 5, 0],
     "result": {
       "index": 4,
       "captureIndices": [
@@ -408,11 +388,7 @@
       "\\{",
       "\\S+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      10,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 10, 0],
     "result": {
       "index": 5,
       "captureIndices": [
@@ -438,11 +414,7 @@
       "\\{",
       "\\S+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      11,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 11, 0],
     "result": {
       "index": 6,
       "captureIndices": [
@@ -456,15 +428,8 @@
   },
   {
     "id": "6X6iU3jFm5tliFrWtyiX602ivoBJP8pu5yZEbkZLJDI",
-    "patterns": [
-      "\"",
-      "(&)([0-9A-Za-z]+|#[0-9]+|#x\\h+)(;)"
-    ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      12,
-      0
-    ],
+    "patterns": ["\"", "(&)([0-9A-Za-z]+|#[0-9]+|#x\\h+)(;)"],
+    "args": ["<div class=\"foo\">bar</div>\n", 12, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -490,11 +455,7 @@
       "\\{",
       "\\S+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      16,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 16, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -516,11 +477,7 @@
       "<",
       "\\s+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      16,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 16, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -539,11 +496,7 @@
       "(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>)",
       "(>)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      16,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 16, 0],
     "result": {
       "index": 2,
       "captureIndices": [
@@ -569,11 +522,7 @@
       "\\{",
       "(&)([0-9A-Za-z]+|#[0-9]+|#x\\h+)(;)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      17,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 17, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -592,11 +541,7 @@
       "(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>)",
       "(>)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      20,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 20, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -649,11 +594,7 @@
       "(?!(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>))",
       "(?=(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>))"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      26,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 26, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -838,11 +779,7 @@
       "(^[\\t ]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
       "\\￿(#!).*(?=$)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      26,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 26, 0],
     "result": null
   },
   {
@@ -978,11 +915,7 @@
       "(^[\\t ]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
       "\\A(#!).*(?=$)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      0,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 0, 0],
     "result": {
       "index": 35,
       "captureIndices": [
@@ -1050,11 +983,7 @@
       "(?!(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>))",
       "(?=(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>))"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      0,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -1113,11 +1042,7 @@
       "(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>)",
       "(>)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      0,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -1179,11 +1104,7 @@
       "<",
       "\\s+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      4,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 4, 0],
     "result": {
       "index": 5,
       "captureIndices": [
@@ -1209,11 +1130,7 @@
       "\\{",
       "\\S+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      5,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 5, 0],
     "result": {
       "index": 4,
       "captureIndices": [
@@ -1254,11 +1171,7 @@
       "\\{",
       "\\S+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      10,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 10, 0],
     "result": {
       "index": 5,
       "captureIndices": [
@@ -1284,11 +1197,7 @@
       "\\{",
       "\\S+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      11,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 11, 0],
     "result": {
       "index": 6,
       "captureIndices": [
@@ -1302,15 +1211,8 @@
   },
   {
     "id": "6X6iU3jFm5tliFrWtyiX602ivoBJP8pu5yZEbkZLJDI",
-    "patterns": [
-      "\"",
-      "(&)([0-9A-Za-z]+|#[0-9]+|#x\\h+)(;)"
-    ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      12,
-      0
-    ],
+    "patterns": ["\"", "(&)([0-9A-Za-z]+|#[0-9]+|#x\\h+)(;)"],
+    "args": ["<div class=\"foo\">bar</div>\n", 12, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1336,11 +1238,7 @@
       "\\{",
       "\\S+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      16,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 16, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1362,11 +1260,7 @@
       "<",
       "\\s+"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      16,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 16, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1385,11 +1279,7 @@
       "(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>)",
       "(>)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      16,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 16, 0],
     "result": {
       "index": 2,
       "captureIndices": [
@@ -1415,11 +1305,7 @@
       "\\{",
       "(&)([0-9A-Za-z]+|#[0-9]+|#x\\h+)(;)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      17,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 17, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1438,11 +1324,7 @@
       "(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>)",
       "(>)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      20,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 20, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1495,11 +1377,7 @@
       "(?!(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>))",
       "(?=(<)\\s*(?:([$_[:alpha:]][-$._[:alnum:]]*)(?<![-.])(:))?((?:[a-z][0-9a-z]*|([$_[:alpha:]][-$._[:alnum:]]*))(?<![-.]))(?=((<\\s*)|(\\s+))(?!\\?)|/?>))"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      26,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 26, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1684,11 +1562,7 @@
       "(^[\\t ]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
       "\\￿(#!).*(?=$)"
     ],
-    "args": [
-      "<div class=\"foo\">bar</div>\n",
-      26,
-      0
-    ],
+    "args": ["<div class=\"foo\">bar</div>\n", 26, 0],
     "result": null
   },
   {

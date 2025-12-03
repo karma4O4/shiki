@@ -1,62 +1,87 @@
-import type { ThemedToken } from '../src'
-import { describe, expect, it } from 'vitest'
-import { syncThemesTokenization } from '../../core/src/highlight/code-to-tokens-themes'
-import { codeToHtml, codeToTokensBase, codeToTokensWithThemes } from '../src'
+import type { ThemedToken } from "../src";
+import { describe, expect, it } from "vitest";
+import { syncThemesTokenization } from "../../core/src/highlight/code-to-tokens-themes";
+import { codeToHtml, codeToTokensBase, codeToTokensWithThemes } from "../src";
 
 function stringifyTokens(tokens: ThemedToken[][]) {
-  return tokens.map(line => line.map(token => token.content).join(' ')).join('\n')
+  return tokens
+    .map((line) => line.map((token) => token.content).join(" "))
+    .join("\n");
 }
 
-describe('syncThemesTokenization', () => {
-  it('two themes', async () => {
-    const lines1 = await codeToTokensBase('console.log("hello")', { lang: 'js', theme: 'vitesse-dark', includeExplanation: true })
-    const lines2 = await codeToTokensBase('console.log("hello")', { lang: 'js', theme: 'min-light', includeExplanation: true })
+describe("syncThemesTokenization", () => {
+  it("two themes", async () => {
+    const lines1 = await codeToTokensBase('console.log("hello")', {
+      lang: "js",
+      theme: "vitesse-dark",
+      includeExplanation: true,
+    });
+    const lines2 = await codeToTokensBase('console.log("hello")', {
+      lang: "js",
+      theme: "min-light",
+      includeExplanation: true,
+    });
 
-    expect(stringifyTokens(lines1))
-      .toMatchInlineSnapshot(`"console . log ( " hello " )"`)
-    expect(stringifyTokens(lines2))
-      .toMatchInlineSnapshot(`"console .log ( "hello" )"`)
+    expect(stringifyTokens(lines1)).toMatchInlineSnapshot(
+      `"console . log ( " hello " )"`,
+    );
+    expect(stringifyTokens(lines2)).toMatchInlineSnapshot(
+      `"console .log ( "hello" )"`,
+    );
 
-    const [out1, out2] = syncThemesTokenization(lines1, lines2)
+    const [out1, out2] = syncThemesTokenization(lines1, lines2);
 
-    expect(stringifyTokens(out1))
-      .toBe(stringifyTokens(out2))
-  })
+    expect(stringifyTokens(out1)).toBe(stringifyTokens(out2));
+  });
 
-  it('three themes', async () => {
-    const lines1 = await codeToTokensBase('console.log("hello");', { lang: 'js', theme: 'vitesse-dark', includeExplanation: true })
-    const lines2 = await codeToTokensBase('console.log("hello");', { lang: 'js', theme: 'min-light', includeExplanation: true })
-    const lines3 = await codeToTokensBase('console.log("hello");', { lang: 'js', theme: 'nord', includeExplanation: true })
+  it("three themes", async () => {
+    const lines1 = await codeToTokensBase('console.log("hello");', {
+      lang: "js",
+      theme: "vitesse-dark",
+      includeExplanation: true,
+    });
+    const lines2 = await codeToTokensBase('console.log("hello");', {
+      lang: "js",
+      theme: "min-light",
+      includeExplanation: true,
+    });
+    const lines3 = await codeToTokensBase('console.log("hello");', {
+      lang: "js",
+      theme: "nord",
+      includeExplanation: true,
+    });
 
-    expect(stringifyTokens(lines1))
-      .toMatchInlineSnapshot(`"console . log ( " hello " );"`)
-    expect(stringifyTokens(lines2))
-      .toMatchInlineSnapshot(`"console .log ( "hello" );"`)
-    expect(stringifyTokens(lines3))
-      .toMatchInlineSnapshot(`"console . log ( " hello " ) ;"`)
+    expect(stringifyTokens(lines1)).toMatchInlineSnapshot(
+      `"console . log ( " hello " );"`,
+    );
+    expect(stringifyTokens(lines2)).toMatchInlineSnapshot(
+      `"console .log ( "hello" );"`,
+    );
+    expect(stringifyTokens(lines3)).toMatchInlineSnapshot(
+      `"console . log ( " hello " ) ;"`,
+    );
 
-    const [out1, out2, out3] = syncThemesTokenization(lines1, lines2, lines3)
+    const [out1, out2, out3] = syncThemesTokenization(lines1, lines2, lines3);
 
-    expect(stringifyTokens(out1))
-      .toBe(stringifyTokens(out2))
+    expect(stringifyTokens(out1)).toBe(stringifyTokens(out2));
 
-    expect(stringifyTokens(out2))
-      .toBe(stringifyTokens(out3))
+    expect(stringifyTokens(out2)).toBe(stringifyTokens(out3));
 
-    expect(stringifyTokens(out1))
-      .toMatchInlineSnapshot(`"console . log ( " hello " ) ;"`)
-  })
-})
+    expect(stringifyTokens(out1)).toMatchInlineSnapshot(
+      `"console . log ( " hello " ) ;"`,
+    );
+  });
+});
 
-describe('codeToHtml', () => {
-  it('dual themes', async () => {
+describe("codeToHtml", () => {
+  it("dual themes", async () => {
     const code = await codeToHtml('console.log("hello")', {
-      lang: 'js',
+      lang: "js",
       themes: {
-        dark: 'nord',
-        light: 'min-light',
+        dark: "nord",
+        light: "min-light",
       },
-    })
+    });
 
     const snippet = `
 <style>
@@ -67,27 +92,26 @@ describe('codeToHtml', () => {
 }
 </style>
 <button onclick="document.body.classList.toggle('dark')">Toggle theme</button>
-`
+`;
 
-    await expect(snippet + code)
-      .toMatchFileSnapshot('./out/dual-themes.html')
-  })
+    await expect(snippet + code).toMatchFileSnapshot("./out/dual-themes.html");
+  });
 
-  it('multiple themes', async () => {
+  it("multiple themes", async () => {
     const themes = {
-      'light': 'vitesse-light',
-      'dark': 'vitesse-dark',
-      'nord': 'nord',
-      'min-dark': 'min-dark',
-      'min-light': 'min-light',
-      'palenight': 'material-theme-palenight',
-    } as const
+      light: "vitesse-light",
+      dark: "vitesse-dark",
+      nord: "nord",
+      "min-dark": "min-dark",
+      "min-light": "min-light",
+      palenight: "material-theme-palenight",
+    } as const;
 
     const code = await codeToHtml('import * as Shiki from "shiki"', {
-      lang: 'js',
+      lang: "js",
       themes,
-      cssVariablePrefix: '--s-',
-    })
+      cssVariablePrefix: "--s-",
+    });
 
     const snippet = `
 <style>
@@ -96,7 +120,9 @@ describe('codeToHtml', () => {
   border-radius: 0.25em;
 }
 
-${Object.keys(themes).map(theme => `
+${Object.keys(themes)
+  .map(
+    (theme) => `
 [data-theme="${theme}"] .shiki,
 [data-theme="${theme}"] .shiki span {
   background-color: var(--s-${theme}-bg) !important;
@@ -105,7 +131,9 @@ ${Object.keys(themes).map(theme => `
   font-weight: var(--s-${theme}-font-weight) !important;
   text-decoration: var(--s-${theme}-text-decoration) !important;
 }
-`).join('\n')}
+`,
+  )
+  .join("\n")}
 </style>
 <script>
 const themes = ${JSON.stringify(Object.keys(themes))}
@@ -115,27 +143,28 @@ function toggleTheme() {
 }
 </script>
 <button onclick="toggleTheme()">Toggle theme</button>
-`
+`;
 
-    await expect(snippet + code)
-      .toMatchFileSnapshot('./out/multiple-themes.html')
-  })
+    await expect(snippet + code).toMatchFileSnapshot(
+      "./out/multiple-themes.html",
+    );
+  });
 
-  it('multiple themes without default', async () => {
+  it("multiple themes without default", async () => {
     const themes = {
-      'light': 'vitesse-light',
-      'dark': 'vitesse-dark',
-      'nord': 'nord',
-      'min-dark': 'min-dark',
-      'min-light': 'min-light',
-    } as const
+      light: "vitesse-light",
+      dark: "vitesse-dark",
+      nord: "nord",
+      "min-dark": "min-dark",
+      "min-light": "min-light",
+    } as const;
 
     const code = await codeToHtml('console.log("hello")', {
-      lang: 'js',
+      lang: "js",
       themes,
       defaultColor: false,
-      cssVariablePrefix: '--s-',
-    })
+      cssVariablePrefix: "--s-",
+    });
 
     const snippet = `
 <style>
@@ -150,13 +179,17 @@ function toggleTheme() {
   color: var(--s-light);
 }
 
-${Object.keys(themes).map(theme => `
+${Object.keys(themes)
+  .map(
+    (theme) => `
 [data-theme="${theme}"] .shiki,
 [data-theme="${theme}"] .shiki span {
   background-color: var(--s-${theme}-bg) !important;
   color: var(--s-${theme}) !important;
 }
-`).join('\n')}
+`,
+  )
+  .join("\n")}
 </style>
 <script>
 const themes = ${JSON.stringify(Object.keys(themes))}
@@ -166,72 +199,68 @@ function toggleTheme() {
 }
 </script>
 <button onclick="toggleTheme()">Toggle theme</button>
-`
+`;
 
-    await expect(snippet + code)
-      .toMatchFileSnapshot('./out/multiple-themes-no-default.html')
-  })
+    await expect(snippet + code).toMatchFileSnapshot(
+      "./out/multiple-themes-no-default.html",
+    );
+  });
 
-  it('should support font style', async () => {
-    const input = 'import * as Shiki from \'shiki\';\n'
+  it("should support font style", async () => {
+    const input = "import * as Shiki from 'shiki';\n";
     const code1 = await codeToHtml(input, {
-      lang: 'js',
+      lang: "js",
       themes: {
-        light: 'material-theme-palenight',
-        dark: 'nord',
+        light: "material-theme-palenight",
+        dark: "nord",
       },
-    })
+    });
 
-    expect(code1)
-      .toContain('font-style:italic')
-    expect(code1)
-      .toContain('--shiki-dark-font-style:inherit')
+    expect(code1).toContain("font-style:italic");
+    expect(code1).toContain("--shiki-dark-font-style:inherit");
 
     const code2 = await codeToHtml(input, {
-      lang: 'js',
+      lang: "js",
       themes: {
-        light: 'material-theme-palenight',
-        dark: 'nord',
+        light: "material-theme-palenight",
+        dark: "nord",
       },
-      defaultColor: 'dark',
-    })
+      defaultColor: "dark",
+    });
 
-    expect(code2)
-      .toContain('font-style:inherit')
-    expect(code2)
-      .toContain('--shiki-light-font-style:italic')
-  })
+    expect(code2).toContain("font-style:inherit");
+    expect(code2).toContain("--shiki-light-font-style:italic");
+  });
 
-  it('should not have empty style', async () => {
-    const input = 'This is plain text'
+  it("should not have empty style", async () => {
+    const input = "This is plain text";
     const code = await codeToHtml(input, {
-      lang: 'plaintext',
+      lang: "plaintext",
       themes: {
-        light: 'material-theme-palenight',
-        dark: 'nord',
+        light: "material-theme-palenight",
+        dark: "nord",
       },
-    })
-    expect(code).not.toContain('style=""')
-  })
-})
+    });
+    expect(code).not.toContain('style=""');
+  });
+});
 
-describe('codeToTokensWithThemes', () => {
-  it('generates', async () => {
+describe("codeToTokensWithThemes", () => {
+  it("generates", async () => {
     const themes = {
-      'light': 'vitesse-light',
-      'dark': 'vitesse-dark',
-      'nord': 'nord',
-      'min-dark': 'min-dark',
-      'min-light': 'min-light',
-    } as const
+      light: "vitesse-light",
+      dark: "vitesse-dark",
+      nord: "nord",
+      "min-dark": "min-dark",
+      "min-light": "min-light",
+    } as const;
 
-    const code = await codeToTokensWithThemes('a.b', {
-      lang: 'js',
+    const code = await codeToTokensWithThemes("a.b", {
+      lang: "js",
       themes,
-    })
+    });
 
-    expect(code)
-      .toMatchInlineSnapshot(`
+    expect(code).toMatchInlineSnapshot(`
         [
           [
             {
@@ -314,50 +343,58 @@ describe('codeToTokensWithThemes', () => {
             },
           ],
         ]
-      `)
-  })
-})
+      `);
+  });
+});
 
-describe('errors', () => {
-  it('throws on empty theme', async () => {
-    await expect(() => codeToHtml('console.log("hello")', {
-      lang: 'js',
-      themes: {},
-    }))
-      .rejects
-      .toThrowErrorMatchingInlineSnapshot(`[ShikiError: \`themes\` option must not be empty]`)
-  })
+describe("errors", () => {
+  it("throws on empty theme", async () => {
+    await expect(() =>
+      codeToHtml('console.log("hello")', {
+        lang: "js",
+        themes: {},
+      }),
+    ).rejects.toThrowErrorMatchingInlineSnapshot(
+      `[ShikiError: \`themes\` option must not be empty]`,
+    );
+  });
 
-  it('throws on missing default color', async () => {
-    await expect(() => codeToHtml('console.log("hello")', {
-      lang: 'js',
-      themes: {
-        dark: 'nord',
-      },
-    }))
-      .rejects
-      .toThrowErrorMatchingInlineSnapshot(`[ShikiError: \`themes\` option must contain the defaultColor key \`light\`]`)
+  it("throws on missing default color", async () => {
+    await expect(() =>
+      codeToHtml('console.log("hello")', {
+        lang: "js",
+        themes: {
+          dark: "nord",
+        },
+      }),
+    ).rejects.toThrowErrorMatchingInlineSnapshot(
+      `[ShikiError: \`themes\` option must contain the defaultColor key \`light\`]`,
+    );
 
-    await expect(() => codeToHtml('console.log("hello")', {
-      lang: 'js',
-      themes: {
-        light: 'nord',
-      },
-      defaultColor: 'dark',
-    }))
-      .rejects
-      .toThrowErrorMatchingInlineSnapshot(`[ShikiError: \`themes\` option must contain the defaultColor key \`dark\`]`)
-  })
+    await expect(() =>
+      codeToHtml('console.log("hello")', {
+        lang: "js",
+        themes: {
+          light: "nord",
+        },
+        defaultColor: "dark",
+      }),
+    ).rejects.toThrowErrorMatchingInlineSnapshot(
+      `[ShikiError: \`themes\` option must contain the defaultColor key \`dark\`]`,
+    );
+  });
 
-  it('not throws when `defaultColor` set to false', async () => {
+  it("not throws when `defaultColor` set to false", async () => {
     const code = await codeToHtml('console.log("hello")', {
-      lang: 'js',
+      lang: "js",
       themes: {
-        dark: 'nord',
+        dark: "nord",
       },
       defaultColor: false,
-    })
+    });
 
-    expect(code).toMatchInlineSnapshot(`"<pre class="shiki shiki-themes nord" style="--shiki-dark:#d8dee9ff;--shiki-dark-bg:#2e3440ff" tabindex="0"><code><span class="line"><span style="--shiki-dark:#D8DEE9">console</span><span style="--shiki-dark:#ECEFF4">.</span><span style="--shiki-dark:#88C0D0">log</span><span style="--shiki-dark:#D8DEE9FF">(</span><span style="--shiki-dark:#ECEFF4">"</span><span style="--shiki-dark:#A3BE8C">hello</span><span style="--shiki-dark:#ECEFF4">"</span><span style="--shiki-dark:#D8DEE9FF">)</span></span></code></pre>"`)
-  })
-})
+    expect(code).toMatchInlineSnapshot(
+      `"<pre class="shiki shiki-themes nord" style="--shiki-dark:#d8dee9ff;--shiki-dark-bg:#2e3440ff" tabindex="0"><code><span class="line"><span style="--shiki-dark:#D8DEE9">console</span><span style="--shiki-dark:#ECEFF4">.</span><span style="--shiki-dark:#88C0D0">log</span><span style="--shiki-dark:#D8DEE9FF">(</span><span style="--shiki-dark:#ECEFF4">"</span><span style="--shiki-dark:#A3BE8C">hello</span><span style="--shiki-dark:#ECEFF4">"</span><span style="--shiki-dark:#D8DEE9FF">)</span></span></code></pre>"`,
+    );
+  });
+});

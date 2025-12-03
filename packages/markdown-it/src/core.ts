@@ -1,12 +1,15 @@
-import type MarkdownIt from 'markdown-it'
+import type MarkdownIt from "markdown-it";
 import type {
   CodeToHastOptions,
   HighlighterGeneric,
   ShikiTransformer,
-} from 'shiki'
-import type { MarkdownItShikiSetupOptions } from './common'
+} from "shiki";
+import type { MarkdownItShikiSetupOptions } from "./common";
 
-export type { MarkdownItShikiExtraOptions, MarkdownItShikiSetupOptions } from './common'
+export type {
+  MarkdownItShikiExtraOptions,
+  MarkdownItShikiSetupOptions,
+} from "./common";
 
 export function setupMarkdownIt(
   markdownit: MarkdownIt,
@@ -16,18 +19,18 @@ export function setupMarkdownIt(
   const {
     parseMetaString,
     trimEndingNewline = true,
-    defaultLanguage = 'text',
+    defaultLanguage = "text",
     fallbackLanguage,
-  } = options
-  const langs = highlighter.getLoadedLanguages()
-  markdownit.options.highlight = (code, lang = 'text', attrs) => {
-    if (lang === '') {
-      lang = defaultLanguage as string
+  } = options;
+  const langs = highlighter.getLoadedLanguages();
+  markdownit.options.highlight = (code, lang = "text", attrs) => {
+    if (lang === "") {
+      lang = defaultLanguage as string;
     }
     if (fallbackLanguage && !langs.includes(lang)) {
-      lang = fallbackLanguage as string
+      lang = fallbackLanguage as string;
     }
-    const meta = parseMetaString?.(attrs, code, lang) || {}
+    const meta = parseMetaString?.(attrs, code, lang) || {};
     const codeOptions: CodeToHastOptions = {
       ...options,
       lang,
@@ -36,33 +39,29 @@ export function setupMarkdownIt(
         ...meta,
         __raw: attrs,
       },
-    }
+    };
 
-    const builtInTransformer: ShikiTransformer[] = []
+    const builtInTransformer: ShikiTransformer[] = [];
 
     builtInTransformer.push({
-      name: '@shikijs/markdown-it:block-class',
+      name: "@shikijs/markdown-it:block-class",
       code(node) {
-        node.properties.class = `language-${lang}`
+        node.properties.class = `language-${lang}`;
       },
-    })
+    });
 
     if (trimEndingNewline) {
-      if (code.endsWith('\n'))
-        code = code.slice(0, -1)
+      if (code.endsWith("\n")) code = code.slice(0, -1);
     }
 
-    return highlighter.codeToHtml(
-      code,
-      {
-        ...codeOptions,
-        transformers: [
-          ...builtInTransformer,
-          ...codeOptions.transformers || [],
-        ],
-      },
-    )
-  }
+    return highlighter.codeToHtml(code, {
+      ...codeOptions,
+      transformers: [
+        ...builtInTransformer,
+        ...(codeOptions.transformers || []),
+      ],
+    });
+  };
 }
 
 export function fromHighlighter(
@@ -70,6 +69,6 @@ export function fromHighlighter(
   options: MarkdownItShikiSetupOptions,
 ) {
   return function (markdownit: MarkdownIt) {
-    setupMarkdownIt(markdownit, highlighter, options)
-  }
+    setupMarkdownIt(markdownit, highlighter, options);
+  };
 }

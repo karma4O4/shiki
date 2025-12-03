@@ -1,6 +1,6 @@
-import { codeToHtml } from 'shiki'
-import { expect, it } from 'vitest'
-import { rendererRich, transformerTwoslash } from '../src'
+import { codeToHtml } from "shiki";
+import { expect, it } from "vitest";
+import { rendererRich, transformerTwoslash } from "../src";
 
 const styleTag = `
 <link rel="stylesheet" href="../../../style-rich.css" />
@@ -28,7 +28,7 @@ html:not(.dark) .shiki {
   background-color: var(--shiki-light-bg, inherit);
 }
 </style>
-`
+`;
 
 const colorToggle = `
 <script>
@@ -40,9 +40,9 @@ function toggleColor() {
 <div style="margin: 5em 2em">
 <button onclick="toggleColor()">Toggle color</button>
 </div>
-`
+`;
 
-it('rich', async () => {
+it("rich", async () => {
   const code = `
 // @errors: 2540
 interface Todo {
@@ -59,41 +59,45 @@ todo.title = "Hello";
 
 Number.parseInt(todo.title, 10);
 //      ^|
-`.trim()
+`.trim();
 
   const html = await codeToHtml(code, {
-    lang: 'ts',
+    lang: "ts",
     themes: {
-      dark: 'vitesse-dark',
-      light: 'vitesse-light',
+      dark: "vitesse-dark",
+      light: "vitesse-light",
     },
     defaultColor: false,
     meta: {
-      title: 'test',
+      title: "test",
     },
     transformers: [
       transformerTwoslash({
         renderer: rendererRich(),
       }),
     ],
-  })
+  });
 
-  await expect(styleTag + html + colorToggle).toMatchFileSnapshot('./out/rich/rich.html')
+  await expect(styleTag + html + colorToggle).toMatchFileSnapshot(
+    "./out/rich/rich.html",
+  );
 
   const htmlNoTheme = await codeToHtml(code, {
-    lang: 'ts',
-    theme: 'none',
+    lang: "ts",
+    theme: "none",
     transformers: [
       transformerTwoslash({
         renderer: rendererRich(),
       }),
     ],
-  })
+  });
 
-  await expect(styleTag + htmlNoTheme).toMatchFileSnapshot('./out/rich/rich-none-theme.html')
-})
+  await expect(styleTag + htmlNoTheme).toMatchFileSnapshot(
+    "./out/rich/rich-none-theme.html",
+  );
+});
 
-it('error rendering hover', async () => {
+it("error rendering hover", async () => {
   const code = `
 // @errors: 2540
 interface Todo {
@@ -105,24 +109,26 @@ const todo: Readonly<Todo> = {
 };
 
 todo.title = "Hello";
-`.trim()
+`.trim();
 
   const htmlErrorsHover = await codeToHtml(code, {
-    lang: 'ts',
-    theme: 'vitesse-light',
+    lang: "ts",
+    theme: "vitesse-light",
     transformers: [
       transformerTwoslash({
         renderer: rendererRich({
-          errorRendering: 'hover',
+          errorRendering: "hover",
         }),
       }),
     ],
-  })
+  });
 
-  await expect(styleTag + htmlErrorsHover).toMatchFileSnapshot('./out/rich/rich-error-hover.html')
-})
+  await expect(styleTag + htmlErrorsHover).toMatchFileSnapshot(
+    "./out/rich/rich-error-hover.html",
+  );
+});
 
-it('no-icons', async () => {
+it("no-icons", async () => {
   const code = `
 const obj = {
   boo: 1,
@@ -131,11 +137,11 @@ const obj = {
 }
 obj.boo
 //   ^|
-`.trim()
+`.trim();
 
   const html = await codeToHtml(code, {
-    lang: 'ts',
-    theme: 'nord',
+    lang: "ts",
+    theme: "nord",
     defaultColor: false,
     transformers: [
       transformerTwoslash({
@@ -144,18 +150,18 @@ obj.boo
         }),
       }),
     ],
-  })
+  });
 
   await expect(
     /* eslint-disable prefer-template */
-    styleTag
-    + html
-    + '<style>:root {--twoslash-popup-bg: #2e3440;}</style>'
-    + colorToggle,
-  ).toMatchFileSnapshot('./out/rich/no-icons.html')
-})
+    styleTag +
+      html +
+      "<style>:root {--twoslash-popup-bg: #2e3440;}</style>" +
+      colorToggle,
+  ).toMatchFileSnapshot("./out/rich/no-icons.html");
+});
 
-it('custom-tags', async () => {
+it("custom-tags", async () => {
   const code = `
 import { createHighlighterCore } from 'shiki/core'
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
@@ -171,13 +177,13 @@ const b = 1
 // @warn: Custom warning message
 const c = 1
 // @annotate: Custom annotation message
-`.trim()
+`.trim();
 
   const html = await codeToHtml(code, {
-    lang: 'ts',
+    lang: "ts",
     themes: {
-      light: 'min-light',
-      dark: 'min-dark',
+      light: "min-light",
+      dark: "min-dark",
     },
     defaultColor: false,
     transformers: [
@@ -185,16 +191,14 @@ const c = 1
         renderer: rendererRich(),
       }),
     ],
-  })
+  });
 
-  await expect(
-    styleTag
-    + html
-    + colorToggle,
-  ).toMatchFileSnapshot('./out/rich/custom-tags.html')
-})
+  await expect(styleTag + html + colorToggle).toMatchFileSnapshot(
+    "./out/rich/custom-tags.html",
+  );
+});
 
-it('line-query', async () => {
+it("line-query", async () => {
   const code = `
 // @errors: 2540
 interface Todo {
@@ -211,24 +215,25 @@ todo.title = "Hello";
 
 Number.parseInt(todo.title, 10);
 //      ^|
-`.trim()
+`.trim();
 
   const htmlWithSeparateLine = await codeToHtml(code, {
-    lang: 'ts',
+    lang: "ts",
     themes: {
-      dark: 'vitesse-dark',
-      light: 'vitesse-light',
+      dark: "vitesse-dark",
+      light: "vitesse-light",
     },
     defaultColor: false,
     transformers: [
       transformerTwoslash({
         renderer: rendererRich({
-          queryRendering: 'line',
+          queryRendering: "line",
         }),
       }),
     ],
-  })
+  });
 
-  await expect(styleTag + htmlWithSeparateLine + colorToggle)
-    .toMatchFileSnapshot('./out/rich/line-query.html')
-})
+  await expect(
+    styleTag + htmlWithSeparateLine + colorToggle,
+  ).toMatchFileSnapshot("./out/rich/line-query.html");
+});

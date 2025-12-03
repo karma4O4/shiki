@@ -1,25 +1,31 @@
-import type { MarkdownItAsync } from 'markdown-it-async'
-import type { CodeToHastOptions, ShikiTransformer } from 'shiki'
-import type { MarkdownItShikiSetupOptions } from './core'
+import type { MarkdownItAsync } from "markdown-it-async";
+import type { CodeToHastOptions, ShikiTransformer } from "shiki";
+import type { MarkdownItShikiSetupOptions } from "./core";
 
-export type { MarkdownItShikiExtraOptions, MarkdownItShikiSetupOptions } from './common'
+export type {
+  MarkdownItShikiExtraOptions,
+  MarkdownItShikiSetupOptions,
+} from "./common";
 
 export function setupMarkdownWithCodeToHtml(
   markdownit: MarkdownItAsync,
-  codeToHtml: (code: string, options: CodeToHastOptions<any, any>) => Promise<string>,
+  codeToHtml: (
+    code: string,
+    options: CodeToHastOptions<any, any>,
+  ) => Promise<string>,
   options: MarkdownItShikiSetupOptions,
 ): void {
   const {
     parseMetaString,
     trimEndingNewline = true,
-    defaultLanguage = 'text',
-  } = options
+    defaultLanguage = "text",
+  } = options;
 
-  markdownit.options.highlight = async (code, lang = 'text', attrs) => {
-    if (lang === '') {
-      lang = defaultLanguage as string
+  markdownit.options.highlight = async (code, lang = "text", attrs) => {
+    if (lang === "") {
+      lang = defaultLanguage as string;
     }
-    const meta = parseMetaString?.(attrs, code, lang) || {}
+    const meta = parseMetaString?.(attrs, code, lang) || {};
     const codeOptions: CodeToHastOptions = {
       ...options,
       lang,
@@ -28,33 +34,29 @@ export function setupMarkdownWithCodeToHtml(
         ...meta,
         __raw: attrs,
       },
-    }
+    };
 
-    const builtInTransformer: ShikiTransformer[] = []
+    const builtInTransformer: ShikiTransformer[] = [];
 
     builtInTransformer.push({
-      name: '@shikijs/markdown-it:block-class',
+      name: "@shikijs/markdown-it:block-class",
       code(node) {
-        node.properties.class = `language-${lang}`
+        node.properties.class = `language-${lang}`;
       },
-    })
+    });
 
     if (trimEndingNewline) {
-      if (code.endsWith('\n'))
-        code = code.slice(0, -1)
+      if (code.endsWith("\n")) code = code.slice(0, -1);
     }
 
-    return await codeToHtml(
-      code,
-      {
-        ...codeOptions,
-        transformers: [
-          ...builtInTransformer,
-          ...codeOptions.transformers || [],
-        ],
-      },
-    )
-  }
+    return await codeToHtml(code, {
+      ...codeOptions,
+      transformers: [
+        ...builtInTransformer,
+        ...(codeOptions.transformers || []),
+      ],
+    });
+  };
 }
 
 /**
@@ -63,10 +65,13 @@ export function setupMarkdownWithCodeToHtml(
  * This plugin requires to be installed against a markdown-it-async instance.
  */
 export function fromAsyncCodeToHtml(
-  codeToHtml: (code: string, options: CodeToHastOptions<any, any>) => Promise<string>,
+  codeToHtml: (
+    code: string,
+    options: CodeToHastOptions<any, any>,
+  ) => Promise<string>,
   options: MarkdownItShikiSetupOptions,
 ) {
   return async function (markdownit: MarkdownItAsync) {
-    return setupMarkdownWithCodeToHtml(markdownit, codeToHtml, options)
-  }
+    return setupMarkdownWithCodeToHtml(markdownit, codeToHtml, options);
+  };
 }

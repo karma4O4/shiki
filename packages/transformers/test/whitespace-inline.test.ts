@@ -1,33 +1,32 @@
-import { createHighlighter } from 'shiki'
-import { expect, it } from 'vitest'
-import { transformerRenderWhitespace } from '../src/transformers/render-whitespace'
+import { createHighlighter } from "shiki";
+import { expect, it } from "vitest";
+import { transformerRenderWhitespace } from "../src/transformers/render-whitespace";
 
-it('transformerRenderWhitespace', async () => {
+it("transformerRenderWhitespace", async () => {
   using shiki = await createHighlighter({
-    themes: ['vitesse-dark', 'vitesse-light', 'nord'],
-    langs: ['typescript'],
-  })
+    themes: ["vitesse-dark", "vitesse-light", "nord"],
+    langs: ["typescript"],
+  });
 
-  const transformer = transformerRenderWhitespace()
+  const transformer = transformerRenderWhitespace();
 
   const code = `
     const a = Math.random() > 0.5 ? 1 : \`foo\`
-  `.trim()
+  `.trim();
 
   const result = shiki.codeToHtml(code, {
-    lang: 'typescript',
+    lang: "typescript",
     themes: {
-      dark: 'vitesse-dark',
-      light: 'vitesse-light',
-      nord: 'nord',
+      dark: "vitesse-dark",
+      light: "vitesse-light",
+      nord: "nord",
     },
     defaultColor: false,
     transformers: [transformer],
-    structure: 'inline',
-  })
+    structure: "inline",
+  });
 
-  expect(result.replace(/<span/g, '\n<span'))
-    .toMatchInlineSnapshot(`
+  expect(result.replace(/<span/g, "\n<span")).toMatchInlineSnapshot(`
       "
       <span style="--shiki-dark:#CB7676;--shiki-light:#AB5959;--shiki-nord:#81A1C1">const</span>
       <span class="space"> </span>
@@ -53,5 +52,5 @@ it('transformerRenderWhitespace', async () => {
       <span style="--shiki-dark:#C98A7D77;--shiki-light:#B5695977;--shiki-nord:#ECEFF4">\`</span>
       <span style="--shiki-dark:#C98A7D;--shiki-light:#B56959;--shiki-nord:#A3BE8C">foo</span>
       <span style="--shiki-dark:#C98A7D77;--shiki-light:#B5695977;--shiki-nord:#ECEFF4">\`</span>"
-    `)
-})
+    `);
+});

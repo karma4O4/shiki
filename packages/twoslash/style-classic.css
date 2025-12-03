@@ -15,7 +15,7 @@ pre.twoslash data-lsp:hover::before {
   padding: 5px 8px;
   border-radius: 2px;
   font-family:
-    'JetBrains Mono',
+    "JetBrains Mono",
     Menlo,
     Monaco,
     Consolas,
@@ -60,7 +60,7 @@ pre .code-container:hover a {
 pre code {
   font-size: 15px;
   font-family:
-    'JetBrains Mono',
+    "JetBrains Mono",
     Menlo,
     Monaco,
     Consolas,
@@ -162,7 +162,7 @@ pre .inline-completions ul.dropdown::before {
   top: -1.4em;
   height: 1.4em;
   left: -4px;
-  content: ' ';
+  content: " ";
 }
 pre .inline-completions ul.dropdown li {
   overflow-x: hidden;
@@ -206,7 +206,7 @@ data-lsp {
 .tag-container .twoslash-annotation {
   position: absolute;
   font-family:
-    'JetBrains Mono',
+    "JetBrains Mono",
     Menlo,
     Monaco,
     Consolas,

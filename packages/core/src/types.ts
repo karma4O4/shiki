@@ -1,1 +1,1 @@
-export * from '@shikijs/types'
+export * from "@shikijs/types";

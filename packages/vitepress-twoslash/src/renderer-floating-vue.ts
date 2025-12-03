@@ -1,49 +1,49 @@
-import type { RendererRichOptions, TwoslashRenderer } from '@shikijs/twoslash'
-import type { Element, ElementContent, Text } from 'hast'
-import type { ShikiTransformerContextCommon } from 'shiki'
-import { defaultHoverInfoProcessor, rendererRich } from '@shikijs/twoslash'
-import { fromMarkdown } from 'mdast-util-from-markdown'
-import { gfmFromMarkdown } from 'mdast-util-gfm'
-import { defaultHandlers, toHast } from 'mdast-util-to-hast'
+import type { RendererRichOptions, TwoslashRenderer } from "@shikijs/twoslash";
+import type { Element, ElementContent, Text } from "hast";
+import type { ShikiTransformerContextCommon } from "shiki";
+import { defaultHoverInfoProcessor, rendererRich } from "@shikijs/twoslash";
+import { fromMarkdown } from "mdast-util-from-markdown";
+import { gfmFromMarkdown } from "mdast-util-gfm";
+import { defaultHandlers, toHast } from "mdast-util-to-hast";
 
-export { defaultHoverInfoProcessor }
+export { defaultHoverInfoProcessor };
 
 export interface TwoslashFloatingVueOptions {
-  classCopyIgnore?: string
-  classFloatingPanel?: string
-  classMarkdown?: string
+  classCopyIgnore?: string;
+  classFloatingPanel?: string;
+  classMarkdown?: string;
 
-  floatingVueTheme?: string
-  floatingVueThemeQuery?: string
-  floatingVueThemeCompletion?: string
+  floatingVueTheme?: string;
+  floatingVueThemeQuery?: string;
+  floatingVueThemeCompletion?: string;
 }
 
 export interface TwoslashFloatingVueRendererOptions extends RendererRichOptions {
   /**
    * Class and themes for floating-vue specific nodes
    */
-  floatingVue?: TwoslashFloatingVueOptions
+  floatingVue?: TwoslashFloatingVueOptions;
 }
 
-export function rendererFloatingVue(options: TwoslashFloatingVueRendererOptions = {}): TwoslashRenderer {
+export function rendererFloatingVue(
+  options: TwoslashFloatingVueRendererOptions = {},
+): TwoslashRenderer {
   const {
-    classCopyIgnore = 'vp-copy-ignore',
-    classFloatingPanel = 'twoslash-floating',
-    classMarkdown = 'vp-doc',
-    floatingVueTheme = 'twoslash',
-    floatingVueThemeQuery = 'twoslash-query',
-    floatingVueThemeCompletion = 'twoslash-completion',
-  } = options.floatingVue || {}
+    classCopyIgnore = "vp-copy-ignore",
+    classFloatingPanel = "twoslash-floating",
+    classMarkdown = "vp-doc",
+    floatingVueTheme = "twoslash",
+    floatingVueThemeQuery = "twoslash-query",
+    floatingVueThemeCompletion = "twoslash-completion",
+  } = options.floatingVue || {};
 
-  const {
-    errorRendering = 'line',
-  } = options
+  const { errorRendering = "line" } = options;
 
   const hoverBasicProps = {
-    'class': 'twoslash-hover',
-    'popper-class': ['shiki', classFloatingPanel, classCopyIgnore].join(' '),
-    'theme': floatingVueTheme,
-  }
+    class: "twoslash-hover",
+    "popper-class": ["shiki", classFloatingPanel, classCopyIgnore].join(" "),
+    theme: floatingVueTheme,
+  };
 
   const rich = rendererRich({
     classExtra: classCopyIgnore,
@@ -52,16 +52,16 @@ export function rendererFloatingVue(options: TwoslashFloatingVueRendererOptions 
     renderMarkdownInline,
     hast: {
       hoverToken: {
-        tagName: 'v-menu',
+        tagName: "v-menu",
         properties: hoverBasicProps,
       },
       hoverCompose: compose,
       queryToken: {
-        tagName: 'v-menu',
+        tagName: "v-menu",
         properties: {
           ...hoverBasicProps,
-          ':shown': 'true',
-          'theme': floatingVueThemeQuery,
+          ":shown": "true",
+          theme: floatingVueThemeQuery,
         },
       },
       queryCompose: compose,
@@ -74,126 +74,139 @@ export function rendererFloatingVue(options: TwoslashFloatingVueRendererOptions 
       popupError: {
         class: `twoslash-popup-error ${classMarkdown}`,
       },
-      errorToken: errorRendering === 'line'
-        ? undefined
-        : {
-            tagName: 'v-menu',
-            properties: {
-              ...hoverBasicProps,
-              class: 'twoslash-error twoslash-error-hover',
+      errorToken:
+        errorRendering === "line"
+          ? undefined
+          : {
+              tagName: "v-menu",
+              properties: {
+                ...hoverBasicProps,
+                class: "twoslash-error twoslash-error-hover",
+              },
             },
-          },
       errorCompose: compose,
       completionCompose({ popup, cursor }) {
         return [
           <Element>{
-            type: 'element',
-            tagName: 'v-menu',
+            type: "element",
+            tagName: "v-menu",
             properties: {
-              'popper-class': ['shiki twoslash-completion', classCopyIgnore, classFloatingPanel],
-              'theme': floatingVueThemeCompletion,
-              ':shown': 'true',
+              "popper-class": [
+                "shiki twoslash-completion",
+                classCopyIgnore,
+                classFloatingPanel,
+              ],
+              theme: floatingVueThemeCompletion,
+              ":shown": "true",
             },
             children: [
               cursor,
               {
-                type: 'element',
-                tagName: 'template',
+                type: "element",
+                tagName: "template",
                 properties: {
-                  'v-slot:popper': '{}',
+                  "v-slot:popper": "{}",
                 },
                 content: {
-                  type: 'root',
+                  type: "root",
                   children: [vPre(popup)],
                 },
               },
             ],
           },
-        ]
+        ];
       },
     },
-  })
+  });
 
-  return rich
+  return rich;
 }
 
 function vPre<T extends ElementContent>(el: T): T {
-  if (el.type === 'element') {
-    el.properties = el.properties || {}
-    el.properties['v-pre'] = ''
+  if (el.type === "element") {
+    el.properties = el.properties || {};
+    el.properties["v-pre"] = "";
   }
-  return el
+  return el;
 }
 
-function renderMarkdown(this: ShikiTransformerContextCommon, md: string): ElementContent[] {
+function renderMarkdown(
+  this: ShikiTransformerContextCommon,
+  md: string,
+): ElementContent[] {
   const mdast = fromMarkdown(
-    md.replace(/\{@link ([^}]*)\}/g, '$1'), // replace jsdoc links
+    md.replace(/\{@link ([^}]*)\}/g, "$1"), // replace jsdoc links
     { mdastExtensions: [gfmFromMarkdown()] },
-  )
+  );
 
-  return (toHast(
-    mdast,
-    {
+  return (
+    toHast(mdast, {
       handlers: {
         code: (state, node) => {
-          const lang = node.lang || ''
+          const lang = node.lang || "";
           if (lang) {
             return <Element>{
-              type: 'element',
-              tagName: 'code',
+              type: "element",
+              tagName: "code",
               properties: {},
-              children: this.codeToHast(
-                node.value,
-                {
-                  ...this.options,
-                  transformers: [],
-                  lang,
-                  structure: node.value.trim().includes('\n') ? 'classic' : 'inline',
-                },
-              ).children,
-            }
+              children: this.codeToHast(node.value, {
+                ...this.options,
+                transformers: [],
+                lang,
+                structure: node.value.trim().includes("\n")
+                  ? "classic"
+                  : "inline",
+              }).children,
+            };
           }
-          return defaultHandlers.code(state, node)
+          return defaultHandlers.code(state, node);
         },
       },
-    },
-  ) as Element).children
+    }) as Element
+  ).children;
 }
 
-function renderMarkdownInline(this: ShikiTransformerContextCommon, md: string, context?: string): ElementContent[] {
-  if (context === 'tag:param')
-    md = md.replace(/^([\w$-]+)/, '`$1` ')
+function renderMarkdownInline(
+  this: ShikiTransformerContextCommon,
+  md: string,
+  context?: string,
+): ElementContent[] {
+  if (context === "tag:param") md = md.replace(/^([\w$-]+)/, "`$1` ");
 
-  const children = renderMarkdown.call(this, md)
-  if (children.length === 1 && children[0].type === 'element' && children[0].tagName === 'p')
-    return children[0].children
-  return children
+  const children = renderMarkdown.call(this, md);
+  if (
+    children.length === 1 &&
+    children[0].type === "element" &&
+    children[0].tagName === "p"
+  )
+    return children[0].children;
+  return children;
 }
 
-function compose(parts: { token: Element | Text, popup: Element }): Element[] {
-  if (parts.token.type === 'element' && parts.token.children.length < 1) {
-    const classes = parts.token.properties.class || ''
-    parts.token.properties.class = `${classes} twoslash-error-empty`
+function compose(parts: { token: Element | Text; popup: Element }): Element[] {
+  if (parts.token.type === "element" && parts.token.children.length < 1) {
+    const classes = parts.token.properties.class || "";
+    parts.token.properties.class = `${classes} twoslash-error-empty`;
   }
 
   return [
     {
-      type: 'element',
-      tagName: 'span',
+      type: "element",
+      tagName: "span",
       properties: {},
       children: [parts.token],
     },
     {
-      type: 'element',
-      tagName: 'template',
+      type: "element",
+      tagName: "template",
       properties: {
-        'v-slot:popper': '{}',
+        "v-slot:popper": "{}",
       },
       content: {
-        type: 'root',
+        type: "root",
         children: [vPre(parts.popup)],
       },
       children: [],
     },
-  ]
+  ];
 }

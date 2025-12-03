@@ -1,34 +1,37 @@
-import type { Element } from 'hast'
+import type { Element } from "hast";
 
 export interface DecorationOptions {
   /**
    * Custom decorations to wrap highlighted tokens with.
    */
-  decorations?: DecorationItem[]
+  decorations?: DecorationItem[];
 }
 
 export interface DecorationItem {
   /**
    * Start offset or position of the decoration.
    */
-  start: OffsetOrPosition
+  start: OffsetOrPosition;
   /**
    * End offset or position of the decoration.
    */
-  end: OffsetOrPosition
+  end: OffsetOrPosition;
   /**
    * Tag name of the element to create.
    * @default 'span'
    */
-  tagName?: string
+  tagName?: string;
   /**
    * Properties of the element to create.
    */
-  properties?: Element['properties']
+  properties?: Element["properties"];
   /**
    * A custom function to transform the element after it has been created.
    */
-  transform?: (element: Element, type: DecorationTransformType) => Element | void
+  transform?: (
+    element: Element,
+    type: DecorationTransformType,
+  ) => Element | void;
 
   /**
    * By default when the decoration contains only one token, the decoration will be applied to the token.
@@ -37,24 +40,27 @@ export interface DecorationItem {
    *
    * @default false
    */
-  alwaysWrap?: boolean
+  alwaysWrap?: boolean;
 }
 
-export interface ResolvedDecorationItem extends Omit<DecorationItem, 'start' | 'end'> {
-  start: ResolvedPosition
-  end: ResolvedPosition
+export interface ResolvedDecorationItem extends Omit<
+  DecorationItem,
+  "start" | "end"
+> {
+  start: ResolvedPosition;
+  end: ResolvedPosition;
 }
 
-export type DecorationTransformType = 'wrapper' | 'line' | 'token'
+export type DecorationTransformType = "wrapper" | "line" | "token";
 
 export interface Position {
-  line: number
-  character: number
+  line: number;
+  character: number;
 }
 
-export type Offset = number
-export type OffsetOrPosition = Position | Offset
+export type Offset = number;
+export type OffsetOrPosition = Position | Offset;
 
 export interface ResolvedPosition extends Position {
-  offset: Offset
+  offset: Offset;
 }

@@ -13,34 +13,31 @@ Serverless Runtime is recommended.
 Since Server Components are server-only, you can use the bundled highlighter without worrying the bundle size.
 
 ```tsx
-import type { BundledLanguage } from 'shiki'
-import { codeToHtml } from 'shiki'
+import type { BundledLanguage } from "shiki";
+import { codeToHtml } from "shiki";
 
 export default function Page() {
   return (
     <main>
       <CodeBlock lang="ts">
-        {[
-          'console.log("Hello")',
-          'console.log("World")',
-        ].join('\n')}
+        {['console.log("Hello")', 'console.log("World")'].join("\n")}
       </CodeBlock>
     </main>
-  )
+  );
 }
 
 interface Props {
-  children: string
-  lang: BundledLanguage
+  children: string;
+  lang: BundledLanguage;
 }
 
 async function CodeBlock(props: Props) {
   const out = await codeToHtml(props.children, {
     lang: props.lang,
-    theme: 'github-dark'
-  })
+    theme: "github-dark",
+  });
 
-  return <div dangerouslySetInnerHTML={{ __html: out }} />
+  return <div dangerouslySetInnerHTML={{ __html: out }} />;
 }
 ```
 
@@ -49,36 +46,33 @@ async function CodeBlock(props: Props) {
 You can also call `codeToHast` to get the HTML abstract syntax tree, and render it using [`hast-util-to-jsx-runtime`](https://github.com/syntax-tree/hast-util-to-jsx-runtime). With this method, you can render your own `pre` and `code` components.
 
 ```tsx
-import type { JSX } from 'react'
-import type { BundledLanguage } from 'shiki'
-import { toJsxRuntime } from 'hast-util-to-jsx-runtime'
-import { Fragment } from 'react'
-import { jsx, jsxs } from 'react/jsx-runtime'
-import { codeToHast } from 'shiki'
+import type { JSX } from "react";
+import type { BundledLanguage } from "shiki";
+import { toJsxRuntime } from "hast-util-to-jsx-runtime";
+import { Fragment } from "react";
+import { jsx, jsxs } from "react/jsx-runtime";
+import { codeToHast } from "shiki";
 
 export default function Page() {
   return (
     <main>
       <CodeBlock lang="ts">
-        {[
-          'console.log("Hello")',
-          'console.log("World")',
-        ].join('\n')}
+        {['console.log("Hello")', 'console.log("World")'].join("\n")}
       </CodeBlock>
     </main>
-  )
+  );
 }
 
 interface Props {
-  children: string
-  lang: BundledLanguage
+  children: string;
+  lang: BundledLanguage;
 }
 
 async function CodeBlock(props: Props) {
   const out = await codeToHast(props.children, {
     lang: props.lang,
-    theme: 'github-dark'
-  })
+    theme: "github-dark",
+  });
 
   return toJsxRuntime(out, {
     Fragment,
@@ -86,9 +80,9 @@ async function CodeBlock(props: Props) {
     jsxs,
     components: {
       // your custom `pre` element
-      pre: props => <pre data-custom-codeblock {...props} />
+      pre: (props) => <pre data-custom-codeblock {...props} />,
     },
-  }) as JSX.Element
+  }) as JSX.Element;
 }
 ```
 
@@ -100,42 +94,42 @@ We can start by creating a client `CodeBlock` component.
 Create a `shared.ts` for highlighter:
 
 ```ts
-import type { JSX } from 'react'
-import type { BundledLanguage } from 'shiki/bundle/web'
-import { toJsxRuntime } from 'hast-util-to-jsx-runtime'
-import { Fragment } from 'react'
-import { jsx, jsxs } from 'react/jsx-runtime'
-import { codeToHast } from 'shiki/bundle/web'
+import type { JSX } from "react";
+import type { BundledLanguage } from "shiki/bundle/web";
+import { toJsxRuntime } from "hast-util-to-jsx-runtime";
+import { Fragment } from "react";
+import { jsx, jsxs } from "react/jsx-runtime";
+import { codeToHast } from "shiki/bundle/web";
 
 export async function highlight(code: string, lang: BundledLanguage) {
   const out = await codeToHast(code, {
     lang,
-    theme: 'github-dark'
-  })
+    theme: "github-dark",
+  });
 
   return toJsxRuntime(out, {
     Fragment,
     jsx,
     jsxs,
-  }) as JSX.Element
+  }) as JSX.Element;
 }
 ```
 
 In your `codeblock.tsx`:
 
 ```tsx
-'use client'
-import { JSX, useLayoutEffect, useState } from 'react'
-import { highlight } from './shared'
+"use client";
+import { JSX, useLayoutEffect, useState } from "react";
+import { highlight } from "./shared";
 
 export function CodeBlock({ initial }: { initial?: JSX.Element }) {
-  const [nodes, setNodes] = useState(initial)
+  const [nodes, setNodes] = useState(initial);
 
   useLayoutEffect(() => {
-    void highlight('console.log("Rendered on client")', 'ts').then(setNodes)
-  }, [])
+    void highlight('console.log("Rendered on client")', "ts").then(setNodes);
+  }, []);
 
-  return nodes ?? <p>Loading...</p>
+  return nodes ?? <p>Loading...</p>;
 }
 ```
 
@@ -144,16 +138,18 @@ The `initial` prop can be passed from a server component to pre-render the code 
 In your `page.tsx`:
 
 ```tsx
-import { CodeBlock } from './codeblock'
-import { highlight } from './shared'
+import { CodeBlock } from "./codeblock";
+import { highlight } from "./shared";
 
 export default async function Page() {
   // `initial` is optional.
   return (
     <main>
-      <CodeBlock initial={await highlight('console.log("Rendered on server")', 'ts')} />
+      <CodeBlock
+        initial={await highlight('console.log("Rendered on server")', "ts")}
+      />
     </main>
-  )
+  );
 }
 ```
 
@@ -174,16 +170,16 @@ Please refer to [Highlighter Usage](/guide/install#highlighter-usage) for furthe
 If you define a highlighter (without `await`) as a global variable, you can reference it directly from server and client components.
 
 ```ts
-import { createHighlighter } from 'shiki'
+import { createHighlighter } from "shiki";
 
 const highlighter = createHighlighter({
-  themes: ['nord'],
-  langs: ['javascript'],
-})
+  themes: ["nord"],
+  langs: ["javascript"],
+});
 
 // Inside an async server component, or client side `useEffect`
-const html = (await highlighter).codeToHtml('const a = 1', {
-  lang: 'javascript',
-  theme: 'nord'
-})
+const html = (await highlighter).codeToHtml("const a = 1", {
+  lang: "javascript",
+  theme: "nord",
+});
 ```

@@ -1,30 +1,44 @@
-
 <link rel="stylesheet" href="../../../style-rich.css" />
 <style>
-html, body { margin: 0; }
-.shiki { padding: 2em; }
+  html,
+  body {
+    margin: 0;
+  }
+  .shiki {
+    padding: 2em;
+  }
 
-.dark .shiki,
-.dark .shiki span {
-  color: var(--shiki-dark, inherit);
-  --twoslash-popup-bg: var(--shiki-dark-bg, inherit);
-}
+  .dark .shiki,
+  .dark .shiki span {
+    color: var(--shiki-dark, inherit);
+    --twoslash-popup-bg: var(--shiki-dark-bg, inherit);
+  }
 
-.dark .shiki {
-  background-color: var(--shiki-dark-bg, inherit);
-}
+  .dark .shiki {
+    background-color: var(--shiki-dark-bg, inherit);
+  }
 
-html:not(.dark) .shiki,
-html:not(.dark) .shiki span {
-  color: var(--shiki-light, inherit);
-  --twoslash-popup-bg: var(--shiki-light-bg, inherit);
-}
+  html:not(.dark) .shiki,
+  html:not(.dark) .shiki span {
+    color: var(--shiki-light, inherit);
+    --twoslash-popup-bg: var(--shiki-light-bg, inherit);
+  }
 
-html:not(.dark) .shiki {
-  background-color: var(--shiki-light-bg, inherit);
-}
+  html:not(.dark) .shiki {
+    background-color: var(--shiki-light-bg, inherit);
+  }
 </style>
-<pre class="shiki shiki-themes vitesse-dark vitesse-light twoslash lsp" style="--shiki-dark:#dbd7caee;--shiki-light:#393a34;--shiki-dark-bg:#121212;--shiki-light-bg:#ffffff" tabindex="0" title="test"><code><span class="line"><span style="--shiki-dark:#CB7676;--shiki-light:#AB5959">interface</span><span style="--shiki-dark:#5DA994;--shiki-light:#2E8F82"> </span><span style="--shiki-dark:#5DA994;--shiki-light:#2E8F82">Todo</span><span style="--shiki-dark:#666666;--shiki-light:#999999"> {</span></span>
+<pre
+  class="shiki shiki-themes vitesse-dark vitesse-light twoslash lsp"
+  style="
+    --shiki-dark: #dbd7caee;
+    --shiki-light: #393a34;
+    --shiki-dark-bg: #121212;
+    --shiki-light-bg: #ffffff;
+  "
+  tabindex="0"
+  title="test"
+><code><span class="line"><span style="--shiki-dark:#CB7676;--shiki-light:#AB5959">interface</span><span style="--shiki-dark:#5DA994;--shiki-light:#2E8F82"> </span><span style="--shiki-dark:#5DA994;--shiki-light:#2E8F82">Todo</span><span style="--shiki-dark:#666666;--shiki-light:#999999"> {</span></span>
 <span class="line"><span style="--shiki-dark:#758575DD;--shiki-light:#A0ADA0">  /** The title of the todo item */</span></span>
 <span class="line"><span style="--shiki-dark:#BD976A;--shiki-light:#B07D48">  </span><span style="--shiki-dark:#BD976A;--shiki-light:#B07D48"><span class="twoslash-hover"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="--shiki-dark:#BD976A;--shiki-light:#B07D48">Todo</span><span style="--shiki-dark:#666666;--shiki-light:#999999">.</span><span style="--shiki-dark:#BD976A;--shiki-light:#B07D48">title</span><span style="--shiki-dark:#DBD7CAEE;--shiki-light:#393A34">: </span><span style="--shiki-dark:#BD976A;--shiki-light:#B07D48">string</span></code><div class="twoslash-popup-docs">The title of the todo item</div></span>title</span></span><span style="--shiki-dark:#666666;--shiki-light:#999999">: </span><span style="--shiki-dark:#5DA994;--shiki-light:#2E8F82">string</span><span style="--shiki-dark:#666666;--shiki-light:#999999">;</span></span>
 <span class="line"><span style="--shiki-dark:#666666;--shiki-light:#999999">}</span></span>
@@ -39,11 +53,11 @@ If this argument is not supplied, strings with a prefix of '0x' are considered h
 All other strings are considered decimal.</span></span></div></span>arseInt</span></span><span style="--shiki-dark:#666666;--shiki-light:#999999">(</span><span style="--shiki-dark:#BD976A;--shiki-light:#B07D48"><span class="twoslash-hover"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="--shiki-dark:#CB7676;--shiki-light:#AB5959">const </span><span style="--shiki-dark:#BD976A;--shiki-light:#B07D48">todo</span><span style="--shiki-dark:#666666;--shiki-light:#999999">: </span><span style="--shiki-dark:#5DA994;--shiki-light:#2E8F82">Readonly</span><span style="--shiki-dark:#666666;--shiki-light:#999999">&#x3C;</span><span style="--shiki-dark:#5DA994;--shiki-light:#2E8F82">Todo</span><span style="--shiki-dark:#666666;--shiki-light:#999999">></span></code></span>todo</span></span><span style="--shiki-dark:#666666;--shiki-light:#999999">.</span><span style="--shiki-dark:#BD976A;--shiki-light:#B07D48"><span class="twoslash-hover"><span class="twoslash-popup-container"><code class="twoslash-popup-code"><span style="--shiki-dark:#80A665;--shiki-light:#59873A">title</span><span style="--shiki-dark:#666666;--shiki-light:#999999">:</span><span style="--shiki-dark:#BD976A;--shiki-light:#B07D48"> string</span></code><div class="twoslash-popup-docs">The title of the todo item</div></span>title</span></span><span style="--shiki-dark:#666666;--shiki-light:#999999">,</span><span style="--shiki-dark:#4C9A91;--shiki-light:#2F798A"> 10</span><span style="--shiki-dark:#666666;--shiki-light:#999999">);</span></span>
 <span class="line"></span></code></pre>
 <script>
-function toggleColor() {
-  const html = document.querySelector('html')
-  html.classList.toggle('dark')
-}
+  function toggleColor() {
+    const html = document.querySelector("html");
+    html.classList.toggle("dark");
+  }
 </script>
 <div style="margin: 5em 2em">
-<button onclick="toggleColor()">Toggle color</button>
+  <button onclick="toggleColor()">Toggle color</button>
 </div>

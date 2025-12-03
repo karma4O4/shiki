@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 
-import type { ShikiTransformer } from 'shiki'
-import { codeToHtml } from 'shiki'
-import { describe, expect, it } from 'vitest'
+import type { ShikiTransformer } from "shiki";
+import { codeToHtml } from "shiki";
+import { describe, expect, it } from "vitest";
 import {
   transformerCompactLineOptions,
   transformerNotationDiff,
@@ -13,42 +13,41 @@ import {
   transformerRemoveLineBreak,
   transformerRemoveNotationEscape,
   transformerRenderWhitespace,
-} from '../src'
+} from "../src";
 
 const ONLY: string[] = [
   // 'comment-highlight',
-]
+];
 
 function suite(
   name: string,
   files: Record<string, string>,
   transformers: ShikiTransformer[],
   replace?: (code: string) => string,
-  outputSuffix = '',
+  outputSuffix = "",
 ) {
   describe(name, () => {
     for (const path of Object.keys(files)) {
-      if (path.endsWith('.output.html'))
-        continue
+      if (path.endsWith(".output.html")) continue;
 
-      const skip = ONLY.length && !ONLY.some(i => path.includes(i))
+      const skip = ONLY.length && !ONLY.some((i) => path.includes(i));
       it.skipIf(skip)(path, async () => {
-        const ext = path.split('.').pop()!
+        const ext = path.split(".").pop()!;
 
         let code = await codeToHtml(files[path], {
           lang: ext,
-          theme: 'github-dark',
+          theme: "github-dark",
           transformers,
-        })
+        });
 
-        if (replace)
-          code = replace(code)
+        if (replace) code = replace(code);
 
-        await expect(code)
-          .toMatchFileSnapshot(`${path}${outputSuffix}.output.html`)
-      })
+        await expect(code).toMatchFileSnapshot(
+          `${path}${outputSuffix}.output.html`,
+        );
+      });
     }
-  })
+  });
 }
 
 const CSS_RENDER_WHITESPACE = `
@@ -60,18 +59,22 @@ body { margin: 0; }
 .tab::before { content: "\\21E5"; position: absolute; opacity: 0.3; }
 .space::before { content: "\\B7"; position: absolute; opacity: 0.3; }
 </style>
-`
+`;
 
 // ---------
 
 suite(
-  'diff',
-  import.meta.glob('./fixtures/diff/*.*', { query: '?raw', import: 'default', eager: true }),
+  "diff",
+  import.meta.glob("./fixtures/diff/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
   [
-    transformerNotationDiff({ matchAlgorithm: 'v3' }),
+    transformerNotationDiff({ matchAlgorithm: "v3" }),
     transformerRemoveLineBreak(),
   ],
-  code => `${code}
+  (code) => `${code}
 <style>
 body { margin: 0; }
 .shiki { padding: 1.5em; }
@@ -83,64 +86,80 @@ body { margin: 0; }
 .diff.add:before { content: "+"; color: green;}
 .diff.remove:before { content: "-"; color: red; }
 </style>`,
-)
+);
 
 suite(
-  'focus',
-  import.meta.glob('./fixtures/focus/*.*', { query: '?raw', import: 'default', eager: true }),
+  "focus",
+  import.meta.glob("./fixtures/focus/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
   [
-    transformerNotationFocus({ matchAlgorithm: 'v3' }),
+    transformerNotationFocus({ matchAlgorithm: "v3" }),
     transformerRemoveLineBreak(),
   ],
-  code => `${code}
+  (code) => `${code}
 <style>
 body { margin: 0; }
 .shiki { padding: 1em; }
 .line { display: block; width: 100%; height: 1.2em; }
 .has-focused .focused { background-color: #8805; }
 </style>`,
-)
+);
 
 suite(
-  'highlight',
-  import.meta.glob('./fixtures/highlight/*.*', { query: '?raw', import: 'default', eager: true }),
+  "highlight",
+  import.meta.glob("./fixtures/highlight/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
   [
-    transformerNotationHighlight({ matchAlgorithm: 'v3' }),
+    transformerNotationHighlight({ matchAlgorithm: "v3" }),
     transformerRemoveLineBreak(),
   ],
-  code => `${code}
+  (code) => `${code}
 <style>
 body { margin: 0; }
 .shiki { padding: 1em; }
 .line { display: block; width: 100%; height: 1.2em; }
 .highlighted { background-color: #8885; }
 </style>`,
-)
+);
 
 suite(
-  'highlight-word',
-  import.meta.glob('./fixtures/highlight-word/*.*', { query: '?raw', import: 'default', eager: true }),
+  "highlight-word",
+  import.meta.glob("./fixtures/highlight-word/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
   [
-    transformerNotationWordHighlight({ matchAlgorithm: 'v3' }),
+    transformerNotationWordHighlight({ matchAlgorithm: "v3" }),
     transformerRemoveLineBreak(),
   ],
-  code => `${code}
+  (code) => `${code}
 <style>
 body { margin: 0; }
 .shiki { padding: 1em; }
 .line { display: block; width: 100%; height: 1.2em; }
 .highlighted-word { background-color: #8885; }
 </style>`,
-)
+);
 
 suite(
-  'error-level',
-  import.meta.glob('./fixtures/error-level/*.*', { query: '?raw', import: 'default', eager: true }),
+  "error-level",
+  import.meta.glob("./fixtures/error-level/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
   [
-    transformerNotationErrorLevel({ matchAlgorithm: 'v3' }),
+    transformerNotationErrorLevel({ matchAlgorithm: "v3" }),
     transformerRemoveLineBreak(),
   ],
-  code => `${code}
+  (code) => `${code}
 <style>
 body { margin: 0; }
 .shiki { padding: 1em; }
@@ -148,56 +167,66 @@ body { margin: 0; }
 .highlighted.warning { background-color: #9905; }
 .highlighted.error { background-color: #8005; }
 </style>`,
-)
+);
 
 suite(
-  'whitespace:all',
-  import.meta.glob('./fixtures/whitespace/*.*', { query: '?raw', import: 'default', eager: true }),
-  [
-    transformerRenderWhitespace({ position: 'all' }),
-  ],
-  code => `${code}${CSS_RENDER_WHITESPACE}`,
-  '.all',
-)
+  "whitespace:all",
+  import.meta.glob("./fixtures/whitespace/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
+  [transformerRenderWhitespace({ position: "all" })],
+  (code) => `${code}${CSS_RENDER_WHITESPACE}`,
+  ".all",
+);
 
 suite(
-  'whitespace:boundary',
-  import.meta.glob('./fixtures/whitespace/*.*', { query: '?raw', import: 'default', eager: true }),
-  [
-    transformerRenderWhitespace({ position: 'boundary' }),
-  ],
-  code => `${code}${CSS_RENDER_WHITESPACE}`,
-  '.boundary',
-)
+  "whitespace:boundary",
+  import.meta.glob("./fixtures/whitespace/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
+  [transformerRenderWhitespace({ position: "boundary" })],
+  (code) => `${code}${CSS_RENDER_WHITESPACE}`,
+  ".boundary",
+);
 
 suite(
-  'whitespace:trailing',
-  import.meta.glob('./fixtures/whitespace/*.*', { query: '?raw', import: 'default', eager: true }),
-  [
-    transformerRenderWhitespace({ position: 'trailing' }),
-  ],
-  code => `${code}${CSS_RENDER_WHITESPACE}`,
-  '.trailing',
-)
+  "whitespace:trailing",
+  import.meta.glob("./fixtures/whitespace/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
+  [transformerRenderWhitespace({ position: "trailing" })],
+  (code) => `${code}${CSS_RENDER_WHITESPACE}`,
+  ".trailing",
+);
 
 suite(
-  'all',
-  import.meta.glob('./fixtures/all/*.*', { query: '?raw', import: 'default', eager: true }),
+  "all",
+  import.meta.glob("./fixtures/all/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
   [
-    transformerNotationDiff({ matchAlgorithm: 'v3' }),
-    transformerNotationFocus({ matchAlgorithm: 'v3' }),
-    transformerNotationHighlight({ matchAlgorithm: 'v3' }),
-    transformerNotationErrorLevel({ matchAlgorithm: 'v3' }),
+    transformerNotationDiff({ matchAlgorithm: "v3" }),
+    transformerNotationFocus({ matchAlgorithm: "v3" }),
+    transformerNotationHighlight({ matchAlgorithm: "v3" }),
+    transformerNotationErrorLevel({ matchAlgorithm: "v3" }),
     transformerCompactLineOptions([
       {
         line: 2,
-        classes: ['highlighted'],
+        classes: ["highlighted"],
       },
     ]),
     transformerRenderWhitespace(),
     transformerRemoveLineBreak(),
   ],
-  code => `${code}
+  (code) => `${code}
 <style>
 * { tab-size: 4; }
 body { margin: 0; }
@@ -211,7 +240,7 @@ body { margin: 0; }
 .tab::before { content: "\\21E5"; position: absolute; opacity: 0.3; }
 .space::before { content: "\\B7"; position: absolute; opacity: 0.3; }
 </style>`,
-)
+);
 
 const CSS_COMPARE = `<style>
 * { tab-size: 4; }
@@ -223,45 +252,54 @@ body { margin: 0; }
 .highlighted-word { background-color: #8885; }
 .highlighted.warning { background-color: #9905; }
 .highlighted.error { background-color: #8005; }
-</style>`
+</style>`;
 
 suite(
-  'compare-v1',
-  import.meta.glob('./fixtures/match-algorithm/v1.*', { query: '?raw', import: 'default', eager: true }),
+  "compare-v1",
+  import.meta.glob("./fixtures/match-algorithm/v1.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
   [
-    transformerNotationFocus({ matchAlgorithm: 'v1' }),
-    transformerNotationHighlight({ matchAlgorithm: 'v1' }),
-    transformerNotationErrorLevel({ matchAlgorithm: 'v1' }),
-    transformerNotationWordHighlight({ matchAlgorithm: 'v1' }),
+    transformerNotationFocus({ matchAlgorithm: "v1" }),
+    transformerNotationHighlight({ matchAlgorithm: "v1" }),
+    transformerNotationErrorLevel({ matchAlgorithm: "v1" }),
+    transformerNotationWordHighlight({ matchAlgorithm: "v1" }),
     transformerRemoveLineBreak(),
   ],
-  code => `${code}${CSS_COMPARE}`,
-)
+  (code) => `${code}${CSS_COMPARE}`,
+);
 
 suite(
-  'compare-v3',
-  import.meta.glob('./fixtures/match-algorithm/v3.*', { query: '?raw', import: 'default', eager: true }),
+  "compare-v3",
+  import.meta.glob("./fixtures/match-algorithm/v3.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
   [
-    transformerNotationFocus({ matchAlgorithm: 'v3' }),
-    transformerNotationHighlight({ matchAlgorithm: 'v3' }),
-    transformerNotationErrorLevel({ matchAlgorithm: 'v3' }),
-    transformerNotationWordHighlight({ matchAlgorithm: 'v3' }),
+    transformerNotationFocus({ matchAlgorithm: "v3" }),
+    transformerNotationHighlight({ matchAlgorithm: "v3" }),
+    transformerNotationErrorLevel({ matchAlgorithm: "v3" }),
+    transformerNotationWordHighlight({ matchAlgorithm: "v3" }),
     transformerRemoveLineBreak(),
   ],
-  code => `${code}${CSS_COMPARE}`,
-)
+  (code) => `${code}${CSS_COMPARE}`,
+);
 
 suite(
-  'remove-notation-escape',
-  import.meta.glob('./fixtures/remove-notation-escape/*.*', { query: '?raw', import: 'default', eager: true }),
-  [
-    transformerRemoveNotationEscape(),
-    transformerRemoveLineBreak(),
-  ],
-  code => `${code}
+  "remove-notation-escape",
+  import.meta.glob("./fixtures/remove-notation-escape/*.*", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  }),
+  [transformerRemoveNotationEscape(), transformerRemoveLineBreak()],
+  (code) => `${code}
 <style>
 body { margin: 0; }
 .shiki { padding: 1em; }
 .line { display: block; width: 100%; height: 1.2em; }
 </style>`,
-)
+);

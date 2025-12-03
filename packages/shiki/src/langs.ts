@@ -1,1 +1,1 @@
-export * from './langs-bundle-full'
+export * from "./langs-bundle-full";

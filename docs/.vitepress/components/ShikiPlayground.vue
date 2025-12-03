@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { usePlayground } from '../store/playground'
+import { usePlayground } from "../store/playground";
 
-const play = usePlayground()
+const play = usePlayground();
 </script>
 
 <template>

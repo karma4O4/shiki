@@ -1,41 +1,51 @@
 <script setup lang="ts">
-import type { BundledLanguage } from 'shiki'
-import { computed, ref, watch } from 'vue'
-import { usePlayground } from '../store/playground'
-import FundingButton from './FundingButton.vue'
+import type { BundledLanguage } from "shiki";
+import { computed, ref, watch } from "vue";
+import { usePlayground } from "../store/playground";
+import FundingButton from "./FundingButton.vue";
 
-const play = usePlayground()
-const showModel = ref(false)
+const play = usePlayground();
+const showModel = ref(false);
 
 function preview(id: string): void {
-  play.lang = id as BundledLanguage
-  showModel.value = true
+  play.lang = id as BundledLanguage;
+  showModel.value = true;
 }
 
-const bundle = ref('all')
+const bundle = ref("all");
 
 const langs = computed(() => {
-  if (bundle.value === 'web')
-    return play.bundledLangsWeb
-  return play.bundledLangsFull
-})
+  if (bundle.value === "web") return play.bundledLangsWeb;
+  return play.bundledLangsFull;
+});
 watch(showModel, () => {
   if (showModel.value) {
-    (document.scrollingElement as HTMLElement).style.overflow = 'hidden'
+    (document.scrollingElement as HTMLElement).style.overflow = "hidden";
+  } else {
+    (document.scrollingElement as HTMLElement).style.overflow = "initial";
   }
-  else {
-    (document.scrollingElement as HTMLElement).style.overflow = 'initial'
-  }
-})
+});
 </script>
 
 <template>
   <div>
     <div flex="~ gap-0.5 items-center">
-      <input id="radio-all" v-model="bundle" type="radio" name="lang" value="all">
+      <input
+        id="radio-all"
+        v-model="bundle"
+        type="radio"
+        name="lang"
+        value="all"
+      />
       <label for="radio-all">Full Bundle</label>
       <div mx2 />
-      <input id="radio-web" v-model="bundle" type="radio" name="lang" value="web">
+      <input
+        id="radio-web"
+        v-model="bundle"
+        type="radio"
+        name="lang"
+        value="web"
+      />
       <label for="radio-web">Web Bundle</label>
       <div mx2 />
       <a href="/guide/bundles">?</a>
@@ -52,9 +62,15 @@ watch(showModel, () => {
       <tbody>
         <tr v-for="l in langs" :key="l.name">
           <td>
-            {{ l.displayName }} <FundingButton :name="`${l.displayName} grammar`" :funding="l.funding" />
+            {{ l.displayName }}
+            <FundingButton
+              :name="`${l.displayName} grammar`"
+              :funding="l.funding"
+            />
           </td>
-          <td><code>{{ l.name }}</code></td>
+          <td>
+            <code>{{ l.name }}</code>
+          </td>
           <td>
             <code v-for="alias in l.aliases" :key="alias">{{ alias }}</code>
           </td>
@@ -62,7 +78,8 @@ watch(showModel, () => {
             <div flex>
               <button
                 title="Preview Example"
-                ma text-lg
+                ma
+                text-lg
                 @click="preview(l.name)"
               >
                 <div i-carbon:code />
@@ -73,7 +90,13 @@ watch(showModel, () => {
       </tbody>
     </table>
     <div v-if="showModel" fixed inset-0 z-100 flex items-center justify-center>
-      <div bg-black:50 absolute inset-0 backdrop-blur-sm @click="showModel = false" />
+      <div
+        bg-black:50
+        absolute
+        inset-0
+        backdrop-blur-sm
+        @click="showModel = false"
+      />
       <ShikiMiniPlayground max-h-80vh w-full md:w-150 lg:w-200 />
     </div>
   </div>

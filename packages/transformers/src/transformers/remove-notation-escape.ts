@@ -1,5 +1,5 @@
-import type { ShikiTransformer } from '@shikijs/types'
-import type { ElementContent } from 'hast'
+import type { ShikiTransformer } from "@shikijs/types";
+import type { ElementContent } from "hast";
 
 /**
  * Remove notation escapes.
@@ -8,21 +8,20 @@ import type { ElementContent } from 'hast'
  */
 export function transformerRemoveNotationEscape(): ShikiTransformer {
   return {
-    name: '@shikijs/transformers:remove-notation-escape',
+    name: "@shikijs/transformers:remove-notation-escape",
     code(hast) {
       function replace(node: ElementContent): void {
-        if (node.type === 'text') {
-          node.value = node.value.replace('[\\!code', '[!code')
-        }
-        else if ('children' in node) {
+        if (node.type === "text") {
+          node.value = node.value.replace("[\\!code", "[!code");
+        } else if ("children" in node) {
           for (const child of node.children) {
-            replace(child)
+            replace(child);
           }
         }
       }
 
-      replace(hast)
-      return hast
+      replace(hast);
+      return hast;
     },
-  }
+  };
 }

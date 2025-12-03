@@ -1,11 +1,11 @@
-import type { ShikiTransformer } from '@shikijs/types'
+import type { ShikiTransformer } from "@shikijs/types";
 
 export interface TransformerCompactLineOption {
   /**
    * 1-based line number.
    */
-  line: number
-  classes?: string[]
+  line: number;
+  classes?: string[];
 }
 
 /**
@@ -15,12 +15,11 @@ export function transformerCompactLineOptions(
   lineOptions: TransformerCompactLineOption[] = [],
 ): ShikiTransformer {
   return {
-    name: '@shikijs/transformers:compact-line-options',
+    name: "@shikijs/transformers:compact-line-options",
     line(node, line) {
-      const lineOption = lineOptions.find(o => o.line === line)
-      if (lineOption?.classes)
-        this.addClassToHast(node, lineOption.classes)
-      return node
+      const lineOption = lineOptions.find((o) => o.line === line);
+      if (lineOption?.classes) this.addClassToHast(node, lineOption.classes);
+      return node;
     },
-  }
+  };
 }

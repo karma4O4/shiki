@@ -1,15 +1,17 @@
-import type { TransformerTwoslashOptions } from '@shikijs/twoslash/core'
-import type { VueSpecificOptions } from 'twoslash-vue'
-import type { TwoslashFloatingVueRendererOptions } from './renderer-floating-vue'
+import type { TransformerTwoslashOptions } from "@shikijs/twoslash/core";
+import type { VueSpecificOptions } from "twoslash-vue";
+import type { TwoslashFloatingVueRendererOptions } from "./renderer-floating-vue";
 
 interface TransformerTwoslashVueOptions extends TransformerTwoslashOptions {
-  twoslashOptions?: TransformerTwoslashOptions['twoslashOptions'] & VueSpecificOptions
+  twoslashOptions?: TransformerTwoslashOptions["twoslashOptions"] &
+    VueSpecificOptions;
 }
 
-export interface VitePressPluginTwoslashOptions extends TransformerTwoslashVueOptions, TwoslashFloatingVueRendererOptions {
+export interface VitePressPluginTwoslashOptions
+  extends TransformerTwoslashVueOptions, TwoslashFloatingVueRendererOptions {
   /**
    * Requires adding `twoslash` to the code block explicitly to run twoslash
    * @default true
    */
-  explicitTrigger?: TransformerTwoslashOptions['explicitTrigger']
+  explicitTrigger?: TransformerTwoslashOptions["explicitTrigger"];
 }

@@ -1,13 +1,16 @@
-import { describe, expect, it } from 'vitest'
-import { createHighlighter, hastToHtml } from '../src'
+import { describe, expect, it } from "vitest";
+import { createHighlighter, hastToHtml } from "../src";
 
-it('getLastGrammarState', async () => {
+it("getLastGrammarState", async () => {
   using shiki = await createHighlighter({
-    themes: ['vitesse-light'],
-    langs: ['typescript'],
-  })
+    themes: ["vitesse-light"],
+    langs: ["typescript"],
+  });
 
-  const state = shiki.getLastGrammarState('let a:', { lang: 'typescript', theme: 'vitesse-light' })
+  const state = shiki.getLastGrammarState("let a:", {
+    lang: "typescript",
+    theme: "vitesse-light",
+  });
 
   expect.soft(state).toMatchInlineSnapshot(`
     {
@@ -23,39 +26,32 @@ it('getLastGrammarState', async () => {
         "vitesse-light",
       ],
     }
-  `)
+  `);
 
-  const input = 'Omit<{}, string | number>'
+  const input = "Omit<{}, string | number>";
 
   const highlightedNatural = shiki.codeToTokens(input, {
-    lang: 'typescript',
-    theme: 'vitesse-light',
-  })
+    lang: "typescript",
+    theme: "vitesse-light",
+  });
 
   const highlightedContext = shiki.codeToTokens(input, {
-    lang: 'typescript',
-    theme: 'vitesse-light',
+    lang: "typescript",
+    theme: "vitesse-light",
     grammarState: state,
-  })
+  });
 
   const highlightedContext2 = shiki.codeToTokens(input, {
-    lang: 'typescript',
-    theme: 'vitesse-light',
+    lang: "typescript",
+    theme: "vitesse-light",
     grammarState: state,
-  })
+  });
 
-  expect
-    .soft(highlightedNatural)
-    .not
-    .toEqual(highlightedContext)
+  expect.soft(highlightedNatural).not.toEqual(highlightedContext);
 
-  expect
-    .soft(highlightedContext)
-    .toEqual(highlightedContext2)
+  expect.soft(highlightedContext).toEqual(highlightedContext2);
 
-  expect
-    .soft(highlightedNatural)
-    .toMatchInlineSnapshot(`
+  expect.soft(highlightedNatural).toMatchInlineSnapshot(`
       {
         "bg": "#ffffff",
         "fg": "#393a34",
@@ -130,7 +126,7 @@ it('getLastGrammarState', async () => {
           ],
         ],
       }
-    `)
+    `);
 
   expect.soft(highlightedContext).toMatchInlineSnapshot(`
     {
@@ -192,167 +188,178 @@ it('getLastGrammarState', async () => {
         ],
       ],
     }
-  `)
-})
+  `);
+});
 
-it('grammarContextCode', async () => {
+it("grammarContextCode", async () => {
   using shiki = await createHighlighter({
-    themes: ['vitesse-light'],
-    langs: ['typescript', 'vue', 'html'],
-  })
+    themes: ["vitesse-light"],
+    langs: ["typescript", "vue", "html"],
+  });
 
-  const input = '<div :value="1 + 2"><button /></div>'
+  const input = '<div :value="1 + 2"><button /></div>';
 
   const highlightedHtml = shiki.codeToHtml(input, {
-    lang: 'html',
-    theme: 'vitesse-light',
-    structure: 'inline',
-  })
+    lang: "html",
+    theme: "vitesse-light",
+    structure: "inline",
+  });
 
   const highlightedVueTemplate = shiki.codeToHtml(input, {
-    lang: 'vue',
-    theme: 'vitesse-light',
-    structure: 'inline',
-    grammarContextCode: '<template>',
-  })
+    lang: "vue",
+    theme: "vitesse-light",
+    structure: "inline",
+    grammarContextCode: "<template>",
+  });
 
   const highlightedVueBare = shiki.codeToHtml(input, {
-    lang: 'vue',
-    theme: 'vitesse-light',
-    structure: 'inline',
-  })
+    lang: "vue",
+    theme: "vitesse-light",
+    structure: "inline",
+  });
 
-  expect(highlightedHtml)
-    .toMatchInlineSnapshot(`"<span style="color:#999999">&#x3C;</span><span style="color:#1E754F">div</span><span style="color:#B07D48"> :value</span><span style="color:#999999">=</span><span style="color:#B5695977">"</span><span style="color:#B56959">1 + 2</span><span style="color:#B5695977">"</span><span style="color:#999999">>&#x3C;</span><span style="color:#1E754F">button</span><span style="color:#999999;font-style:italic"> /</span><span style="color:#999999">>&#x3C;/</span><span style="color:#1E754F">div</span><span style="color:#999999">></span>"`)
+  expect(highlightedHtml).toMatchInlineSnapshot(
+    `"<span style="color:#999999">&#x3C;</span><span style="color:#1E754F">div</span><span style="color:#B07D48"> :value</span><span style="color:#999999">=</span><span style="color:#B5695977">"</span><span style="color:#B56959">1 + 2</span><span style="color:#B5695977">"</span><span style="color:#999999">>&#x3C;</span><span style="color:#1E754F">button</span><span style="color:#999999;font-style:italic"> /</span><span style="color:#999999">>&#x3C;/</span><span style="color:#1E754F">div</span><span style="color:#999999">></span>"`,
+  );
 
-  expect(highlightedVueTemplate)
-    .toMatchInlineSnapshot(`"<span style="color:#999999">&#x3C;</span><span style="color:#1E754F">div</span><span style="color:#999999"> :</span><span style="color:#59873A">value</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#2F798A">1</span><span style="color:#AB5959"> +</span><span style="color:#2F798A"> 2</span><span style="color:#999999">"</span><span style="color:#999999">>&#x3C;</span><span style="color:#1E754F">button</span><span style="color:#999999;font-style:italic"> /</span><span style="color:#999999">>&#x3C;/</span><span style="color:#1E754F">div</span><span style="color:#999999">></span>"`)
+  expect(highlightedVueTemplate).toMatchInlineSnapshot(
+    `"<span style="color:#999999">&#x3C;</span><span style="color:#1E754F">div</span><span style="color:#999999"> :</span><span style="color:#59873A">value</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#2F798A">1</span><span style="color:#AB5959"> +</span><span style="color:#2F798A"> 2</span><span style="color:#999999">"</span><span style="color:#999999">>&#x3C;</span><span style="color:#1E754F">button</span><span style="color:#999999;font-style:italic"> /</span><span style="color:#999999">>&#x3C;/</span><span style="color:#1E754F">div</span><span style="color:#999999">></span>"`,
+  );
 
-  expect(highlightedVueBare)
-    .toMatchInlineSnapshot(`"<span style="color:#999999">&#x3C;</span><span style="color:#1E754F">div</span><span style="color:#999999"> :</span><span style="color:#59873A">value</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#2F798A">1</span><span style="color:#AB5959"> +</span><span style="color:#2F798A"> 2</span><span style="color:#999999">"</span><span style="color:#999999">></span><span style="color:#393A34">&#x3C;button /></span><span style="color:#999999">&#x3C;/</span><span style="color:#1E754F">div</span><span style="color:#999999">></span>"`)
+  expect(highlightedVueBare).toMatchInlineSnapshot(
+    `"<span style="color:#999999">&#x3C;</span><span style="color:#1E754F">div</span><span style="color:#999999"> :</span><span style="color:#59873A">value</span><span style="color:#999999">=</span><span style="color:#999999">"</span><span style="color:#2F798A">1</span><span style="color:#AB5959"> +</span><span style="color:#2F798A"> 2</span><span style="color:#999999">"</span><span style="color:#999999">></span><span style="color:#393A34">&#x3C;button /></span><span style="color:#999999">&#x3C;/</span><span style="color:#1E754F">div</span><span style="color:#999999">></span>"`,
+  );
 
-  expect(highlightedVueTemplate)
-    .not
-    .toEqual(highlightedVueBare)
-})
+  expect(highlightedVueTemplate).not.toEqual(highlightedVueBare);
+});
 
-it('getLastGrammarState with multiple themes', async () => {
+it("getLastGrammarState with multiple themes", async () => {
   using shiki = await createHighlighter({
-    themes: ['vitesse-light', 'vitesse-dark'],
-    langs: ['typescript'],
-  })
+    themes: ["vitesse-light", "vitesse-dark"],
+    langs: ["typescript"],
+  });
 
-  const tokens = shiki.codeToTokens('let a:', {
-    lang: 'typescript',
+  const tokens = shiki.codeToTokens("let a:", {
+    lang: "typescript",
     themes: {
-      light: 'vitesse-light',
-      dark: 'vitesse-dark',
+      light: "vitesse-light",
+      dark: "vitesse-dark",
     },
-  })
+  });
 
-  expect(tokens.grammarState).toBeDefined()
+  expect(tokens.grammarState).toBeDefined();
 
-  const input = 'Omit<{}, string | number>'
+  const input = "Omit<{}, string | number>";
 
   const highlightedWithState = shiki.codeToHtml(input, {
-    lang: 'typescript',
+    lang: "typescript",
     themes: {
-      light: 'vitesse-light',
-      dark: 'vitesse-dark',
+      light: "vitesse-light",
+      dark: "vitesse-dark",
     },
     grammarState: tokens.grammarState,
-  })
+  });
 
   const highlightedWithoutState = shiki.codeToHtml(input, {
-    lang: 'typescript',
+    lang: "typescript",
     themes: {
-      light: 'vitesse-light',
-      dark: 'vitesse-dark',
+      light: "vitesse-light",
+      dark: "vitesse-dark",
     },
-  })
+  });
 
-  expect(highlightedWithoutState)
-    .not
-    .toEqual(highlightedWithState)
+  expect(highlightedWithoutState).not.toEqual(highlightedWithState);
 
   const highlightedWithSingleTheme = shiki.codeToHtml(input, {
-    lang: 'typescript',
-    theme: 'vitesse-light',
+    lang: "typescript",
+    theme: "vitesse-light",
     grammarState: tokens.grammarState,
-  })
+  });
 
-  expect(highlightedWithSingleTheme).toBeDefined()
-})
+  expect(highlightedWithSingleTheme).toBeDefined();
+});
 
-it('getLastGrammarState from hast', async () => {
+it("getLastGrammarState from hast", async () => {
   using shiki = await createHighlighter({
-    themes: ['vitesse-light'],
-    langs: ['typescript'],
-  })
+    themes: ["vitesse-light"],
+    langs: ["typescript"],
+  });
 
-  const part1 = 'let a = "'
-  const part2 = 'console.log(a)"'
+  const part1 = 'let a = "';
+  const part2 = 'console.log(a)"';
 
   const highlightedFull = shiki.codeToHast(part1 + part2, {
-    lang: 'typescript',
-    theme: 'vitesse-light',
-  })
+    lang: "typescript",
+    theme: "vitesse-light",
+  });
 
   const highlightedPart1 = shiki.codeToHast(part1, {
-    lang: 'typescript',
-    theme: 'vitesse-light',
-  })
+    lang: "typescript",
+    theme: "vitesse-light",
+  });
 
-  const state = shiki.getLastGrammarState(highlightedPart1)
-  expect(state).toBeDefined()
+  const state = shiki.getLastGrammarState(highlightedPart1);
+  expect(state).toBeDefined();
 
   const highlighted = shiki.codeToHtml(part2, {
-    lang: 'typescript',
-    theme: 'vitesse-light',
+    lang: "typescript",
+    theme: "vitesse-light",
     grammarState: state,
-  })
+  });
 
-  expect(hastToHtml(highlightedFull)).toContain('console.log')
-  expect(highlighted).toContain('console.log')
-})
+  expect(hastToHtml(highlightedFull)).toContain("console.log");
+  expect(highlighted).toContain("console.log");
+});
 
-describe('errors', () => {
-  it('should throw on wrong language', async () => {
+describe("errors", () => {
+  it("should throw on wrong language", async () => {
     using shiki = await createHighlighter({
-      themes: ['vitesse-light'],
-      langs: ['typescript', 'javascript'],
-    })
+      themes: ["vitesse-light"],
+      langs: ["typescript", "javascript"],
+    });
 
-    const state = shiki.getLastGrammarState('let a:', { lang: 'typescript', theme: 'vitesse-light' })
+    const state = shiki.getLastGrammarState("let a:", {
+      lang: "typescript",
+      theme: "vitesse-light",
+    });
 
-    expect(() => shiki.codeToTokens('string', {
-      lang: 'js',
-      theme: 'vitesse-light',
-      grammarState: state,
-    }))
-      .toThrowErrorMatchingInlineSnapshot(`[ShikiError: Grammar state language "typescript" does not match highlight language "javascript"]`)
+    expect(() =>
+      shiki.codeToTokens("string", {
+        lang: "js",
+        theme: "vitesse-light",
+        grammarState: state,
+      }),
+    ).toThrowErrorMatchingInlineSnapshot(
+      `[ShikiError: Grammar state language "typescript" does not match highlight language "javascript"]`,
+    );
 
     // Alias "ts" should not throw
-    shiki.codeToTokens('string', {
-      lang: 'ts',
-      theme: 'vitesse-light',
+    shiki.codeToTokens("string", {
+      lang: "ts",
+      theme: "vitesse-light",
       grammarState: state,
-    })
-  })
+    });
+  });
 
-  it('should throw on wrong themes', async () => {
+  it("should throw on wrong themes", async () => {
     using shiki = await createHighlighter({
-      themes: ['vitesse-light', 'vitesse-dark'],
-      langs: ['typescript', 'javascript'],
-    })
+      themes: ["vitesse-light", "vitesse-dark"],
+      langs: ["typescript", "javascript"],
+    });
 
-    const state = shiki.getLastGrammarState('let a:', { lang: 'typescript', theme: 'vitesse-light' })
+    const state = shiki.getLastGrammarState("let a:", {
+      lang: "typescript",
+      theme: "vitesse-light",
+    });
 
-    expect(() => shiki.codeToTokens('string', {
-      lang: 'ts',
-      theme: 'vitesse-dark',
-      grammarState: state,
-    }))
-      .toThrowErrorMatchingInlineSnapshot(`[ShikiError: Grammar state themes "vitesse-light" do not contain highlight theme "vitesse-dark"]`)
-  })
-})
+    expect(() =>
+      shiki.codeToTokens("string", {
+        lang: "ts",
+        theme: "vitesse-dark",
+        grammarState: state,
+      }),
+    ).toThrowErrorMatchingInlineSnapshot(
+      `[ShikiError: Grammar state themes "vitesse-light" do not contain highlight theme "vitesse-dark"]`,
+    );
+  });
+});

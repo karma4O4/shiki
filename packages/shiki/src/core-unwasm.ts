@@ -3,8 +3,8 @@
  * We add the wasm file as the dependency so users don't need to call `loadWasm` manually.
  */
 
-import { setDefaultWasmLoader } from '@shikijs/engine-oniguruma'
+import { setDefaultWasmLoader } from "@shikijs/engine-oniguruma";
 
-setDefaultWasmLoader(() => import('shiki/wasm'))
+setDefaultWasmLoader(() => import("shiki/wasm"));
 
-export * from '@shikijs/core'
+export * from "@shikijs/core";

@@ -1,8 +1,8 @@
-import type { RegexEngine } from '@shikijs/types'
-import type { ToRegExpOptions } from 'oniguruma-to-es'
-import type { JavaScriptRegexScannerOptions } from './scanner'
-import { toRegExp } from 'oniguruma-to-es'
-import { JavaScriptScanner } from './scanner'
+import type { RegexEngine } from "@shikijs/types";
+import type { ToRegExpOptions } from "oniguruma-to-es";
+import type { JavaScriptRegexScannerOptions } from "./scanner";
+import { toRegExp } from "oniguruma-to-es";
+import { JavaScriptScanner } from "./scanner";
 
 export interface JavaScriptRegexEngineOptions extends JavaScriptRegexScannerOptions {
   /**
@@ -19,38 +19,38 @@ export interface JavaScriptRegexEngineOptions extends JavaScriptRegexScannerOpti
    *
    * @default 'auto'
    */
-  target?: 'auto' | 'ES2025' | 'ES2024' | 'ES2018'
+  target?: "auto" | "ES2025" | "ES2024" | "ES2018";
 }
 
 /**
  * The default regex constructor for the JavaScript RegExp engine.
  */
-export function defaultJavaScriptRegexConstructor(pattern: string, options?: ToRegExpOptions): RegExp {
-  return toRegExp(
-    pattern,
-    {
-      global: true,
-      hasIndices: true,
-      // This has no benefit for the standard JS engine, but it avoids a perf penalty for
-      // precompiled grammars when constructing extremely long patterns that aren't always used
-      lazyCompileLength: 3000,
-      rules: {
-        // Needed since TextMate grammars merge backrefs across patterns
-        allowOrphanBackrefs: true,
-        // Improves search performance for generated regexes
-        asciiWordBoundaries: true,
-        // Follow `vscode-oniguruma` which enables this Oniguruma option by default
-        captureGroup: true,
-        // Oniguruma uses depth limit `20`; lowered here to keep regexes shorter and maybe
-        // sometimes faster, but can be increased if issues reported due to low limit
-        recursionLimit: 5,
-        // Oniguruma option for `^`->`\A`, `$`->`\Z`; improves search performance without any
-        // change in meaning since TM grammars search line by line
-        singleline: true,
-      },
-      ...options,
+export function defaultJavaScriptRegexConstructor(
+  pattern: string,
+  options?: ToRegExpOptions,
+): RegExp {
+  return toRegExp(pattern, {
+    global: true,
+    hasIndices: true,
+    // This has no benefit for the standard JS engine, but it avoids a perf penalty for
+    // precompiled grammars when constructing extremely long patterns that aren't always used
+    lazyCompileLength: 3000,
+    rules: {
+      // Needed since TextMate grammars merge backrefs across patterns
+      allowOrphanBackrefs: true,
+      // Improves search performance for generated regexes
+      asciiWordBoundaries: true,
+      // Follow `vscode-oniguruma` which enables this Oniguruma option by default
+      captureGroup: true,
+      // Oniguruma uses depth limit `20`; lowered here to keep regexes shorter and maybe
+      // sometimes faster, but can be increased if issues reported due to low limit
+      recursionLimit: 5,
+      // Oniguruma option for `^`->`\A`, `$`->`\Z`; improves search performance without any
+      // change in meaning since TM grammars search line by line
+      singleline: true,
     },
-  )
+    ...options,
+  });
 }
 
 /**
@@ -61,24 +61,27 @@ export function defaultJavaScriptRegexConstructor(pattern: string, options?: ToR
  * unsupported patterns, and when the grammar includes patterns that use invalid Oniguruma syntax.
  * Set `forgiving` to `true` to ignore these errors and skip any unsupported or invalid patterns.
  */
-export function createJavaScriptRegexEngine(options: JavaScriptRegexEngineOptions = {}): RegexEngine {
+export function createJavaScriptRegexEngine(
+  options: JavaScriptRegexEngineOptions = {},
+): RegexEngine {
   const _options: JavaScriptRegexEngineOptions = Object.assign(
     {
-      target: 'auto',
+      target: "auto",
       cache: new Map(),
     },
     options,
-  )
-  _options.regexConstructor ||= pattern => defaultJavaScriptRegexConstructor(pattern, { target: _options.target })
+  );
+  _options.regexConstructor ||= (pattern) =>
+    defaultJavaScriptRegexConstructor(pattern, { target: _options.target });
 
   return {
     createScanner(patterns) {
-      return new JavaScriptScanner(patterns, _options)
+      return new JavaScriptScanner(patterns, _options);
     },
     createString(s: string) {
       return {
         content: s,
-      }
+      };
     },
-  }
+  };
 }

@@ -5,12 +5,7 @@
       "type": "element",
       "tagName": "pre",
       "properties": {
-        "class": [
-          "shiki",
-          "vitesse-dark",
-          "twoslash",
-          "lsp"
-        ],
+        "class": ["shiki", "vitesse-dark", "twoslash", "lsp"],
         "style": "background-color:#121212;color:#dbd7caee",
         "tabindex": "0"
       },

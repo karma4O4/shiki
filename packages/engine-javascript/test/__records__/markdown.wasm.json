@@ -15,11 +15,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "# Header\n",
-      0,
-      0
-    ],
+    "args": ["# Header\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -56,11 +52,7 @@
       "(#{2})\\s+(.*?)(?:\\s+(#+))?\\s*$",
       "(#{1})\\s+(.*?)(?:\\s+(#+))?\\s*$"
     ],
-    "args": [
-      "# Header\n",
-      0,
-      0
-    ],
+    "args": ["# Header\n", 0, 0],
     "result": {
       "index": 5,
       "captureIndices": [
@@ -106,11 +98,7 @@
       "(?<![]\\\\])(\\[)((?<square>[^]\\[\\\\]|\\\\.|\\[\\g<square>*+])*+)(]) ?(\\[)(])",
       "(?<![]\\\\])(\\[)((?:[^]\\[\\\\\\s]|\\\\[]\\[])+?)((?<!\\\\)])"
     ],
-    "args": [
-      "# Header",
-      2,
-      0
-    ],
+    "args": ["# Header", 2, 0],
     "result": null
   },
   {
@@ -123,11 +111,7 @@
       "(#{2})\\s+(.*?)(?:\\s+(#+))?\\s*$",
       "(#{1})\\s+(.*?)(?:\\s+(#+))?\\s*$"
     ],
-    "args": [
-      "# Header\n",
-      9,
-      0
-    ],
+    "args": ["# Header\n", 9, 0],
     "result": null
   },
   {
@@ -146,11 +130,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "# Header\n",
-      9,
-      0
-    ],
+    "args": ["# Header\n", 9, 0],
     "result": null
   },
   {
@@ -169,11 +149,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "This is a paragraph\n",
-      0,
-      0
-    ],
+    "args": ["This is a paragraph\n", 0, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -211,23 +187,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "This is a paragraph\n",
-      0,
-      0
-    ],
+    "args": ["This is a paragraph\n", 0, 0],
     "result": null
   },
   {
     "id": "Y3tIS2khWjorPLiTjTXM_KShk897k7OcLsM8-zp9Hd4",
-    "patterns": [
-      "(^|\\￿)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"
-    ],
-    "args": [
-      "```ts\n",
-      0,
-      0
-    ],
+    "patterns": ["(^|\\￿)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"],
+    "args": ["```ts\n", 0, 0],
     "result": null
   },
   {
@@ -246,11 +212,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "```ts\n",
-      0,
-      0
-    ],
+    "args": ["```ts\n", 0, 0],
     "result": {
       "index": 6,
       "captureIndices": [
@@ -284,38 +246,20 @@
   },
   {
     "id": "mo_TLK3WdABsHwZUz2QSX4jmxokZJQXwsM6pDg34rd8",
-    "patterns": [
-      "(^|\\G)(|\\s{0,3})(```)\\s*$"
-    ],
-    "args": [
-      "```ts\n",
-      3,
-      0
-    ],
+    "patterns": ["(^|\\G)(|\\s{0,3})(```)\\s*$"],
+    "args": ["```ts\n", 3, 0],
     "result": null
   },
   {
     "id": "ZuCkPefnYYYIbVLOZh_8ubSfRyD61MUN3fjU2iQp_CY",
-    "patterns": [
-      "(^|\\￿)(|\\s{0,3})(```)\\s*$"
-    ],
-    "args": [
-      "const foo = \"bar\"\n",
-      0,
-      0
-    ],
+    "patterns": ["(^|\\￿)(|\\s{0,3})(```)\\s*$"],
+    "args": ["const foo = \"bar\"\n", 0, 0],
     "result": null
   },
   {
     "id": "ZuCkPefnYYYIbVLOZh_8ubSfRyD61MUN3fjU2iQp_CY",
-    "patterns": [
-      "(^|\\￿)(|\\s{0,3})(```)\\s*$"
-    ],
-    "args": [
-      "```\n",
-      0,
-      0
-    ],
+    "patterns": ["(^|\\￿)(|\\s{0,3})(```)\\s*$"],
+    "args": ["```\n", 0, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -358,11 +302,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "```\n",
-      4,
-      0
-    ],
+    "args": ["```\n", 4, 0],
     "result": null
   },
   {
@@ -381,11 +321,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "# Header\n",
-      0,
-      0
-    ],
+    "args": ["# Header\n", 0, 0],
     "result": {
       "index": 1,
       "captureIndices": [
@@ -422,11 +358,7 @@
       "(#{2})\\s+(.*?)(?:\\s+(#+))?\\s*$",
       "(#{1})\\s+(.*?)(?:\\s+(#+))?\\s*$"
     ],
-    "args": [
-      "# Header\n",
-      0,
-      0
-    ],
+    "args": ["# Header\n", 0, 0],
     "result": {
       "index": 5,
       "captureIndices": [
@@ -472,11 +404,7 @@
       "(?<![]\\\\])(\\[)((?<square>[^]\\[\\\\]|\\\\.|\\[\\g<square>*+])*+)(]) ?(\\[)(])",
       "(?<![]\\\\])(\\[)((?:[^]\\[\\\\\\s]|\\\\[]\\[])+?)((?<!\\\\)])"
     ],
-    "args": [
-      "# Header",
-      2,
-      0
-    ],
+    "args": ["# Header", 2, 0],
     "result": null
   },
   {
@@ -489,11 +417,7 @@
       "(#{2})\\s+(.*?)(?:\\s+(#+))?\\s*$",
       "(#{1})\\s+(.*?)(?:\\s+(#+))?\\s*$"
     ],
-    "args": [
-      "# Header\n",
-      9,
-      0
-    ],
+    "args": ["# Header\n", 9, 0],
     "result": null
   },
   {
@@ -512,11 +436,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "# Header\n",
-      9,
-      0
-    ],
+    "args": ["# Header\n", 9, 0],
     "result": null
   },
   {
@@ -535,11 +455,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "This is a paragraph\n",
-      0,
-      0
-    ],
+    "args": ["This is a paragraph\n", 0, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -577,23 +493,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "This is a paragraph\n",
-      0,
-      0
-    ],
+    "args": ["This is a paragraph\n", 0, 0],
     "result": null
   },
   {
     "id": "Y3tIS2khWjorPLiTjTXM_KShk897k7OcLsM8-zp9Hd4",
-    "patterns": [
-      "(^|\\￿)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"
-    ],
-    "args": [
-      "```ts\n",
-      0,
-      0
-    ],
+    "patterns": ["(^|\\￿)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"],
+    "args": ["```ts\n", 0, 0],
     "result": null
   },
   {
@@ -612,11 +518,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "```ts\n",
-      0,
-      0
-    ],
+    "args": ["```ts\n", 0, 0],
     "result": {
       "index": 6,
       "captureIndices": [
@@ -650,38 +552,20 @@
   },
   {
     "id": "mo_TLK3WdABsHwZUz2QSX4jmxokZJQXwsM6pDg34rd8",
-    "patterns": [
-      "(^|\\G)(|\\s{0,3})(```)\\s*$"
-    ],
-    "args": [
-      "```ts\n",
-      3,
-      0
-    ],
+    "patterns": ["(^|\\G)(|\\s{0,3})(```)\\s*$"],
+    "args": ["```ts\n", 3, 0],
     "result": null
   },
   {
     "id": "ZuCkPefnYYYIbVLOZh_8ubSfRyD61MUN3fjU2iQp_CY",
-    "patterns": [
-      "(^|\\￿)(|\\s{0,3})(```)\\s*$"
-    ],
-    "args": [
-      "const foo = \"bar\"\n",
-      0,
-      0
-    ],
+    "patterns": ["(^|\\￿)(|\\s{0,3})(```)\\s*$"],
+    "args": ["const foo = \"bar\"\n", 0, 0],
     "result": null
   },
   {
     "id": "ZuCkPefnYYYIbVLOZh_8ubSfRyD61MUN3fjU2iQp_CY",
-    "patterns": [
-      "(^|\\￿)(|\\s{0,3})(```)\\s*$"
-    ],
-    "args": [
-      "```\n",
-      0,
-      0
-    ],
+    "patterns": ["(^|\\￿)(|\\s{0,3})(```)\\s*$"],
+    "args": ["```\n", 0, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -724,11 +608,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "```\n",
-      4,
-      0
-    ],
+    "args": ["```\n", 4, 0],
     "result": null
   },
   {
@@ -747,11 +627,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "look like:\n",
-      0,
-      0
-    ],
+    "args": ["look like:\n", 0, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -789,23 +665,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "look like:\n",
-      0,
-      0
-    ],
+    "args": ["look like:\n", 0, 0],
     "result": null
   },
   {
     "id": "Y3tIS2khWjorPLiTjTXM_KShk897k7OcLsM8-zp9Hd4",
-    "patterns": [
-      "(^|\\￿)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"
-    ],
-    "args": [
-      "  * this one\n",
-      0,
-      0
-    ],
+    "patterns": ["(^|\\￿)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"],
+    "args": ["  * this one\n", 0, 0],
     "result": null
   },
   {
@@ -824,11 +690,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "  * this one\n",
-      0,
-      0
-    ],
+    "args": ["  * this one\n", 0, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -877,11 +739,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * this one\n",
-      4,
-      0
-    ],
+    "args": ["  * this one\n", 4, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -919,23 +777,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "  * this one\n",
-      4,
-      0
-    ],
+    "args": ["  * this one\n", 4, 0],
     "result": null
   },
   {
     "id": "IV_5ntxBWPH6ZjnFt0sYFEhBlZZBB_6LXBfJeVl3MGs",
-    "patterns": [
-      "((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"
-    ],
-    "args": [
-      "  * that one\n",
-      0,
-      0
-    ],
+    "patterns": ["((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"],
+    "args": ["  * that one\n", 0, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -969,14 +817,8 @@
   },
   {
     "id": "qNTghM3JC_CE8WeptyM3uExwwIKKM9OriEmuaXyQ0jg",
-    "patterns": [
-      "(^|\\G)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"
-    ],
-    "args": [
-      "  * that one\n",
-      2,
-      0
-    ],
+    "patterns": ["(^|\\G)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"],
+    "args": ["  * that one\n", 2, 0],
     "result": null
   },
   {
@@ -996,11 +838,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * that one\n",
-      2,
-      0
-    ],
+    "args": ["  * that one\n", 2, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -1049,11 +887,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * that one\n",
-      4,
-      0
-    ],
+    "args": ["  * that one\n", 4, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -1091,23 +925,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "  * that one\n",
-      4,
-      0
-    ],
+    "args": ["  * that one\n", 4, 0],
     "result": null
   },
   {
     "id": "IV_5ntxBWPH6ZjnFt0sYFEhBlZZBB_6LXBfJeVl3MGs",
-    "patterns": [
-      "((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"
-    ],
-    "args": [
-      "  * the other one\n",
-      0,
-      0
-    ],
+    "patterns": ["((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"],
+    "args": ["  * the other one\n", 0, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1141,14 +965,8 @@
   },
   {
     "id": "8nzwgFPaXHwW2DBYzs46peKX6BzNO5ZXmtWW3U-Rlyo",
-    "patterns": [
-      "((^|\\G)( {2,4}|\\t))|^([\\t ]*)$"
-    ],
-    "args": [
-      "  * the other one\n",
-      2,
-      0
-    ],
+    "patterns": ["((^|\\G)( {2,4}|\\t))|^([\\t ]*)$"],
+    "args": ["  * the other one\n", 2, 0],
     "result": null
   },
   {
@@ -1168,11 +986,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * the other one\n",
-      2,
-      0
-    ],
+    "args": ["  * the other one\n", 2, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -1221,11 +1035,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * the other one\n",
-      4,
-      0
-    ],
+    "args": ["  * the other one\n", 4, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -1263,23 +1073,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "  * the other one\n",
-      4,
-      0
-    ],
+    "args": ["  * the other one\n", 4, 0],
     "result": null
   },
   {
     "id": "IV_5ntxBWPH6ZjnFt0sYFEhBlZZBB_6LXBfJeVl3MGs",
-    "patterns": [
-      "((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"
-    ],
-    "args": [
-      "and this\n",
-      0,
-      0
-    ],
+    "patterns": ["((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"],
+    "args": ["and this\n", 0, 0],
     "result": null
   },
   {
@@ -1298,11 +1098,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "and this\n",
-      0,
-      0
-    ],
+    "args": ["and this\n", 0, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -1340,11 +1136,7 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "and this\n",
-      0,
-      0
-    ],
+    "args": ["and this\n", 0, 0],
     "result": null
   },
   {
@@ -1363,11 +1155,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "look like:\n",
-      0,
-      0
-    ],
+    "args": ["look like:\n", 0, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -1405,23 +1193,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "look like:\n",
-      0,
-      0
-    ],
+    "args": ["look like:\n", 0, 0],
     "result": null
   },
   {
     "id": "Y3tIS2khWjorPLiTjTXM_KShk897k7OcLsM8-zp9Hd4",
-    "patterns": [
-      "(^|\\￿)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"
-    ],
-    "args": [
-      "  * this one\n",
-      0,
-      0
-    ],
+    "patterns": ["(^|\\￿)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"],
+    "args": ["  * this one\n", 0, 0],
     "result": null
   },
   {
@@ -1440,11 +1218,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "  * this one\n",
-      0,
-      0
-    ],
+    "args": ["  * this one\n", 0, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -1493,11 +1267,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * this one\n",
-      4,
-      0
-    ],
+    "args": ["  * this one\n", 4, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -1535,23 +1305,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "  * this one\n",
-      4,
-      0
-    ],
+    "args": ["  * this one\n", 4, 0],
     "result": null
   },
   {
     "id": "IV_5ntxBWPH6ZjnFt0sYFEhBlZZBB_6LXBfJeVl3MGs",
-    "patterns": [
-      "((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"
-    ],
-    "args": [
-      "  * that one\n",
-      0,
-      0
-    ],
+    "patterns": ["((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"],
+    "args": ["  * that one\n", 0, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1585,14 +1345,8 @@
   },
   {
     "id": "qNTghM3JC_CE8WeptyM3uExwwIKKM9OriEmuaXyQ0jg",
-    "patterns": [
-      "(^|\\G)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"
-    ],
-    "args": [
-      "  * that one\n",
-      2,
-      0
-    ],
+    "patterns": ["(^|\\G)((?=\\s*[-=]{3,}\\s*$)| {4,}(?=[^\\t\\n ]))"],
+    "args": ["  * that one\n", 2, 0],
     "result": null
   },
   {
@@ -1612,11 +1366,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * that one\n",
-      2,
-      0
-    ],
+    "args": ["  * that one\n", 2, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -1665,11 +1415,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * that one\n",
-      4,
-      0
-    ],
+    "args": ["  * that one\n", 4, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -1707,23 +1453,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "  * that one\n",
-      4,
-      0
-    ],
+    "args": ["  * that one\n", 4, 0],
     "result": null
   },
   {
     "id": "IV_5ntxBWPH6ZjnFt0sYFEhBlZZBB_6LXBfJeVl3MGs",
-    "patterns": [
-      "((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"
-    ],
-    "args": [
-      "  * the other one\n",
-      0,
-      0
-    ],
+    "patterns": ["((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"],
+    "args": ["  * the other one\n", 0, 0],
     "result": {
       "index": 0,
       "captureIndices": [
@@ -1757,14 +1493,8 @@
   },
   {
     "id": "8nzwgFPaXHwW2DBYzs46peKX6BzNO5ZXmtWW3U-Rlyo",
-    "patterns": [
-      "((^|\\G)( {2,4}|\\t))|^([\\t ]*)$"
-    ],
-    "args": [
-      "  * the other one\n",
-      2,
-      0
-    ],
+    "patterns": ["((^|\\G)( {2,4}|\\t))|^([\\t ]*)$"],
+    "args": ["  * the other one\n", 2, 0],
     "result": null
   },
   {
@@ -1784,11 +1514,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * the other one\n",
-      2,
-      0
-    ],
+    "args": ["  * the other one\n", 2, 0],
     "result": {
       "index": 3,
       "captureIndices": [
@@ -1837,11 +1563,7 @@
       "(^|\\G) {0,3}(?=[^\\t\\n ])",
       "(^|\\G)(?=\\S)(?![*->]\\s|[0-9]+\\.\\s)"
     ],
-    "args": [
-      "  * the other one\n",
-      4,
-      0
-    ],
+    "args": ["  * the other one\n", 4, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -1879,23 +1601,13 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "  * the other one\n",
-      4,
-      0
-    ],
+    "args": ["  * the other one\n", 4, 0],
     "result": null
   },
   {
     "id": "IV_5ntxBWPH6ZjnFt0sYFEhBlZZBB_6LXBfJeVl3MGs",
-    "patterns": [
-      "((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"
-    ],
-    "args": [
-      "and this\n",
-      0,
-      0
-    ],
+    "patterns": ["((^|\\￿)( {2,4}|\\t))|^([\\t ]*)$"],
+    "args": ["and this\n", 0, 0],
     "result": null
   },
   {
@@ -1914,11 +1626,7 @@
       "(^|\\￿)(\\|)(?=[^|].+\\|\\s*$)",
       "(^|\\￿) {0,3}(?=[^\\t\\n ])"
     ],
-    "args": [
-      "and this\n",
-      0,
-      0
-    ],
+    "args": ["and this\n", 0, 0],
     "result": {
       "index": 11,
       "captureIndices": [
@@ -1956,11 +1664,7 @@
       "^(={3,})(?=[\\t ]*$\\n?)",
       "^(-{3,})(?=[\\t ]*$\\n?)"
     ],
-    "args": [
-      "and this\n",
-      0,
-      0
-    ],
+    "args": ["and this\n", 0, 0],
     "result": null
   }
 ]

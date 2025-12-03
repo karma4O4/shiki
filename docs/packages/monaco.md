@@ -41,37 +41,30 @@ deno add npm:@shikijs/monaco
 ### Usage
 
 ```ts
-import { shikiToMonaco } from '@shikijs/monaco'
-import * as monaco from 'monaco-editor-core'
-import { createHighlighter } from 'shiki'
+import { shikiToMonaco } from "@shikijs/monaco";
+import * as monaco from "monaco-editor-core";
+import { createHighlighter } from "shiki";
 
 // Create the highlighter, it can be reused
 const highlighter = await createHighlighter({
-  themes: [
-    'vitesse-dark',
-    'vitesse-light',
-  ],
-  langs: [
-    'javascript',
-    'typescript',
-    'vue'
-  ],
-})
+  themes: ["vitesse-dark", "vitesse-light"],
+  langs: ["javascript", "typescript", "vue"],
+});
 
 // Register the languageIds first. Only registered languages will be highlighted.
-monaco.languages.register({ id: 'vue' })
-monaco.languages.register({ id: 'typescript' })
-monaco.languages.register({ id: 'javascript' })
+monaco.languages.register({ id: "vue" });
+monaco.languages.register({ id: "typescript" });
+monaco.languages.register({ id: "javascript" });
 
 // Register the themes from Shiki, and provide syntax highlighting for Monaco. // [!code highlight:2]
-shikiToMonaco(highlighter, monaco)
+shikiToMonaco(highlighter, monaco);
 
 // Create the editor
-const editor = monaco.editor.create(document.getElementById('container'), {
-  value: 'const a = 1',
-  language: 'javascript',
-  theme: 'vitesse-dark',
-})
+const editor = monaco.editor.create(document.getElementById("container"), {
+  value: "const a = 1",
+  language: "javascript",
+  theme: "vitesse-dark",
+});
 
 // ...As you use the editor normally
 ```
@@ -111,7 +104,7 @@ deno add npm:modern-monaco
 Or import it from [esm.sh](https://esm.sh) CDN in the browser without a build step:
 
 ```js
-import * as monaco from 'https://esm.sh/modern-monaco'
+import * as monaco from "https://esm.sh/modern-monaco";
 ```
 
 ### Usage
@@ -124,23 +117,26 @@ import * as monaco from 'https://esm.sh/modern-monaco'
 
 ```js
 // app.js
-import { lazy, Workspace } from 'modern-monaco'
+import { lazy, Workspace } from "modern-monaco";
 
 // create a workspace with initial files
 const workspace = new Workspace({
   initialFiles: {
-    'index.html': `<html><body>...</body></html>`,
-    'main.js': `console.log('Hello, world!')`,
+    "index.html": `<html><body>...</body></html>`,
+    "main.js": `console.log('Hello, world!')`,
   },
-  entryFile: 'index.html',
-})
+  entryFile: "index.html",
+});
 
 // initialize the editor lazily
-await lazy({ workspace })
+await lazy({ workspace });
 
 // write a file and open it in the editor
-workspace.fs.writeFile('util.js', 'export function add(a, b) { return a + b; }')
-workspace.openTextDocument('util.js')
+workspace.fs.writeFile(
+  "util.js",
+  "export function add(a, b) { return a + b; }",
+);
+workspace.openTextDocument("util.js");
 ```
 
 More usage please see the [modern-monaco](https://github.com/esm-dev/modern-monaco) repository.

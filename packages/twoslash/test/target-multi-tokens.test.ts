@@ -1,29 +1,28 @@
-import { transformerTwoslash } from '@shikijs/twoslash'
-import { codeToHtml, codeToTokensBase } from 'shiki'
-import { expect, it } from 'vitest'
+import { transformerTwoslash } from "@shikijs/twoslash";
+import { codeToHtml, codeToTokensBase } from "shiki";
+import { expect, it } from "vitest";
 
-const code = `const x: [number] = ["hello"]`
+const code = `const x: [number] = ["hello"]`;
 
-it('verify theme behavior', async () => {
+it("verify theme behavior", async () => {
   const tokens = await codeToTokensBase(code, {
-    lang: 'ts',
-    theme: 'vitesse-dark',
-  })
+    lang: "ts",
+    theme: "vitesse-dark",
+  });
 
   // `vitesse-dark` separates the the quotes ints tokens, where the error is targeting all strings
   expect
-    .soft(tokens.find(i => i.find(j => j.content === '"')))
-    .toBeDefined()
+    .soft(tokens.find((i) => i.find((j) => j.content === '"')))
+    .toBeDefined();
   expect
-    .soft(tokens.find(i => i.find(j => j.content === '"ref"')))
-    .not
-    .toBeDefined()
-})
+    .soft(tokens.find((i) => i.find((j) => j.content === '"ref"')))
+    .not.toBeDefined();
+});
 
-it('should split tokens correctly', async () => {
+it("should split tokens correctly", async () => {
   const html = await codeToHtml(code, {
-    lang: 'ts',
-    theme: 'vitesse-dark',
+    lang: "ts",
+    theme: "vitesse-dark",
     transformers: [
       transformerTwoslash({
         twoslashOptions: {
@@ -33,10 +32,9 @@ it('should split tokens correctly', async () => {
         },
       }),
     ],
-  })
+  });
 
   await expect(
     `<link rel="stylesheet" href="../../style-rich.css" />\n${html}`,
-  )
-    .toMatchFileSnapshot('./out/error-multi-tokens.html')
-})
+  ).toMatchFileSnapshot("./out/error-multi-tokens.html");
+});

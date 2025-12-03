@@ -9,13 +9,15 @@ TextMate grammars are based on regular expressions that match tokens. More speci
 Shiki also offers the ability to switch the regex engine or provide a custom implementation. To do so, add an `engine` option to `createHighlighter` or `createHighlighterCore`. For example:
 
 ```ts
-import { createHighlighter } from 'shiki'
+import { createHighlighter } from "shiki";
 
 const shiki = await createHighlighter({
-  themes: ['nord'],
-  langs: ['javascript'],
-  engine: { /* custom engine */ }
-})
+  themes: ["nord"],
+  langs: ["javascript"],
+  engine: {
+    /* custom engine */
+  },
+});
 ```
 
 Shiki comes with two built-in engines:
@@ -25,14 +27,14 @@ Shiki comes with two built-in engines:
 This is the default engine that uses the compiled Oniguruma WebAssembly.
 
 ```ts
-import { createHighlighter } from 'shiki'
-import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
+import { createHighlighter } from "shiki";
+import { createOnigurumaEngine } from "shiki/engine/oniguruma";
 
 const shiki = await createHighlighter({
-  themes: ['nord'],
-  langs: ['javascript'],
-  engine: createOnigurumaEngine(import('shiki/wasm'))
-})
+  themes: ["nord"],
+  langs: ["javascript"],
+  engine: createOnigurumaEngine(import("shiki/wasm")),
+});
 ```
 
 ## JavaScript RegExp Engine
@@ -40,18 +42,21 @@ const shiki = await createHighlighter({
 This engine uses JavaScript's native `RegExp`. Since regular expressions used by TextMate grammars are written for Oniguruma, we use [Oniguruma-To-ES](https://github.com/slevithan/oniguruma-to-es) to transpile Oniguruma patterns to native JavaScript regexes.
 
 ```ts {2,4,9}
-import { createHighlighter } from 'shiki'
-import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
+import { createHighlighter } from "shiki";
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
-const jsEngine = createJavaScriptRegexEngine()
+const jsEngine = createJavaScriptRegexEngine();
 
 const shiki = await createHighlighter({
-  themes: ['nord'],
-  langs: ['javascript'],
-  engine: jsEngine
-})
+  themes: ["nord"],
+  langs: ["javascript"],
+  engine: jsEngine,
+});
 
-const html = shiki.codeToHtml('const a = 1', { lang: 'javascript', theme: 'nord' })
+const html = shiki.codeToHtml("const a = 1", {
+  lang: "javascript",
+  theme: "nord",
+});
 ```
 
 The advantage of using the JavaScript engine is that it doesn't require loading a large WebAssembly file for Oniguruma. It is also faster for some languages, since the regular expressions run as native JavaScript.
@@ -67,7 +72,7 @@ The JavaScript engine is best when running in the browser and in cases when you 
 Unlike the Oniguruma engine, the JavaScript engine is strict by default. It will throw an error if it encounters an invalid Oniguruma pattern or a pattern that it cannot convert. If you want best-effort results for unsupported grammars, you can enable the `forgiving` option to suppress any conversion errors:
 
 ```ts
-const jsEngine = createJavaScriptRegexEngine({ forgiving: true })
+const jsEngine = createJavaScriptRegexEngine({ forgiving: true });
 // ...use the engine
 ```
 
@@ -81,8 +86,8 @@ By default, the runtime target is automatically detected. You can override this 
 
 ```ts
 const jsEngine = createJavaScriptRegexEngine({
-  target: 'ES2018', // or 'auto' (default), 'ES2024', 'ES2025'
-})
+  target: "ES2018", // or 'auto' (default), 'ES2024', 'ES2025'
+});
 ```
 
 ### Pre-compiled Languages
@@ -100,23 +105,21 @@ Pre-compiled languages require support for RegExp UnicodeSets (the `v` flag), wh
 You can install them with `@shikijs/langs-precompiled`, and change your `@shikijs/langs` imports to `@shikijs/langs-precompiled`:
 
 ```ts
-import { createHighlighterCore } from 'shiki/core'
-import { createJavaScriptRawEngine } from 'shiki/engine/javascript'
+import { createHighlighterCore } from "shiki/core";
+import { createJavaScriptRawEngine } from "shiki/engine/javascript";
 
 const highlighter = await createHighlighterCore({
   langs: [
-    import('@shikijs/langs/javascript'), // [!code --]
-    import('@shikijs/langs/typescript'), // [!code --]
-    import('@shikijs/langs-precompiled/javascript'), // [!code ++]
-    import('@shikijs/langs-precompiled/typescript'), // [!code ++]
+    import("@shikijs/langs/javascript"), // [!code --]
+    import("@shikijs/langs/typescript"), // [!code --]
+    import("@shikijs/langs-precompiled/javascript"), // [!code ++]
+    import("@shikijs/langs-precompiled/typescript"), // [!code ++]
     // ...
   ],
-  themes: [
-    import('@shikijs/themes/nord'),
-  ],
+  themes: [import("@shikijs/themes/nord")],
   engine: createJavaScriptRegexEngine(), // [!code --]
   engine: createJavaScriptRawEngine(), // [!code ++]
-})
+});
 ```
 
 If you are not using custom grammars that require transpilation, you can use `createJavaScriptRawEngine` to skip the transpilation step, further reducing bundle size.

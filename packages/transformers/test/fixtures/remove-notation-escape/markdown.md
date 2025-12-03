@@ -5,8 +5,8 @@ Here's a code block with escaped notation:
 ```js
 // [\!code highlight:1-3]
 export function foo() {
-  const a = "Hello World"
-  return a
+  const a = "Hello World";
+  return a;
 }
 ```
 
@@ -15,8 +15,8 @@ And here's one without escaping (should not be transformed):
 ```js
 // [!code highlight:1-3]
 export function bar() {
-  const b = "Goodbye World"
-  return b
+  const b = "Goodbye World";
+  return b;
 }
 ```
 

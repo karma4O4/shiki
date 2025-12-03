@@ -13,20 +13,22 @@ The highlighter instance is expensive to create. Most of the time, you should cr
 For example:
 
 ```ts
-import { createHighlighterCore } from 'shiki/core'
+import { createHighlighterCore } from "shiki/core";
 
-const highlighterPromise = createHighlighterCore({ /* ... */ })
+const highlighterPromise = createHighlighterCore({
+  /* ... */
+});
 
 export async function highlightCode(code: string, lang: string) {
-  const highlighter = await highlighterPromise
-  return highlighter.codeToHtml(code, lang)
+  const highlighter = await highlighterPromise;
+  return highlighter.codeToHtml(code, lang);
 }
 ```
 
 When you no longer need a highlighter instance, you can call the `dispose()` method to release the resources. (It can't be GC-ed automatically, you need to do it explicitly.)
 
 ```ts
-highlighter.dispose()
+highlighter.dispose();
 ```
 
 ## Fine-Grained Bundle
@@ -38,22 +40,22 @@ The pre-built bundles are for easy usage, and mostly intended for a Node.js envi
 Instead, import fine-grained modules like `shiki/core`, `shiki/engine/javascript`, `@shikijs/langs/typescript`, `@shikijs/themes/dark-plus`, etc.
 
 ```ts
-import { createHighlighterCore } from 'shiki/core'
-import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
+import { createHighlighterCore } from "shiki/core";
+import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
 const highlighter = await createHighlighterCore({
   themes: [
-    import('@shikijs/themes/nord'),
-    import('@shikijs/themes/dark-plus'),
+    import("@shikijs/themes/nord"),
+    import("@shikijs/themes/dark-plus"),
     // ...
   ],
   langs: [
-    import('@shikijs/langs/typescript'),
-    import('@shikijs/langs/javascript'),
+    import("@shikijs/langs/typescript"),
+    import("@shikijs/langs/javascript"),
     // ...
   ],
-  engine: createJavaScriptRegexEngine()
-})
+  engine: createJavaScriptRegexEngine(),
+});
 ```
 
 To compose the fine-grained bundles easily, we also provide the [`shiki-codegen`](/packages/codegen) tool to generate fine-grained bundles for you.
@@ -65,13 +67,13 @@ Learn more about [Fine-Grained Bundles](/guide/bundles#fine-grained-bundle).
 `createHighlighter` and `createHighlighterCore` load all the themes and languages **upfront** to ensure subsequent highlight operations are synchronous. This can add significant overhead to startup time, especially when you have a lot of themes and languages. Shorthands abstract the theme and language loading process and maintain an internal highlighter instance underneath, only loading the necessary themes and languages when needed. When your highlighting process can be asynchronous, you can use shorthands to reduce startup time.
 
 ```ts
-import { codeToHtml } from 'shiki'
+import { codeToHtml } from "shiki";
 
 // Only `javascript` and `nord` will be loaded when calling `codeToHtml`
-const html = await codeToHtml('const a = 1', {
-  lang: 'javascript',
-  theme: 'nord'
-})
+const html = await codeToHtml("const a = 1", {
+  lang: "javascript",
+  theme: "nord",
+});
 ```
 
 You can also create your own shorthands with fine-grained bundles. Check out the [Create Shorthands with Fine-Grained Bundles](/guide/shorthands#create-shorthands-with-fine-grained-bundles) section for more details.

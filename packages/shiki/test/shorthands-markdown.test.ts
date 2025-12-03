@@ -1,5 +1,5 @@
-import { expect, it } from 'vitest'
-import { codeToHtml, getSingletonHighlighter } from '../src'
+import { expect, it } from "vitest";
+import { codeToHtml, getSingletonHighlighter } from "../src";
 
 const inputMarkdown1 = `
 This is a markdown file
@@ -14,7 +14,7 @@ div
 ~~~
 
 Even those grammars in markdown are lazy loaded, \`codeToHtml\` shorthand should capture them and load automatically.
-`
+`;
 
 const inputMarkdown2 = `
 Some other languages
@@ -35,31 +35,33 @@ print("hello")
   }
 </style>
 \`\`\`
-`
+`;
 
-it('codeToHtml', async () => {
-  const highlighter = await getSingletonHighlighter()
-  expect(highlighter.getLoadedLanguages())
-    .toEqual([])
+it("codeToHtml", async () => {
+  const highlighter = await getSingletonHighlighter();
+  expect(highlighter.getLoadedLanguages()).toEqual([]);
 
-  await expect(await codeToHtml(inputMarkdown1, { lang: 'markdown', theme: 'vitesse-light' }))
-    .toMatchFileSnapshot(`out/shorthand-markdown1.html`)
+  await expect(
+    await codeToHtml(inputMarkdown1, {
+      lang: "markdown",
+      theme: "vitesse-light",
+    }),
+  ).toMatchFileSnapshot(`out/shorthand-markdown1.html`);
 
-  expect.soft(highlighter.getLoadedLanguages())
-    .toContain('javascript')
-  expect.soft(highlighter.getLoadedLanguages())
-    .toContain('pug')
+  expect.soft(highlighter.getLoadedLanguages()).toContain("javascript");
+  expect.soft(highlighter.getLoadedLanguages()).toContain("pug");
 
-  await expect(await codeToHtml(inputMarkdown2, { lang: 'markdown', theme: 'vitesse-light' }))
-    .toMatchFileSnapshot(`out/shorthand-markdown2.html`)
+  await expect(
+    await codeToHtml(inputMarkdown2, {
+      lang: "markdown",
+      theme: "vitesse-light",
+    }),
+  ).toMatchFileSnapshot(`out/shorthand-markdown2.html`);
 
-  expect.soft(highlighter.getLoadedLanguages())
-    .toContain('python')
-  expect.soft(highlighter.getLoadedLanguages())
-    .toContain('html')
+  expect.soft(highlighter.getLoadedLanguages()).toContain("python");
+  expect.soft(highlighter.getLoadedLanguages()).toContain("html");
 
-  expect.soft(highlighter.getLoadedLanguages())
-    .toMatchInlineSnapshot(`
+  expect.soft(highlighter.getLoadedLanguages()).toMatchInlineSnapshot(`
       [
         "javascript",
         "css",
@@ -74,5 +76,5 @@ it('codeToHtml', async () => {
         "jade",
         "py",
       ]
-    `)
-})
+    `);
+});

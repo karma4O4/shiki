@@ -1,6 +1,6 @@
-import { codeToHtml } from 'shiki'
-import { expect, it } from 'vitest'
-import { rendererClassic, transformerTwoslash } from '../src'
+import { codeToHtml } from "shiki";
+import { expect, it } from "vitest";
+import { rendererClassic, transformerTwoslash } from "../src";
 
 const styleTag = `
 <link rel="stylesheet" href="../../../style-classic.css" />
@@ -8,31 +8,31 @@ const styleTag = `
 html, body { margin: 0; }
 .shiki { padding: 2em; }
 </style>
-`
+`;
 
 const transformer = transformerTwoslash({
   renderer: rendererClassic(),
-})
+});
 
-it('simple', async () => {
+it("simple", async () => {
   const code = `
 // Hello world
 const a = "123"
 const b = "345"
-`.trim()
+`.trim();
 
   const html = await codeToHtml(code, {
-    lang: 'ts',
-    theme: 'dark-plus',
-    transformers: [
-      transformer,
-    ],
-  })
+    lang: "ts",
+    theme: "dark-plus",
+    transformers: [transformer],
+  });
 
-  await expect(styleTag + html).toMatchFileSnapshot('./out/classic/simple.html')
-})
+  await expect(styleTag + html).toMatchFileSnapshot(
+    "./out/classic/simple.html",
+  );
+});
 
-it('compiler_errors', async () => {
+it("compiler_errors", async () => {
   const code = `
 // @target: ES2015
 // @errors: 7006
@@ -42,37 +42,37 @@ function fn(s) {
 }
 
 fn(42)
-`.trim()
+`.trim();
 
   const html = await codeToHtml(code, {
-    lang: 'ts',
-    theme: 'vitesse-light',
-    transformers: [
-      transformer,
-    ],
-  })
+    lang: "ts",
+    theme: "vitesse-light",
+    transformers: [transformer],
+  });
 
-  await expect(styleTag + html).toMatchFileSnapshot('./out/classic/compiler_errors.html')
-})
+  await expect(styleTag + html).toMatchFileSnapshot(
+    "./out/classic/compiler_errors.html",
+  );
+});
 
-it('completions', async () => {
+it("completions", async () => {
   const code = `
 const a = Number.isNaN(123)
 //                ^|
-`.trim()
+`.trim();
 
   const html = await codeToHtml(code, {
-    lang: 'ts',
-    theme: 'vitesse-light',
-    transformers: [
-      transformer,
-    ],
-  })
+    lang: "ts",
+    theme: "vitesse-light",
+    transformers: [transformer],
+  });
 
-  await expect(styleTag + html).toMatchFileSnapshot('./out/classic/completions.html')
-})
+  await expect(styleTag + html).toMatchFileSnapshot(
+    "./out/classic/completions.html",
+  );
+});
 
-it('cuts_out_unnecessary_code', async () => {
+it("cuts_out_unnecessary_code", async () => {
   const code = `
 interface IdLabel {
   id: number /* some fields */
@@ -96,33 +96,33 @@ let b = createLabel(2.8)
 
 let c = createLabel(Math.random() ? "hello" : 42)
 //                        ^|
-`.trim()
+`.trim();
 
   const html = await codeToHtml(code, {
-    lang: 'ts',
-    theme: 'vitesse-dark',
-    transformers: [
-      transformer,
-    ],
-  })
+    lang: "ts",
+    theme: "vitesse-dark",
+    transformers: [transformer],
+  });
 
-  await expect(styleTag + html).toMatchFileSnapshot('./out/classic/cuts_out_unnecessary_code.html')
-})
+  await expect(styleTag + html).toMatchFileSnapshot(
+    "./out/classic/cuts_out_unnecessary_code.html",
+  );
+});
 
-it('console_log', async () => {
+it("console_log", async () => {
   const code = `
 // Hello
 console.error("This is an error")
 // @error: This is an error
-`.trim()
+`.trim();
 
   const html = await codeToHtml(code, {
-    lang: 'ts',
-    theme: 'vitesse-dark',
-    transformers: [
-      transformer,
-    ],
-  })
+    lang: "ts",
+    theme: "vitesse-dark",
+    transformers: [transformer],
+  });
 
-  await expect(styleTag + html).toMatchFileSnapshot('./out/classic/console_log.html')
-})
+  await expect(styleTag + html).toMatchFileSnapshot(
+    "./out/classic/console_log.html",
+  );
+});

@@ -1,16 +1,16 @@
-import { createJavaScriptRegexEngine } from '@shikijs/engine-javascript'
-import { createHighlighter } from 'shiki'
-import { it } from 'vitest'
+import { createJavaScriptRegexEngine } from "@shikijs/engine-javascript";
+import { createHighlighter } from "shiki";
+import { it } from "vitest";
 
-it('langAlias', async () => {
+it("langAlias", async () => {
   const highlighter = await createHighlighter({
-    langs: ['javascript'],
+    langs: ["javascript"],
     langAlias: {
-      mylang: 'javascript',
+      mylang: "javascript",
     },
-    themes: ['nord'],
+    themes: ["nord"],
     engine: createJavaScriptRegexEngine(),
-  })
+  });
 
-  await highlighter.loadLanguage('mylang' as any)
-})
+  await highlighter.loadLanguage("mylang" as any);
+});

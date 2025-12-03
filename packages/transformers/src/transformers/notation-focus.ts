@@ -1,16 +1,16 @@
-import type { ShikiTransformer } from '@shikijs/types'
-import type { MatchAlgorithmOptions } from '../shared/notation-transformer'
-import { transformerNotationMap } from './notation-map'
+import type { ShikiTransformer } from "@shikijs/types";
+import type { MatchAlgorithmOptions } from "../shared/notation-transformer";
+import { transformerNotationMap } from "./notation-map";
 
 export interface TransformerNotationFocusOptions extends MatchAlgorithmOptions {
   /**
    * Class for focused lines
    */
-  classActiveLine?: string
+  classActiveLine?: string;
   /**
    * Class added to the root element when the code has focused lines
    */
-  classActivePre?: string
+  classActivePre?: string;
 }
 
 /**
@@ -19,10 +19,8 @@ export interface TransformerNotationFocusOptions extends MatchAlgorithmOptions {
 export function transformerNotationFocus(
   options: TransformerNotationFocusOptions = {},
 ): ShikiTransformer {
-  const {
-    classActiveLine = 'focused',
-    classActivePre = 'has-focused',
-  } = options
+  const { classActiveLine = "focused", classActivePre = "has-focused" } =
+    options;
 
   return transformerNotationMap(
     {
@@ -32,6 +30,6 @@ export function transformerNotationFocus(
       classActivePre,
       matchAlgorithm: options.matchAlgorithm,
     },
-    '@shikijs/transformers:notation-focus',
-  )
+    "@shikijs/transformers:notation-focus",
+  );
 }

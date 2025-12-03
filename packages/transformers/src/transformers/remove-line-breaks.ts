@@ -1,4 +1,4 @@
-import type { ShikiTransformer } from '@shikijs/types'
+import type { ShikiTransformer } from "@shikijs/types";
 
 /**
  * Remove line breaks between lines.
@@ -6,9 +6,11 @@ import type { ShikiTransformer } from '@shikijs/types'
  */
 export function transformerRemoveLineBreak(): ShikiTransformer {
   return {
-    name: '@shikijs/transformers:remove-line-break',
+    name: "@shikijs/transformers:remove-line-break",
     code(code) {
-      code.children = code.children.filter(line => !(line.type === 'text' && line.value === '\n'))
+      code.children = code.children.filter(
+        (line) => !(line.type === "text" && line.value === "\n"),
+      );
     },
-  }
+  };
 }

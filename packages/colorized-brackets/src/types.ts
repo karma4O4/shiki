@@ -7,10 +7,10 @@
  * @property explicitTrigger - if true, the transformer only runs for code blocks with the `colorize-brackets` meta string
  */
 export interface TransformerColorizedBracketsOptions {
-  themes: Record<string, string[]>
-  bracketPairs: BracketPair[]
-  langs: Record<string, ColorizedBracketsLangConfig>
-  explicitTrigger?: boolean
+  themes: Record<string, string[]>;
+  bracketPairs: BracketPair[];
+  langs: Record<string, ColorizedBracketsLangConfig>;
+  explicitTrigger?: boolean;
 }
 
 /**
@@ -20,8 +20,8 @@ export interface TransformerColorizedBracketsOptions {
  * @property bracketPairs - language-specific bracket pairs; if not defined, it uses the bracket from the base config
  */
 export interface ColorizedBracketsLangConfig {
-  themes?: Record<string, string[]>
-  bracketPairs?: BracketPair[]
+  themes?: Record<string, string[]>;
+  bracketPairs?: BracketPair[];
 }
 
 /**
@@ -33,8 +33,8 @@ export interface ColorizedBracketsLangConfig {
  * @property scopesDenyList - if defined, brackets will not be colored if any of their scopes match a scope from this list
  */
 export interface BracketPair {
-  opener: string
-  closer: string
-  scopesAllowList?: string[]
-  scopesDenyList?: string[]
+  opener: string;
+  closer: string;
+  scopesAllowList?: string[];
+  scopesDenyList?: string[];
 }

@@ -5,17 +5,19 @@ import type {
   SpecialLanguage,
   SpecialTheme,
   ThemeInput,
-} from '@shikijs/types'
+} from "@shikijs/types";
 
 export function toArray<T>(x: MaybeArray<T>): T[] {
-  return Array.isArray(x) ? x : [x]
+  return Array.isArray(x) ? x : [x];
 }
 
 /**
  * Normalize a getter to a promise.
  */
 export async function normalizeGetter<T>(p: MaybeGetter<T>): Promise<T> {
-  return Promise.resolve(typeof p === 'function' ? (p as any)() : p).then(r => r.default || r)
+  return Promise.resolve(typeof p === "function" ? (p as any)() : p).then(
+    (r) => r.default || r,
+  );
 }
 
 /**
@@ -23,8 +25,10 @@ export async function normalizeGetter<T>(p: MaybeGetter<T>): Promise<T> {
  *
  * Hard-coded plain text languages: `plaintext`, `txt`, `text`, `plain`.
  */
-export function isPlainLang(lang: string | null | undefined): lang is PlainTextLanguage {
-  return !lang || ['plaintext', 'txt', 'text', 'plain'].includes(lang)
+export function isPlainLang(
+  lang: string | null | undefined,
+): lang is PlainTextLanguage {
+  return !lang || ["plaintext", "txt", "text", "plain"].includes(lang);
 }
 
 /**
@@ -33,7 +37,7 @@ export function isPlainLang(lang: string | null | undefined): lang is PlainTextL
  * Hard-coded languages: `ansi` and plaintexts like `plaintext`, `txt`, `text`, `plain`.
  */
 export function isSpecialLang(lang: any): lang is SpecialLanguage {
-  return lang === 'ansi' || isPlainLang(lang)
+  return lang === "ansi" || isPlainLang(lang);
 }
 
 /**
@@ -41,8 +45,10 @@ export function isSpecialLang(lang: any): lang is SpecialLanguage {
  *
  * Hard-coded themes: `none`.
  */
-export function isNoneTheme(theme: string | ThemeInput | null | undefined): theme is 'none' {
-  return theme === 'none'
+export function isNoneTheme(
+  theme: string | ThemeInput | null | undefined,
+): theme is "none" {
+  return theme === "none";
 }
 
 /**
@@ -50,6 +56,8 @@ export function isNoneTheme(theme: string | ThemeInput | null | undefined): them
  *
  * Hard-coded themes: `none`.
  */
-export function isSpecialTheme(theme: string | ThemeInput | null | undefined): theme is SpecialTheme {
-  return isNoneTheme(theme)
+export function isSpecialTheme(
+  theme: string | ThemeInput | null | undefined,
+): theme is SpecialTheme {
+  return isNoneTheme(theme);
 }

@@ -102,11 +102,11 @@ The asynchronous `codeToANSI` function allows you to convert code to ANSI escape
 This is useful for rendering syntax-highlighted code in the terminal.
 
 ```ts
-import { codeToANSI } from '@shikijs/cli'
+import { codeToANSI } from "@shikijs/cli";
 
-const highlighted = await codeToANSI(source, 'typescript', 'nord')
+const highlighted = await codeToANSI(source, "typescript", "nord");
 
-console.log(highlighted)
+console.log(highlighted);
 ```
 
 `codeToANSI` takes three required parameters:

@@ -1,11 +1,8 @@
-import { defineBuildConfig } from 'unbuild'
+import { defineBuildConfig } from "unbuild";
 
 export default defineBuildConfig({
-  entries: [
-    'src/index.ts',
-    'src/core.ts',
-  ],
-  declaration: 'node16',
+  entries: ["src/index.ts", "src/core.ts"],
+  declaration: "node16",
   rollup: {
     emitCJS: false,
     dts: {
@@ -14,7 +11,5 @@ export default defineBuildConfig({
       },
     },
   },
-  externals: [
-    'hast',
-  ],
-})
+  externals: ["hast"],
+});

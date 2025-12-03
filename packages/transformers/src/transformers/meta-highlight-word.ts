@@ -1,15 +1,16 @@
-import type { ShikiTransformer } from '@shikijs/types'
+import type { ShikiTransformer } from "@shikijs/types";
 
 export function parseMetaHighlightWords(meta: string): string[] {
-  if (!meta)
-    return []
+  if (!meta) return [];
 
   // https://regex101.com/r/BHS5fd/1
-  const match = Array.from(meta.matchAll(/\/((?:\\.|[^/])+)\//g))
+  const match = Array.from(meta.matchAll(/\/((?:\\.|[^/])+)\//g));
 
-  return match
-    // Escape backslashes
-    .map(v => v[1].replace(/\\(.)/g, '$1'))
+  return (
+    match
+      // Escape backslashes
+      .map((v) => v[1].replace(/\\(.)/g, "$1"))
+  );
 }
 
 export interface TransformerMetaWordHighlightOptions {
@@ -18,7 +19,7 @@ export interface TransformerMetaWordHighlightOptions {
    *
    * @default 'highlighted-word'
    */
-  className?: string
+  className?: string;
 }
 
 /**
@@ -27,20 +28,17 @@ export interface TransformerMetaWordHighlightOptions {
 export function transformerMetaWordHighlight(
   options: TransformerMetaWordHighlightOptions = {},
 ): ShikiTransformer {
-  const {
-    className = 'highlighted-word',
-  } = options
+  const { className = "highlighted-word" } = options;
 
   return {
-    name: '@shikijs/transformers:meta-word-highlight',
+    name: "@shikijs/transformers:meta-word-highlight",
     preprocess(code, options) {
-      if (!this.options.meta?.__raw)
-        return
+      if (!this.options.meta?.__raw) return;
 
-      const words = parseMetaHighlightWords(this.options.meta.__raw)
-      options.decorations ||= []
+      const words = parseMetaHighlightWords(this.options.meta.__raw);
+      options.decorations ||= [];
       for (const word of words) {
-        const indexes = findAllSubstringIndexes(code, word)
+        const indexes = findAllSubstringIndexes(code, word);
         for (const index of indexes) {
           options.decorations.push({
             start: index,
@@ -48,24 +46,22 @@ export function transformerMetaWordHighlight(
             properties: {
               class: className,
             },
-          })
+          });
         }
       }
     },
-  }
+  };
 }
 
 export function findAllSubstringIndexes(str: string, substr: string): number[] {
-  const indexes: number[] = []
-  let cursor = 0
+  const indexes: number[] = [];
+  let cursor = 0;
   while (true) {
-    const index = str.indexOf(substr, cursor)
-    if (index === -1 || index >= str.length)
-      break
-    if (index < cursor)
-      break
-    indexes.push(index)
-    cursor = index + substr.length
+    const index = str.indexOf(substr, cursor);
+    if (index === -1 || index >= str.length) break;
+    if (index < cursor) break;
+    indexes.push(index);
+    cursor = index + substr.length;
   }
-  return indexes
+  return indexes;
 }

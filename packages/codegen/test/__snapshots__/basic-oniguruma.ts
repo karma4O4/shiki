@@ -3,42 +3,42 @@ import type {
   DynamicImportLanguageRegistration,
   DynamicImportThemeRegistration,
   HighlighterGeneric,
-} from '@shikijs/types'
+} from "@shikijs/types";
 import {
   createBundledHighlighter,
   createSingletonShorthands,
-} from '@shikijs/core'
-import { createOnigurumaEngine } from '@shikijs/engine-oniguruma'
+} from "@shikijs/core";
+import { createOnigurumaEngine } from "@shikijs/engine-oniguruma";
 
 type BundledLanguage =
-  | 'javascript'
-  | 'js'
-  | 'cjs'
-  | 'mjs'
-  | 'typescript'
-  | 'ts'
-  | 'cts'
-  | 'mts'
-  | 'tsx'
-type BundledTheme = 'nord' | 'vitesse-dark'
-type Highlighter = HighlighterGeneric<BundledLanguage, BundledTheme>
+  | "javascript"
+  | "js"
+  | "cjs"
+  | "mjs"
+  | "typescript"
+  | "ts"
+  | "cts"
+  | "mts"
+  | "tsx";
+type BundledTheme = "nord" | "vitesse-dark";
+type Highlighter = HighlighterGeneric<BundledLanguage, BundledTheme>;
 
 const bundledLanguages = {
-  javascript: () => import('@shikijs/langs/javascript'),
-  js: () => import('@shikijs/langs/javascript'),
-  cjs: () => import('@shikijs/langs/javascript'),
-  mjs: () => import('@shikijs/langs/javascript'),
-  typescript: () => import('@shikijs/langs/typescript'),
-  ts: () => import('@shikijs/langs/typescript'),
-  cts: () => import('@shikijs/langs/typescript'),
-  mts: () => import('@shikijs/langs/typescript'),
-  tsx: () => import('@shikijs/langs/tsx'),
-} as Record<BundledLanguage, DynamicImportLanguageRegistration>
+  javascript: () => import("@shikijs/langs/javascript"),
+  js: () => import("@shikijs/langs/javascript"),
+  cjs: () => import("@shikijs/langs/javascript"),
+  mjs: () => import("@shikijs/langs/javascript"),
+  typescript: () => import("@shikijs/langs/typescript"),
+  ts: () => import("@shikijs/langs/typescript"),
+  cts: () => import("@shikijs/langs/typescript"),
+  mts: () => import("@shikijs/langs/typescript"),
+  tsx: () => import("@shikijs/langs/tsx"),
+} as Record<BundledLanguage, DynamicImportLanguageRegistration>;
 
 const bundledThemes = {
-  nord: () => import('@shikijs/themes/nord'),
-  'vitesse-dark': () => import('@shikijs/themes/vitesse-dark'),
-} as Record<BundledTheme, DynamicImportThemeRegistration>
+  nord: () => import("@shikijs/themes/nord"),
+  "vitesse-dark": () => import("@shikijs/themes/vitesse-dark"),
+} as Record<BundledTheme, DynamicImportThemeRegistration>;
 
 const createHighlighter = /* @__PURE__ */ createBundledHighlighter<
   BundledLanguage,
@@ -46,8 +46,8 @@ const createHighlighter = /* @__PURE__ */ createBundledHighlighter<
 >({
   langs: bundledLanguages,
   themes: bundledThemes,
-  engine: () => createOnigurumaEngine(import('shiki/wasm')),
-})
+  engine: () => createOnigurumaEngine(import("shiki/wasm")),
+});
 
 const {
   codeToHtml,
@@ -59,7 +59,7 @@ const {
   getLastGrammarState,
 } = /* @__PURE__ */ createSingletonShorthands<BundledLanguage, BundledTheme>(
   createHighlighter,
-)
+);
 
 export {
   bundledLanguages,
@@ -72,5 +72,5 @@ export {
   createHighlighter,
   getLastGrammarState,
   getSingletonHighlighter,
-}
-export type { BundledLanguage, BundledTheme, Highlighter }
+};
+export type { BundledLanguage, BundledTheme, Highlighter };

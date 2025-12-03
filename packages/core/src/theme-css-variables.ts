@@ -1,4 +1,4 @@
-import type { ThemeRegistration } from '@shikijs/types'
+import type { ThemeRegistration } from "@shikijs/types";
 
 export interface CssVariablesThemeOptions {
   /**
@@ -6,28 +6,28 @@ export interface CssVariablesThemeOptions {
    *
    * @default 'css-variables'
    */
-  name?: string
+  name?: string;
 
   /**
    * Prefix for css variables
    *
    * @default '--shiki-'
    */
-  variablePrefix?: string
+  variablePrefix?: string;
 
   /**
    * Default value for css variables, the key is without the prefix
    *
    * @example `{ 'token-comment': '#888' }` will generate `var(--shiki-token-comment, #888)` for comments
    */
-  variableDefaults?: Record<string, string>
+  variableDefaults?: Record<string, string>;
 
   /**
    * Enable font style
    *
    * @default true
    */
-  fontStyle?: boolean
+  fontStyle?: boolean;
 }
 
 /**
@@ -35,242 +35,241 @@ export interface CssVariablesThemeOptions {
  *
  * @see https://shiki.style/guide/theme-colors#css-variables-theme
  */
-export function createCssVariablesTheme(options: CssVariablesThemeOptions = {}): ThemeRegistration {
+export function createCssVariablesTheme(
+  options: CssVariablesThemeOptions = {},
+): ThemeRegistration {
   const {
-    name = 'css-variables',
-    variablePrefix = '--shiki-',
+    name = "css-variables",
+    variablePrefix = "--shiki-",
     fontStyle = true,
-  } = options
+  } = options;
 
   const variable = (name: string): string => {
     if (options.variableDefaults?.[name])
-      return `var(${variablePrefix}${name}, ${options.variableDefaults[name]})`
-    return `var(${variablePrefix}${name})`
-  }
+      return `var(${variablePrefix}${name}, ${options.variableDefaults[name]})`;
+    return `var(${variablePrefix}${name})`;
+  };
 
   const theme: ThemeRegistration = {
     name,
-    type: 'dark',
+    type: "dark",
     colors: {
-      'editor.foreground': variable('foreground'),
-      'editor.background': variable('background'),
-      'terminal.ansiBlack': variable('ansi-black'),
-      'terminal.ansiRed': variable('ansi-red'),
-      'terminal.ansiGreen': variable('ansi-green'),
-      'terminal.ansiYellow': variable('ansi-yellow'),
-      'terminal.ansiBlue': variable('ansi-blue'),
-      'terminal.ansiMagenta': variable('ansi-magenta'),
-      'terminal.ansiCyan': variable('ansi-cyan'),
-      'terminal.ansiWhite': variable('ansi-white'),
-      'terminal.ansiBrightBlack': variable('ansi-bright-black'),
-      'terminal.ansiBrightRed': variable('ansi-bright-red'),
-      'terminal.ansiBrightGreen': variable('ansi-bright-green'),
-      'terminal.ansiBrightYellow': variable('ansi-bright-yellow'),
-      'terminal.ansiBrightBlue': variable('ansi-bright-blue'),
-      'terminal.ansiBrightMagenta': variable('ansi-bright-magenta'),
-      'terminal.ansiBrightCyan': variable('ansi-bright-cyan'),
-      'terminal.ansiBrightWhite': variable('ansi-bright-white'),
+      "editor.foreground": variable("foreground"),
+      "editor.background": variable("background"),
+      "terminal.ansiBlack": variable("ansi-black"),
+      "terminal.ansiRed": variable("ansi-red"),
+      "terminal.ansiGreen": variable("ansi-green"),
+      "terminal.ansiYellow": variable("ansi-yellow"),
+      "terminal.ansiBlue": variable("ansi-blue"),
+      "terminal.ansiMagenta": variable("ansi-magenta"),
+      "terminal.ansiCyan": variable("ansi-cyan"),
+      "terminal.ansiWhite": variable("ansi-white"),
+      "terminal.ansiBrightBlack": variable("ansi-bright-black"),
+      "terminal.ansiBrightRed": variable("ansi-bright-red"),
+      "terminal.ansiBrightGreen": variable("ansi-bright-green"),
+      "terminal.ansiBrightYellow": variable("ansi-bright-yellow"),
+      "terminal.ansiBrightBlue": variable("ansi-bright-blue"),
+      "terminal.ansiBrightMagenta": variable("ansi-bright-magenta"),
+      "terminal.ansiBrightCyan": variable("ansi-bright-cyan"),
+      "terminal.ansiBrightWhite": variable("ansi-bright-white"),
     },
     tokenColors: [
       {
         scope: [
-          'keyword.operator.accessor',
-          'meta.group.braces.round.function.arguments',
-          'meta.template.expression',
-          'markup.fenced_code meta.embedded.block',
+          "keyword.operator.accessor",
+          "meta.group.braces.round.function.arguments",
+          "meta.template.expression",
+          "markup.fenced_code meta.embedded.block",
         ],
         settings: {
-          foreground: variable('foreground'),
+          foreground: variable("foreground"),
         },
       },
       {
-        scope: 'emphasis',
+        scope: "emphasis",
         settings: {
-          fontStyle: 'italic',
+          fontStyle: "italic",
         },
       },
       {
-        scope: ['strong', 'markup.heading.markdown', 'markup.bold.markdown'],
+        scope: ["strong", "markup.heading.markdown", "markup.bold.markdown"],
         settings: {
-          fontStyle: 'bold',
+          fontStyle: "bold",
         },
       },
       {
-        scope: ['markup.italic.markdown'],
+        scope: ["markup.italic.markdown"],
         settings: {
-          fontStyle: 'italic',
+          fontStyle: "italic",
         },
       },
       {
-        scope: 'meta.link.inline.markdown',
+        scope: "meta.link.inline.markdown",
         settings: {
-          fontStyle: 'underline',
-          foreground: variable('token-link'),
+          fontStyle: "underline",
+          foreground: variable("token-link"),
         },
       },
       {
-        scope: ['string', 'markup.fenced_code', 'markup.inline'],
+        scope: ["string", "markup.fenced_code", "markup.inline"],
         settings: {
-          foreground: variable('token-string'),
+          foreground: variable("token-string"),
         },
       },
       {
-        scope: ['comment', 'string.quoted.docstring.multi'],
+        scope: ["comment", "string.quoted.docstring.multi"],
         settings: {
-          foreground: variable('token-comment'),
+          foreground: variable("token-comment"),
         },
       },
       {
         scope: [
-          'constant.numeric',
-          'constant.language',
-          'constant.other.placeholder',
-          'constant.character.format.placeholder',
-          'variable.language.this',
-          'variable.other.object',
-          'variable.other.class',
-          'variable.other.constant',
-          'meta.property-name',
-          'meta.property-value',
-          'support',
+          "constant.numeric",
+          "constant.language",
+          "constant.other.placeholder",
+          "constant.character.format.placeholder",
+          "variable.language.this",
+          "variable.other.object",
+          "variable.other.class",
+          "variable.other.constant",
+          "meta.property-name",
+          "meta.property-value",
+          "support",
         ],
         settings: {
-          foreground: variable('token-constant'),
+          foreground: variable("token-constant"),
         },
       },
       {
         scope: [
-          'keyword',
-          'storage.modifier',
-          'storage.type',
-          'storage.control.clojure',
-          'entity.name.function.clojure',
-          'entity.name.tag.yaml',
-          'support.function.node',
-          'support.type.property-name.json',
-          'punctuation.separator.key-value',
-          'punctuation.definition.template-expression',
+          "keyword",
+          "storage.modifier",
+          "storage.type",
+          "storage.control.clojure",
+          "entity.name.function.clojure",
+          "entity.name.tag.yaml",
+          "support.function.node",
+          "support.type.property-name.json",
+          "punctuation.separator.key-value",
+          "punctuation.definition.template-expression",
         ],
         settings: {
-          foreground: variable('token-keyword'),
+          foreground: variable("token-keyword"),
         },
       },
       {
-        scope: 'variable.parameter.function',
+        scope: "variable.parameter.function",
         settings: {
-          foreground: variable('token-parameter'),
-        },
-      },
-      {
-        scope: [
-          'support.function',
-          'entity.name.type',
-          'entity.other.inherited-class',
-          'meta.function-call',
-          'meta.instance.constructor',
-          'entity.other.attribute-name',
-          'entity.name.function',
-          'constant.keyword.clojure',
-        ],
-        settings: {
-          foreground: variable('token-function'),
+          foreground: variable("token-parameter"),
         },
       },
       {
         scope: [
-          'entity.name.tag',
-          'string.quoted',
-          'string.regexp',
-          'string.interpolated',
-          'string.template',
-          'string.unquoted.plain.out.yaml',
-          'keyword.other.template',
+          "support.function",
+          "entity.name.type",
+          "entity.other.inherited-class",
+          "meta.function-call",
+          "meta.instance.constructor",
+          "entity.other.attribute-name",
+          "entity.name.function",
+          "constant.keyword.clojure",
         ],
         settings: {
-          foreground: variable('token-string-expression'),
+          foreground: variable("token-function"),
         },
       },
       {
         scope: [
-          'punctuation.definition.arguments',
-          'punctuation.definition.dict',
-          'punctuation.separator',
-          'meta.function-call.arguments',
+          "entity.name.tag",
+          "string.quoted",
+          "string.regexp",
+          "string.interpolated",
+          "string.template",
+          "string.unquoted.plain.out.yaml",
+          "keyword.other.template",
         ],
         settings: {
-          foreground: variable('token-punctuation'),
+          foreground: variable("token-string-expression"),
+        },
+      },
+      {
+        scope: [
+          "punctuation.definition.arguments",
+          "punctuation.definition.dict",
+          "punctuation.separator",
+          "meta.function-call.arguments",
+        ],
+        settings: {
+          foreground: variable("token-punctuation"),
         },
       },
       {
         // [Custom] Markdown links
         scope: [
-          'markup.underline.link',
-          'punctuation.definition.metadata.markdown',
+          "markup.underline.link",
+          "punctuation.definition.metadata.markdown",
         ],
         settings: {
-          foreground: variable('token-link'),
+          foreground: variable("token-link"),
         },
       },
       {
         // [Custom] Markdown list
-        scope: ['beginning.punctuation.definition.list.markdown'],
+        scope: ["beginning.punctuation.definition.list.markdown"],
         settings: {
-          foreground: variable('token-string'),
+          foreground: variable("token-string"),
         },
       },
       {
         // [Custom] Markdown punctuation definition brackets
         scope: [
-          'punctuation.definition.string.begin.markdown',
-          'punctuation.definition.string.end.markdown',
-          'string.other.link.title.markdown',
-          'string.other.link.description.markdown',
+          "punctuation.definition.string.begin.markdown",
+          "punctuation.definition.string.end.markdown",
+          "string.other.link.title.markdown",
+          "string.other.link.description.markdown",
         ],
         settings: {
-          foreground: variable('token-keyword'),
+          foreground: variable("token-keyword"),
         },
       },
       {
         // [Custom] Diff
         scope: [
-          'markup.inserted',
-          'meta.diff.header.to-file',
-          'punctuation.definition.inserted',
+          "markup.inserted",
+          "meta.diff.header.to-file",
+          "punctuation.definition.inserted",
         ],
         settings: {
-          foreground: variable('token-inserted'),
+          foreground: variable("token-inserted"),
         },
       },
       {
         scope: [
-          'markup.deleted',
-          'meta.diff.header.from-file',
-          'punctuation.definition.deleted',
+          "markup.deleted",
+          "meta.diff.header.from-file",
+          "punctuation.definition.deleted",
         ],
         settings: {
-          foreground: variable('token-deleted'),
+          foreground: variable("token-deleted"),
         },
       },
       {
-        scope: [
-          'markup.changed',
-          'punctuation.definition.changed',
-        ],
+        scope: ["markup.changed", "punctuation.definition.changed"],
         settings: {
-          foreground: variable('token-changed'),
+          foreground: variable("token-changed"),
         },
       },
     ],
-  }
+  };
 
   if (!fontStyle) {
     theme.tokenColors = theme.tokenColors?.map((tokenColor) => {
       if (tokenColor.settings?.fontStyle)
         // @ts-expect-error force delete readonly property
-        delete tokenColor.settings.fontStyle
-      return tokenColor
-    })
+        delete tokenColor.settings.fontStyle;
+      return tokenColor;
+    });
   }
 
-  return theme
+  return theme;
 }

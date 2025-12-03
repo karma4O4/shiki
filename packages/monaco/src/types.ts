@@ -1,4 +1,4 @@
 export interface MonacoLineToken {
-  startIndex: number
-  scopes: string
+  startIndex: number;
+  scopes: string;
 }

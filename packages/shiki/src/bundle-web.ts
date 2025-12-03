@@ -1,17 +1,21 @@
-import type { HighlighterGeneric } from '@shikijs/types'
-import type {} from 'hast'
-import type { BundledLanguage } from './langs-bundle-web'
-import type { BundledTheme } from './themes'
-import { createBundledHighlighter, createSingletonShorthands, guessEmbeddedLanguages } from '@shikijs/core'
-import { createOnigurumaEngine } from './engine-oniguruma'
-import { bundledLanguages } from './langs-bundle-web'
-import { bundledThemes } from './themes'
+import type { HighlighterGeneric } from "@shikijs/types";
+import type {} from "hast";
+import type { BundledLanguage } from "./langs-bundle-web";
+import type { BundledTheme } from "./themes";
+import {
+  createBundledHighlighter,
+  createSingletonShorthands,
+  guessEmbeddedLanguages,
+} from "@shikijs/core";
+import { createOnigurumaEngine } from "./engine-oniguruma";
+import { bundledLanguages } from "./langs-bundle-web";
+import { bundledThemes } from "./themes";
 
-export * from './core'
-export * from './langs-bundle-web'
-export * from './themes'
+export * from "./core";
+export * from "./langs-bundle-web";
+export * from "./themes";
 
-export type Highlighter = HighlighterGeneric<BundledLanguage, BundledTheme>
+export type Highlighter = HighlighterGeneric<BundledLanguage, BundledTheme>;
 
 /**
  * Initiate a highlighter instance and load the specified languages and themes.
@@ -29,8 +33,8 @@ export const createHighlighter = /* @__PURE__ */ createBundledHighlighter<
 >({
   langs: bundledLanguages,
   themes: bundledThemes,
-  engine: () => createOnigurumaEngine(import('shiki/wasm')),
-})
+  engine: () => createOnigurumaEngine(import("shiki/wasm")),
+});
 
 export const {
   codeToHtml,
@@ -40,10 +44,7 @@ export const {
   codeToTokensWithThemes,
   getSingletonHighlighter,
   getLastGrammarState,
-} = /* @__PURE__ */ createSingletonShorthands<
-  BundledLanguage,
-  BundledTheme
->(
+} = /* @__PURE__ */ createSingletonShorthands<BundledLanguage, BundledTheme>(
   createHighlighter,
   { guessEmbeddedLanguages },
-)
+);

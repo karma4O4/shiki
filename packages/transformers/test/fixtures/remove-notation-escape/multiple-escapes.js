@@ -2,11 +2,11 @@
 // [\!code focus:3]
 // [\!code error-level:error]
 export function complexFunction() {
-  const result = "This line should be focused"
+  const result = "This line should be focused";
 
   // [\!code word:result]
-  console.log(result)
+  console.log(result);
 
   // [\!code diff:add]
-  return result + " (modified)"
+  return result + " (modified)";
 }

@@ -34,13 +34,13 @@ import {
   BundledLanguage,
   BundledTheme,
   codeToHtml,
-  createHighlighter
-} from 'shiki/bundle/web' // [!code highlight]
+  createHighlighter,
+} from "shiki/bundle/web"; // [!code highlight]
 
 const highlighter = await createHighlighter({
-  langs: ['html', 'css', 'js'],
-  themes: ['github-dark', 'github-light'],
-})
+  langs: ["html", "css", "js"],
+  themes: ["github-dark", "github-light"],
+});
 ```
 
 ## Fine-grained Bundle
@@ -51,37 +51,37 @@ When importing `shiki`, all the themes and languages are bundled as async chunks
 // @twoslash-cache: {"v":1,"hash":"e26334099d2c6d29154f99e9d0012a1b222bc32fc1d6530631f2db8bdeee0c9f","data":"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"}
 // @noErrors
 // directly import the theme and language modules, only the ones you imported will be bundled.
-import nord from '@shikijs/themes/nord'
+import nord from "@shikijs/themes/nord";
 
 // `shiki/core` entry does not include any themes or languages or the wasm binary.
-import { createHighlighterCore } from 'shiki/core'
-import { createOnigurumaEngine } from 'shiki/engine/oniguruma'
+import { createHighlighterCore } from "shiki/core";
+import { createOnigurumaEngine } from "shiki/engine/oniguruma";
 
 const highlighter = await createHighlighterCore({
   themes: [
     // instead of strings, you need to pass the imported module
     nord,
     // or a dynamic import if you want to do chunk splitting
-    import('@shikijs/themes/material-theme-ocean')
+    import("@shikijs/themes/material-theme-ocean"),
   ],
   langs: [
-    import('@shikijs/langs/javascript'),
+    import("@shikijs/langs/javascript"),
     // shiki will try to interop the module with the default export
-    () => import('@shikijs/langs/css'),
+    () => import("@shikijs/langs/css"),
     // or a getter that returns custom grammar
-    async () => JSON.parse(await fs.readFile('my-grammar.json', 'utf-8'))
+    async () => JSON.parse(await fs.readFile("my-grammar.json", "utf-8")),
   ],
   // `shiki/wasm` contains the wasm binary inlined as base64 string.
-  engine: createOnigurumaEngine(import('shiki/wasm'))
-})
+  engine: createOnigurumaEngine(import("shiki/wasm")),
+});
 
 // optionally, load themes and languages after creation
-await highlighter.loadTheme(import('@shikijs/themes/vitesse-light'))
+await highlighter.loadTheme(import("@shikijs/themes/vitesse-light"));
 
-const code = highlighter.codeToHtml('const a = 1', {
-  lang: 'javascript',
-  theme: 'material-theme-ocean'
-})
+const code = highlighter.codeToHtml("const a = 1", {
+  lang: "javascript",
+  theme: "material-theme-ocean",
+});
 ```
 
 ::: info
